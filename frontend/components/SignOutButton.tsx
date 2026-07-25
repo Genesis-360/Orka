@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { createClient } from "../lib/supabase/client";
+import { cn } from "@/lib/utils";
 
-export default function SignOutButton() {
+export default function SignOutButton({ className }: { className?: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -22,10 +23,10 @@ export default function SignOutButton() {
       type="button"
       onClick={onSignOut}
       disabled={loading}
-      className="flex w-full items-center justify-center gap-2.5"
+      className={cn("flex w-full items-center gap-2.5 text-sm font-medium text-white/60", className)}
     >
-      <LogOut className="size-4 text-white/50" aria-hidden />
-      {loading ? "Signing out…" : "Sign out"}
+      <LogOut className="size-4 shrink-0" aria-hidden />
+      {loading ? "Signing out\u2026" : "Sign out"}
     </button>
   );
 }

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
+import { normalizeBlocks } from "@/lib/contractTemplates";
 import { saveProposal } from "../../actions";
 import { ProposalTags } from "./ProposalTags";
 
@@ -24,7 +25,7 @@ export function ProposalEditor({
 }) {
   const router = useRouter();
   const editor = useCreateBlockNote({
-    initialContent: (initialBlocks?.length ? initialBlocks : undefined) as never,
+    initialContent: (initialBlocks?.length ? normalizeBlocks(initialBlocks) : undefined) as never,
   });
   const [title, setTitle] = useState(initialTitle);
   const [tags, setTags] = useState<string[]>(initialTags);

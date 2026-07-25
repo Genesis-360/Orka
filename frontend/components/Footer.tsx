@@ -12,8 +12,8 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="px-4 pb-10 pt-16 md:px-8 lg:px-12">
-      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 pt-8 text-left md:flex-row md:items-start">
-        <div className="max-w-md">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 pt-8 text-center">
+        <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-3">
             <span className="grid size-28 place-items-center rounded-full sm:size-36 lg:size-40">
               <Image
@@ -26,7 +26,7 @@ export default function Footer() {
             </span>
             <span className="display text-7xl uppercase sm:text-8xl lg:text-[152px]">ORKA</span>
           </div>
-          <div className="mt-4 flex items-center gap-4">
+          <div className="flex items-center justify-center gap-4">
             {socials.map(({ label, href, src }) => (
               <a
                 key={label}
@@ -48,20 +48,20 @@ export default function Footer() {
               />
             ))}
           </div>
-          <p className="mt-4 text-base leading-7 text-night/80 sm:text-[18px] sm:leading-8">
+          <p className="max-w-lg text-base leading-7 text-night/80 sm:text-[18px] sm:leading-8">
             Autonomous financial operations for the global service economy.
             AI-powered proposals, escrow, verification, and payouts.
           </p>
         </div>
-        <div className="flex flex-col items-start gap-3">
-          <div className="grid grid-flow-col grid-rows-2 place-items-start gap-x-8 gap-y-3 md:flex md:flex-col md:gap-3">
+        <div className="flex flex-col items-center gap-3">
+          <div className="grid grid-flow-col grid-rows-3 place-items-start gap-x-8 gap-y-3 md:flex md:flex-col md:gap-3">
             {[
               ["About", "/about"],
               ["Blog", "/blog"],
               ["Contact", "/contact"],
               ["Docs", "/docs"],
               ["Terms & Services", "/terms"],
-              ["Privay Policy", "/privacy"],
+              ["Privacy Policy", "/privacy"],
             ].map(([label, href]) => (
               <Link
                 key={label}
@@ -74,7 +74,7 @@ export default function Footer() {
             </Link>
             ))}
           </div>
-          <div className="max-w-7xl text-left text-[16px] font-medium uppercase text-night/80">
+          <div className="max-w-7xl text-center text-[16px] font-medium uppercase text-night/80">
             Copyright © 2026 ORKA. All rights reserved.
           </div>
         </div>

@@ -249,6 +249,7 @@ export async function saveProposal(input: {
           blocks: input.blocks,
           markdown,
           tags: input.tags,
+          updated_at: new Date().toISOString(),
         })
         .eq("id", proposalId)
         .eq("org_id", orgId);

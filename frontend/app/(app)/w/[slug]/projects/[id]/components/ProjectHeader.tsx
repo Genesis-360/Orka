@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronRight, Globe, Copy, Check } from "lucide-react";
@@ -70,12 +70,17 @@ export function ProjectHeader({
   const pathname = usePathname();
   const [copied, setCopied] = useState(false);
   const [portalCopied, setPortalCopied] = useState(false);
+  const [timeAgoLabel, setTimeAgoLabel] = useState("");
+
+  useEffect(() => {
+    setTimeAgoLabel(timeAgo(updatedAt));
+    const interval = setInterval(() => setTimeAgoLabel(timeAgo(updatedAt)), 30000);
+    return () => clearInterval(interval);
+  }, [updatedAt]);
 
   const base = `/w/${slug}/projects/${projectId}`;
   const activeTab = pathname.replace(base, "").split("/").filter(Boolean)[0] as string | undefined;
   const tabLabel = PROJECT_TABS.find((t) => t.href === activeTab)?.label;
-
-  const timeAgoLabel = timeAgo(updatedAt);
 
   async function copyProjectId() {
     try {
