@@ -9,6 +9,7 @@ export const article: BlogArticle = {
   readingTime: "7 min read",
   publishedAt: "2026-03-08",
   coverGradient: "from-orange/12 via-lime/8 to-orange/5",
+  image: "/BlogImages/reduce-scope-creep.jpeg",
   featured: false,
   seoTitle: "How to Reduce Scope Creep | ORKA",
   seoDescription: "Learn how agencies and freelancers can prevent scope creep with better proposals, contracts, milestones, and client communication.",
