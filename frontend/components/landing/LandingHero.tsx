@@ -24,26 +24,19 @@ export default function LandingHero() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=350%",
+            end: "+=400%",
             pin: true,
             scrub: 1,
             invalidateOnRefresh: true,
           },
         });
 
-        // Headline moves up and fades
-        tl.to(
-          headlineRef.current,
-          { yPercent: -50, opacity: 0.2, scale: 0.8, ease: "power2.inOut" },
-          0,
-        );
-
-        // Dashboard slides up from below and settles over the heading
+        // Dashboard slides up from below, covers heading (which stays fixed)
         tl.fromTo(
           dashboardRef.current,
-          { y: "100vh", opacity: 0 },
-          { y: 0, opacity: 1, ease: "power3.out" },
-          0.25,
+          { y: "120vh" },
+          { y: 0, ease: "power3.inOut" },
+          0,
         );
       });
     }, sectionRef);
