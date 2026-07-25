@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <span className="grid size-28 place-items-center rounded-full sm:size-36 lg:size-40">
               <Image
-                src="/Logo/LOGO.svg"
+                src="/Logo/logo.svg"
                 alt="ORKA"
                 width={96}
                 height={96}

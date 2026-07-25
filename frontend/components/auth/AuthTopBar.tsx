@@ -8,7 +8,7 @@ export default function AuthTopBar() {
       <div className="flex items-center justify-between bg-background px-5 sm:px-8 lg:px-10">
         <Link href="/" className="group flex items-center gap-2.5" aria-label="ORKA home">
           <Image
-            src="/Logo/LOGO.svg"
+            src="/Logo/logo.svg"
             alt="ORKA"
             width={32}
             height={32}

@@ -20,7 +20,7 @@ export function WorkspaceNav({
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
         <Link href="/workspaces" className="flex shrink-0 items-center gap-2.5">
           <Image
-            src="/Logo/LOGO.svg"
+            src="/Logo/logo.svg"
             alt="ORKA"
             width={28}
             height={28}

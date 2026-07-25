@@ -145,7 +145,7 @@ export default function Navbar() {
           className="flex items-center gap-2.5 text-white"
           aria-label="ORKA home">
           <Image
-            src="/Logo/LOGO.svg"
+            src="/Logo/logo.svg"
             alt=""
             width={32}
             height={32}

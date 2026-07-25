@@ -117,7 +117,7 @@ export default function WaitlistForm({
           : <>
               Get started
               <Image
-                src="/Icons/Arrow-Right-Down.svg"
+                src="/Icons/arrow-right-down.svg"
                 alt="ORKA"
                 width={12}
                 height={12}

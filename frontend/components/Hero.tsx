@@ -8,7 +8,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-night rounded-b-[42px] px-4 pb-16 pt-5 text-white md:rounded-b-[72px] md:px-8 lg:px-12">
       {/* Floating decorations */}
       <Image
-        src="/Elements/Star-Violet.svg"
+        src="/Elements/star-violet.svg"
         alt=""
         aria-hidden
         width={40}
@@ -16,7 +16,7 @@ export default function Hero() {
         className="pointer-events-none absolute right-[14%] bottom-[52%] hidden w-8 object-contain md:block lg:w-10 float-1"
       />
       <Image
-        src="/Elements/Plus-Teal.svg"
+        src="/Elements/plus-teal.svg"
         alt=""
         aria-hidden
         width={36}
@@ -24,7 +24,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[14%] top-[30%] hidden w-7 object-contain md:block lg:w-9 float-2"
       />
       <Image
-        src="/Elements/Star-Blue.svg"
+        src="/Elements/star-blue.svg"
         alt=""
         aria-hidden
         width={28}
@@ -32,7 +32,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[5%] bottom-[30%] hidden w-6 object-contain opacity-70 sm:block float-3"
       />
       <Image
-        src="/Elements/Plus-Lime.svg"
+        src="/Elements/plus-lime.svg"
         alt=""
         aria-hidden
         width={32}
@@ -40,7 +40,7 @@ export default function Hero() {
         className="pointer-events-none absolute right-[6%] bottom-[22%] hidden w-7 object-contain opacity-70 sm:block float-4"
       />
       <Image
-        src="/Elements/Asterics-Orange.svg"
+        src="/Elements/asterisk-orange.svg"
         alt=""
         aria-hidden
         width={30}

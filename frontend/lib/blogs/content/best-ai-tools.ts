@@ -9,7 +9,7 @@ export const article: BlogArticle = {
   readingTime: "7 min read",
   publishedAt: "2026-03-28",
   coverGradient: "from-violet/15 via-info/10 to-violet/5",
-  image: "/BlogImages/ChatGPT Image Jul 25, 2026, 12_29_13 AM.png",
+  image: "/BlogImages/best-AI-tools-for-agencies.png",
   featured: false,
   seoTitle: "Best AI Tools for Agencies in 2026 | ORKA",
   seoDescription: "Explore the best AI tools agencies use to automate repetitive work, improve client management, write better proposals, and scale faster.",
