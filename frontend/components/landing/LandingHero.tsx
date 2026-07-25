@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import VideoBackground from "./VideoBackground";
 import Particles from "./Particles";
@@ -13,57 +14,43 @@ gsap.registerPlugin(ScrollTrigger);
 export default function LandingHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const contentWrapRef = useRef<HTMLDivElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
-  const pinRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
-
-      // Only run on desktop
       mm.add("(min-width: 1024px)", () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=400%",
-            scrub: 1.2,
-            pin: false,
+            end: "+=300%",
+            scrub: 1,
             invalidateOnRefresh: true,
           },
         });
 
-        // Headline moves up
+        // Headline shrinks and moves up
         tl.to(
           headlineRef.current,
-          {
-            y: -180,
-            scale: 0.92,
-            opacity: 0.6,
-            ease: "power2.out",
-          },
+          { yPercent: -40, scale: 0.85, opacity: 0.3, ease: "power2.inOut" },
           0,
         );
 
-        // Dashboard reveal from bottom
+        // Dashboard slides up from below, fading in
         tl.fromTo(
           dashboardRef.current,
-          { y: 300, opacity: 0, scale: 0.92 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            ease: "power2.out",
-          },
-          0.35,
+          { y: "40vh", opacity: 0 },
+          { y: 0, opacity: 1, ease: "power2.out" },
+          0.3,
         );
 
-        // Pin the dashboard
+        // Pin the dashboard wrapper so it stays fixed
         ScrollTrigger.create({
-          trigger: pinRef.current,
-          start: "top 5%",
-          end: "bottom top",
+          trigger: dashboardRef.current,
+          start: "top 3%",
+          end: "bottom+=40% top",
           pin: true,
           pinSpacing: false,
           scrub: 0.5,
@@ -77,7 +64,7 @@ export default function LandingHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[180vh] bg-[#081B2E] overflow-hidden"
+      className="relative min-h-[200vh] bg-[#081B2E] overflow-hidden"
     >
       {/* Video background */}
       <div className="absolute inset-0 z-0">
@@ -94,65 +81,56 @@ export default function LandingHero() {
       {/* Particles */}
       <Particles />
 
-      {/* Hero content - sits above dashboard */}
+      {/* Hero content */}
       <div
-        ref={contentRef}
-        className="relative z-20 mx-auto flex max-w-[1400px] flex-col items-center px-6 pt-32 text-center"
+        ref={contentWrapRef}
+        className="relative z-20 mx-auto flex max-w-[1400px] flex-col items-center px-6 pt-36 text-center"
         style={{ minHeight: "100vh" }}
       >
         {/* Tag pill */}
-        <div className="mb-8 animate-fade-in rounded-full border border-violet/20 bg-violet/10 px-4 py-1.5 text-xs font-medium text-violet">
-          Launch — Start Building Today
+        <div className="mb-6 animate-fade-in rounded-full border border-white/20 bg-white/8 px-4 py-1.5 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[14px]">
+          Launch — start building today
         </div>
 
-        {/* Headline */}
+        {/* Headline — matches original Hero.tsx style */}
         <h1
           ref={headlineRef}
-          className="display mx-auto max-w-6xl text-[clamp(3rem,12vw,180px)] leading-[0.85] tracking-tighter text-white"
+          className="display mx-auto max-w-5xl text-center text-[2.6rem] uppercase leading-[1.05] text-white sm:text-[4.4rem] md:text-[6.4rem] lg:text-[7.3rem]"
+          style={{ willChange: "transform, opacity" }}
         >
-          <span className="block">AUTONOMOUS</span>
-          <span className="block text-orange">FINANCIAL OS</span>
-          <span className="block">FOR GLOBAL</span>
-          <span className="block text-violet">SERVICE WORK.</span>
+          Autonomous <span className="text-orange">financial OS</span> for{" "}
+          global <span className="text-violet">service work.</span>
         </h1>
 
-        <p className="mx-auto mt-8 max-w-[700px] text-base leading-relaxed text-white/50 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-base font-normal leading-7 text-white/70 sm:text-lg sm:leading-8">
           ORKA eliminates the admin tax of proposals, escrow, milestone
-          verification, payments, contracts, invoices, and financial operations
-          for agencies and freelancers working globally.
+          verification, payouts, invoices, and financial records for agencies
+          and freelancers working across borders.
         </p>
 
-        <div className="mt-10 flex items-center gap-4">
+        <div className="mt-8 flex justify-center gap-4">
           <Link
-            href="/waitlist"
-            className="group rounded-full bg-violet px-8 py-3.5 text-base font-bold text-white transition-all hover:bg-violet/90 hover:-translate-y-0.5"
+            href="/signup"
+            className="inline-flex min-h-14 items-center gap-3 rounded-full bg-violet px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#a78cff] hover:-translate-y-0.5"
           >
-            Get Started{" "}
-            <span className="ml-1 inline-block transition-transform group-hover:translate-x-0.5">
-              →
-            </span>
+            Get started <ArrowRight size={18} />
           </Link>
           <Link
             href="/pricing"
-            className="rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-base font-medium text-white/60 backdrop-blur-sm transition-all hover:border-white/20 hover:text-white"
+            className="inline-flex min-h-14 items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-bold text-white/80 transition-all hover:bg-white/8 hover:text-white hover:-translate-y-0.5"
           >
-            See Pricing
+            See pricing
           </Link>
         </div>
       </div>
 
-      {/* Dashboard reveal */}
+      {/* Dashboard — slides up and covers the heading */}
       <div
-        ref={pinRef}
-        className="relative z-30 mx-auto mt-[-20vh] w-full max-w-[1400px] px-6 pb-32"
+        ref={dashboardRef}
+        className="relative z-30 mx-auto mt-[-10vh] w-full max-w-[1400px] px-6 pb-32"
+        style={{ perspective: "1200px" }}
       >
-        <div
-          ref={dashboardRef}
-          className="origin-top"
-          style={{ perspective: "1200px", transform: "rotateX(2deg)" }}
-        >
-          <Dashboard />
-        </div>
+        <Dashboard />
       </div>
     </section>
   );
