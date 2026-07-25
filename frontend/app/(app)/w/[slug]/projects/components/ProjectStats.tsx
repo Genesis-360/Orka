@@ -5,18 +5,13 @@ import {
   Pause,
   DollarSign,
 } from "lucide-react";
-import type { ProjectStatus } from "@/lib/orka";
+import type { ProjectSummary } from "@/lib/orka";
 
-export function ProjectStats({
-  total,
-  counts,
-}: {
-  total: number;
-  counts: Record<ProjectStatus, number>;
-}) {
-  const active = counts.active;
-  const completed = counts.completed;
-  const draft = counts.draft;
+export function ProjectStats({ projects }: { projects: ProjectSummary[] }) {
+  const total = projects.length;
+  const active = projects.filter((p) => p.status === "active").length;
+  const completed = projects.filter((p) => p.status === "completed").length;
+  const draft = projects.filter((p) => p.status === "draft").length;
   const pct = (n: number) => (total > 0 ? Math.round((n / total) * 100) : 0);
 
   const cards = [

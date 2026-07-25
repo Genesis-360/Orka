@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import AuthPageHeader from "@/components/auth/AuthPageHeader";
+
+const btn =
+  "mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border-2 border-night bg-lime px-7 text-sm font-black uppercase text-night transition hover:-translate-y-0.5 hover:bg-orange hover:text-white";
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState("");
@@ -20,47 +22,42 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <section>
-      <AuthPageHeader
-        title="Set a new password"
-        description="Choose a strong password with at least eight characters."
-      />
+    <div>
+      <h1 className="display text-3xl uppercase">New password</h1>
+      <p className="mt-2 text-sm font-bold text-muted-foreground">
+        Choose a new password for your account.
+      </p>
 
       {done ? (
-        <p className="auth-success-message mt-8 p-4" role="status">
+        <p className="mt-6 rounded-[12px] bg-muted p-3 text-sm font-bold text-foreground">
           Password updated. You can now log in.
         </p>
       ) : (
-        <form onSubmit={onSubmit} className="mt-8 space-y-5">
-          <label htmlFor="new-password" className="auth-field-label">New password</label>
+        <form onSubmit={onSubmit} className="mt-6 space-y-4">
           <input
-            id="new-password"
             type="password"
             required
             minLength={8}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="New password"
-            className="auth-input"
+            className="w-full rounded-[12px] border border-border bg-background px-4 py-3 text-sm font-bold text-foreground outline-none focus:border-lime"
           />
           {error ? (
-            <p className="auth-error-message px-3 py-2" role="alert">{error}</p>
+            <p className="text-sm font-bold text-coral">{error}</p>
           ) : null}
-          <button
-            type="submit"
-            className="auth-primary-button"
-          >
+          <button type="submit" className={btn}>
             Update password
           </button>
         </form>
       )}
 
       <Link
-        href="/signin"
-        className="auth-text-link mt-6 block text-center text-sm"
+        href="/login"
+        className="mt-6 block text-xs font-bold text-muted-foreground underline-offset-4 hover:underline"
       >
-        Back to signin
+        Back to login
       </Link>
-    </section>
+    </div>
   );
 }

@@ -1,17 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const { setTheme, theme: resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
+  const { setTheme, resolvedTheme, forcedTheme } = useTheme();
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration-safe mount detection
-  React.useEffect(() => setMounted(true), []);
-
+  const mounted = forcedTheme !== undefined || resolvedTheme !== undefined;
   const isDark = mounted && resolvedTheme === "dark";
 
   return (

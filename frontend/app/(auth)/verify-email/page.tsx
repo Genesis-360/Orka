@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import AuthPageHeader from "@/components/auth/AuthPageHeader";
+
+const btn =
+  "mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border-2 border-night bg-lime px-7 text-sm font-black uppercase text-night transition hover:-translate-y-0.5 hover:bg-orange hover:text-white";
 
 export default function VerifyEmailPage() {
   const [email, setEmail] = useState("");
@@ -32,53 +34,42 @@ export default function VerifyEmailPage() {
   }
 
   return (
-    <section>
-      <AuthPageHeader
-        title="Verify your email"
-        description="Enter the six-digit code from your confirmation email."
-      />
+    <div>
+      <h1 className="display text-3xl uppercase">Verify email</h1>
+      <p className="mt-2 text-sm font-bold text-muted-foreground">
+        Enter the code we sent to confirm your address.
+      </p>
 
       {done ? (
-        <p className="auth-success-message mt-8 p-4" role="status">
+        <p className="mt-6 rounded-[12px] bg-muted p-3 text-sm font-bold text-foreground">
           Email verified. You&apos;re all set.
         </p>
       ) : (
-        <form onSubmit={onSubmit} className="mt-8 space-y-5">
-          <div>
-            <label htmlFor="verify-email" className="auth-field-label">Email address</label>
+        <form onSubmit={onSubmit} className="mt-6 space-y-4">
           <input
-            id="verify-email"
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            className="auth-input"
+            className="w-full rounded-[12px] border border-border bg-background px-4 py-3 text-sm font-bold text-foreground outline-none focus:border-lime"
           />
-          </div>
-          <div>
-            <label htmlFor="verify-code" className="auth-field-label">Verification code</label>
           <input
-            id="verify-code"
             type="text"
             required
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder="123456"
-            className="auth-input text-center font-mono tracking-[0.35em]"
+            className="w-full rounded-[12px] border border-border bg-background px-4 py-3 text-sm font-bold tracking-[0.3em] text-foreground outline-none focus:border-lime"
           />
-          </div>
-          {error ? <p className="auth-error-message px-3 py-2" role="alert">{error}</p> : null}
-          <button
-            type="submit"
-            className="auth-primary-button"
-          >
+          {error ? <p className="text-sm font-bold text-coral">{error}</p> : null}
+          <button type="submit" className={btn}>
             Verify
           </button>
           <button
             type="button"
             onClick={onResend}
-            className="auth-text-link block w-full text-center text-sm"
+            className="block w-full text-center text-xs font-bold text-muted-foreground underline-offset-4 hover:underline"
           >
             Resend code
           </button>
@@ -86,11 +77,11 @@ export default function VerifyEmailPage() {
       )}
 
       <Link
-        href="/signin"
-        className="auth-text-link mt-6 block text-center text-sm"
+        href="/login"
+        className="mt-6 block text-xs font-bold text-muted-foreground underline-offset-4 hover:underline"
       >
-        Back to sigin
+        Back to login
       </Link>
-    </section>
+    </div>
   );
 }

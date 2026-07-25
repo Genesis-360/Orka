@@ -67,11 +67,11 @@ export default function Footer() {
                 key={label}
                 href={href}
                 className="group display flex items-center gap-3 text-2xl font-normal uppercase text-night transition hover:text-orange sm:text-[28px]">
-               <span className="grid size-8 place-items-center rounded-full bg-violet text-white transition-colors duration-300 group-hover:bg-orange">
-                <ArrowUpRight size={16} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </span>
-              {label}
-            </Link>
+                 <span className="grid size-8 place-items-center rounded-full bg-violet text-white transition-colors duration-300 group-hover:bg-orange">
+                  <ArrowUpRight size={16} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </span>
+                {label}
+              </a>
             ))}
           </div>
           <div className="max-w-7xl text-left text-[16px] font-medium uppercase text-night/80">

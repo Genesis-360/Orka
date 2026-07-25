@@ -10,7 +10,7 @@ export default function WaitlistCta() {
           Milestone Escrow
         </span>
         <span className="sticker absolute right-[3%] top-[45%] rounded-full bg-lime px-4 py-2 text-xs font-black uppercase text-night shadow-hard hidden lg:block" style={{ transform: "rotate(5deg)" }}>
-          Verified Payouts
+          Performance Metrics
         </span>
         <span className="sticker absolute right-[5%] top-[55%] rounded-full bg-violet px-4 py-2 text-xs font-black uppercase text-white shadow-hard hidden lg:block" style={{ transform: "rotate(-3deg)" }}>
           AI Operations
@@ -33,13 +33,8 @@ export default function WaitlistCta() {
               <span className="text-orange">full</span> potential?
             </h2>
           </div>
-          <div className="flex justify-center">
-            <Link
-              href="/signup"
-              className="group inline-flex min-h-14 items-center gap-3 rounded-full bg-white px-10 py-4 text-lg font-bold text-night transition-all hover:bg-lime hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Get started <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </Link>
+          <div className="rounded-[18px] bg-white p-5 text-night md:p-6">
+            <WaitlistForm />
           </div>
         </div>
       </div>

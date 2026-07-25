@@ -20,9 +20,10 @@ export type PortalInvoice = {
 
 export type PortalProposal = {
   id: string;
-  title: string | null;
   status: string;
-  markdown: string | null;
+  asset: string;
+  contract_id: string | null;
+  milestones: Array<{ amount: number; description: string }> | null;
 };
 
 export type PortalProject = {
@@ -31,11 +32,9 @@ export type PortalProject = {
   description: string | null;
   status: string;
   contract_id: string | null;
-  contract_address: string | null;
-  custody_mode: string;
   created_at: string;
   organization: { name: string | null } | null;
-  client: { id: string; name: string | null; email: string | null; stellar_address: string | null } | null;
+  client: { name: string | null } | null;
   milestones: PortalMilestone[];
   invoices: PortalInvoice[];
   proposals: PortalProposal[];
@@ -63,11 +62,6 @@ export async function getPortalProject(
     p_token: token,
   });
 
-  if (error || !data) {
-    if (typeof console !== "undefined") {
-      console.error("getPortalProject error:", error?.message ?? "No data returned");
-    }
-    return null;
-  }
+  if (error || !data) return null;
   return data as PortalProject;
 }

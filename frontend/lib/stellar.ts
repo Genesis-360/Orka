@@ -30,16 +30,8 @@ export async function connectAndSignLogin(): Promise<{ address: string; challeng
   const { address } = await getAddress();
   if (!address) throw new Error("No Stellar address in Freighter");
   const challenge = buildLoginChallenge(address);
-  const res = await signMessage(challenge, { address });
-  if (res.error) {
-    throw new Error(res.error.message || "Freighter could not sign the message");
-  }
-  if (res.signerAddress !== address) {
-    throw new Error("Freighter signed with a different wallet address");
-  }
-  const signature = typeof res.signedMessage === "string"
-    ? res.signedMessage
-    : res.signedMessage?.toString("base64");
+  const res = await signMessage(challenge);
+  const signature = res.signedMessage;
   if (typeof signature !== "string" || !signature) {
     throw new Error("Freighter did not return a signature");
   }

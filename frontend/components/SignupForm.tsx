@@ -28,7 +28,7 @@ function getFriendlyError(message: string) {
 }
 
 const inputClass =
-  "auth-input";
+  "min-h-12 w-full rounded-[10px] border-2 border-border bg-background px-4 text-sm font-bold text-foreground outline-none transition focus:border-ring focus:ring-4 focus:ring-ring/20";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -108,9 +108,9 @@ export default function SignupForm() {
 
   if (success) {
     return (
-      <div className="auth-success-message p-5" role="status">
-        <p className="text-base font-bold">Check your inbox</p>
-        <p className="mt-2 text-sm text-current/85">
+      <div className="rounded-[14px] border-2 border-border bg-lime p-5 text-night shadow-hard">
+        <p className="display text-2xl uppercase">Check your inbox!</p>
+        <p className="mt-2 text-sm font-bold">
           We sent a confirmation link to {email.trim() || "your email"}. Open it to finish
           creating your ORKA account.
         </p>
@@ -120,13 +120,14 @@ export default function SignupForm() {
 
   return (
     <div className="w-full">
-      <div className="mb-6 flex gap-1 rounded-lg border bg-muted p-1" role="group" aria-label="Account type">
+      {/* Mode toggle */}
+      <div className="mb-6 grid grid-cols-2 gap-2 rounded-full border-2 border-border bg-background p-1">
         <button
           type="button"
           onClick={() => setMode("orka")}
           aria-pressed={mode === "orka"}
-          className={`flex-1 rounded-md px-4 py-2 text-xs font-bold transition ${
-            mode === "orka" ? "bg-white text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          className={`rounded-full px-4 py-2 text-sm font-black uppercase transition ${
+            mode === "orka" ? "bg-primary text-white" : "text-foreground hover:bg-muted"
           }`}>
           Orka-managed
         </button>
@@ -134,8 +135,8 @@ export default function SignupForm() {
           type="button"
           onClick={() => setMode("freighter")}
           aria-pressed={mode === "freighter"}
-          className={`flex-1 rounded-md px-4 py-2 text-xs font-bold transition ${
-            mode === "freighter" ? "bg-white text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          className={`rounded-full px-4 py-2 text-sm font-black uppercase transition ${
+            mode === "freighter" ? "bg-primary text-white" : "text-foreground hover:bg-muted"
           }`}>
           Wallet
         </button>
@@ -145,20 +146,55 @@ export default function SignupForm() {
         <div
           id={errorId}
           role="status"
-          className="auth-error-message mb-5 flex items-start gap-3 px-4 py-3">
-          <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-coral text-[10px] font-black text-white">
+          className="mb-4 flex items-start gap-3 rounded-[14px] border-2 border-border/15 bg-muted px-4 py-3 text-sm font-bold leading-5 text-foreground shadow-[4px_4px_0_rgba(6,26,43,0.15)]">
+          <span className="grid size-6 shrink-0 place-items-center rounded-full bg-orange text-xs font-black text-white">
             !
           </span>
           <p>{error}</p>
         </div>
       : null}
 
-      {mode === "freighter" ?
-        <WalletSignIn intent="signup" />
+      {/* Mode B panel */}
+      {mode === "freighter" && !stellarAddress ?
+        <div className="flex flex-col items-center gap-4 py-6">
+          <button
+            type="button"
+            onClick={connectFreighter}
+            className="flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-border bg-lime px-7 text-sm font-black uppercase text-night transition hover:-translate-y-0.5 hover:bg-orange hover:text-white">
+            <Wallet size={18} /> Connect Freighter
+          </button>
+          {freighterError ?
+            <p className="text-sm font-bold text-coral">{freighterError}</p>
+          : <p className="text-sm font-bold text-foreground/70">
+              Self-custody via the Freighter browser extension.
+            </p>}
+        </div>
       :
         <form onSubmit={onSubmit} className="flex flex-col gap-5">
           <div>
-            <label htmlFor="su-email" className="auth-field-label">
+            <label htmlFor="su-name" className="mb-1 block text-sm font-bold text-foreground">
+              Full name
+            </label>
+            <input
+              id="su-name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Jane Doe"
+              className={inputClass}
+              required
+            />
+          </div>
+
+          {mode === "freighter" && stellarAddress ?
+            <div className="flex items-center gap-2 rounded-[10px] border-2 border-teal bg-background px-4 py-3 text-sm font-bold text-foreground">
+              <CheckCircle2 size={18} className="text-teal" />
+              Connected: {maskKey(stellarAddress)}
+            </div>
+          : null}
+
+          <div>
+            <label htmlFor="su-email" className="mb-1 block text-sm font-bold text-foreground">
               Email
             </label>
             <input
@@ -176,7 +212,7 @@ export default function SignupForm() {
           </div>
 
           <div>
-            <label htmlFor="su-password" className="auth-field-label">
+            <label htmlFor="su-password" className="mb-1 block text-sm font-bold text-foreground">
               Password
             </label>
             <div className="relative">
@@ -194,46 +230,65 @@ export default function SignupForm() {
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/60">
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
 
+          <div>
+            <label htmlFor="su-role" className="mb-1 block text-sm font-bold text-foreground">
+              I am a…
+            </label>
+            <select
+              id="su-role"
+              name="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className={inputClass}
+              required>
+              <option value="" disabled>
+                Select your role
+              </option>
+              {ROLES.map((r) => (
+                <option key={r.value} value={r.value}>
+                  {r.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className="auth-primary-button">
+            className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-border bg-lime px-7 text-sm font-black uppercase text-night transition hover:-translate-y-0.5 hover:bg-orange hover:text-white disabled:cursor-wait disabled:opacity-70">
             {loading ? "Creating…" : "Create account"}
           </button>
 
           {mode === "orka" ?
             <>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <span className="h-px flex-1 bg-border" />
+              <div className="my-3 flex items-center gap-3 text-foreground/50">
+                <span className="h-px flex-1 bg-primary/15" />
                 <span className="text-xs font-bold uppercase">or</span>
-                <span className="h-px flex-1 bg-border" />
+                <span className="h-px flex-1 bg-primary/15" />
               </div>
               <button
                 type="button"
                 onClick={onGoogle}
                 disabled={googleLoading}
-                className="auth-secondary-button">
-                <Image src="/Icons/google-circle-solid.svg" alt="" width={18} height={18} />
-                Continue with Google
+                className="flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-border bg-background px-7 text-sm font-black uppercase text-foreground transition hover:-translate-y-0.5 hover:bg-muted disabled:cursor-wait disabled:opacity-70">
+                <Mail size={18} /> Continue with Google
               </button>
             </>
           : null}
         </form>}
 
-      {mode === "orka" ? (
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link href="/signin" className="auth-inline-link">
-            Sign in
-          </Link>
-        </p>
-      ) : null}
+      <p className="mt-6 text-center text-sm font-bold text-foreground/70">
+        Already have an account?{" "}
+        <Link href="/login" className="text-violet underline">
+          Log in
+        </Link>
+      </p>
     </div>
   );
 }

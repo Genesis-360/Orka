@@ -1,11 +1,11 @@
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, FolderKanban } from "lucide-react";
 import type { ProjectSummary, ProjectStatus } from "@/lib/orka";
-import { TimeAgo } from "./TimeAgo";
 
 export type { ProjectSummary };
 
-export const ITEMS_PER_PAGE = 10;
+export const ITEMS_PER_PAGE = 8;
 
 // Deterministic color from a string (since there is no stored client color yet).
 function colorFromString(s: string): string {
@@ -46,18 +46,6 @@ const STATUS_LABEL: Record<ProjectStatus, string> = {
   archived: "Archived",
 };
 
-function timeAgo(iso: string): string {
-  const diff = Date.now() - new Date(iso).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins} min ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs} hr ago`;
-  const days = Math.floor(hrs / 24);
-  if (days < 30) return `${days} day${days > 1 ? "s" : ""} ago`;
-  return new Date(iso).toLocaleDateString();
-}
-
 export function ProjectRow({
   project,
   slug,
@@ -66,11 +54,24 @@ export function ProjectRow({
   slug: string;
 }) {
   const p = project;
+  const [now] = useState(() => Date.now());
   const clientName = p.client_name ?? "No client";
   const clientInitial = clientName.charAt(0).toUpperCase();
   const clientColor = colorFromString(clientName);
   // Budget / due date / progress / team are not yet stored on projects.
   const dueLabel = "—";
+
+  function timeAgo(iso: string, now: number): string {
+    const diff = now - new Date(iso).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return "just now";
+    if (mins < 60) return `${mins} min ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs} hr ago`;
+    const days = Math.floor(hrs / 24);
+    if (days < 30) return `${days} day${days > 1 ? "s" : ""} ago`;
+    return new Date(iso).toLocaleDateString();
+  }
 
   return (
     <tr
@@ -128,7 +129,7 @@ export function ProjectRow({
 
       {/* Last Updated */}
       <td className="px-4 py-3 text-sm text-gray-500">
-        <TimeAgo iso={p.updated_at} />
+        {timeAgo(p.updated_at, now)}
       </td>
 
       {/* Actions */}
