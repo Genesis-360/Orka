@@ -1,24 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Mail, Eye, EyeOff, Wallet, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
+import WalletSignIn from "@/components/WalletSignIn";
 import { createClient } from "../lib/supabase/client";
-import { getAddress, requestAccess, isAllowed } from "@stellar/freighter-api";
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ROLES = [
-  { value: "agency", label: "Agency" },
-  { value: "freelancer", label: "Freelancer" },
-  { value: "client", label: "Client" },
-] as const;
 
 type Mode = "orka" | "freighter";
-
-function maskKey(key: string) {
-  return `${key.slice(0, 4)}…${key.slice(-4)}`;
-}
 
 function getFriendlyError(message: string) {
   const m = message.toLowerCase();
@@ -31,6 +21,9 @@ function getFriendlyError(message: string) {
   if (m.includes("invalid email") || m.includes("email address")) {
     return "Please enter a valid email address.";
   }
+  if (m.includes("database error saving new user")) {
+    return "Account setup is blocked by the Supabase profile trigger. Apply frontend/supabase/auth_signup_fix.sql, then try again.";
+  }
   return "We could not create your account just now. Please try again.";
 }
 
@@ -40,31 +33,15 @@ const inputClass =
 export default function SignupForm() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("orka");
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [stellarAddress, setStellarAddress] = useState("");
-  const [freighterError, setFreighterError] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const errorId = "signup-error";
-
-  async function connectFreighter() {
-    setFreighterError("");
-    try {
-      const allowed = await isAllowed();
-      if (!allowed) await requestAccess();
-      const { address } = await getAddress();
-      setStellarAddress(address);
-    } catch {
-      setFreighterError("Install Freighter to continue.");
-    }
-  }
 
   async function onGoogle() {
     setError("");
@@ -87,38 +64,23 @@ export default function SignupForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (mode === "freighter" && !stellarAddress) {
-      setError("Connect Freighter first.");
-      return;
-    }
-    const fullName = name.trim();
     const emailVal = email.trim();
-    if (!EMAIL_RE.test(emailVal)) {
-      setError("Please add a valid email address.");
-      return;
-    }
     if (password.length < 8) {
       setError("Password should be at least 8 characters.");
       return;
     }
-    if (!role) {
-      setError("Please choose your role.");
-      return;
-    }
-
     setError("");
     setLoading(true);
     try {
       const supabase = createClient();
+      // Existing ORKA profile triggers may require these fields even though the
+      // streamlined signup no longer asks the user to complete them up front.
+      const profileName = emailVal.split("@")[0].replace(/[._-]+/g, " ").trim();
       const meta: Record<string, string> = {
-        full_name: fullName,
-        role,
+        full_name: profileName || emailVal,
+        role: "freelancer",
         custody_mode: mode,
       };
-      if (mode === "freighter" && stellarAddress) {
-        meta.stellar_address = stellarAddress;
-      }
-
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: emailVal,
         password,
@@ -176,7 +138,7 @@ export default function SignupForm() {
           className={`rounded-full px-4 py-2 text-sm font-black uppercase transition ${
             mode === "freighter" ? "bg-primary text-white" : "text-foreground hover:bg-muted"
           }`}>
-          Freighter
+          Wallet
         </button>
       </div>
 
@@ -208,7 +170,7 @@ export default function SignupForm() {
             </p>}
         </div>
       :
-        <form onSubmit={onSubmit} className="flex flex-col gap-3">
+        <form onSubmit={onSubmit} className="flex flex-col gap-5">
           <div>
             <label htmlFor="su-name" className="mb-1 block text-sm font-bold text-foreground">
               Full name

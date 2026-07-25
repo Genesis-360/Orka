@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const socials = [
@@ -16,7 +17,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <span className="grid size-28 place-items-center rounded-full sm:size-36 lg:size-40">
               <Image
-                src="/Logo/LOGO.svg"
+                src="/Logo/logo.svg"
                 alt="ORKA"
                 width={96}
                 height={96}
@@ -55,12 +56,14 @@ export default function Footer() {
         <div className="flex flex-col items-start gap-3">
           <div className="grid grid-flow-col grid-rows-2 place-items-start gap-x-8 gap-y-3 md:flex md:flex-col md:gap-3">
             {[
-              ["Engines", "#engines"],
-              ["Method", "#method"],
-              ["FAQ", "#faq"],
-              ["Waitlist", "#waitlist"],
+              ["About", "/about"],
+              ["Blog", "/blog"],
+              ["Contact", "/contact"],
+              ["Docs", "/docs"],
+              ["Terms & Services", "/terms"],
+              ["Privay Policy", "/privacy"],
             ].map(([label, href]) => (
-              <a
+              <Link
                 key={label}
                 href={href}
                 className="group display flex items-center gap-3 text-2xl font-normal uppercase text-night transition hover:text-orange sm:text-[28px]">
