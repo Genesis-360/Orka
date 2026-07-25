@@ -14,7 +14,7 @@ export function PortalTopBar({
           Welcome back, {clientName?.split(" ")[0] ?? "there"}
         </h1>
         <p className="text-sm text-gray-500">
-          Here's what's happening with your projects.
+          {"Here's what's happening with your projects."}
         </p>
       </div>
       <div className="flex items-center gap-3">
