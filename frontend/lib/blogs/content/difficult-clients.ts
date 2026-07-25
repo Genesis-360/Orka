@@ -9,7 +9,7 @@ export const article: BlogArticle = {
   readingTime: "8 min read",
   publishedAt: "2026-03-12",
   coverGradient: "from-coral/12 via-orange/8 to-coral/5",
-  image: "/BlogImages/difficult-clients.png",
+  image: "/BlogImages/handle-difficult-clients-professionally.jpeg",
   featured: false,
   seoTitle: "How to Handle Difficult Clients Professionally | ORKA",
   seoDescription: "Learn practical strategies to deal with difficult clients, manage expectations, avoid scope creep, and maintain healthy professional relationships.",

@@ -9,6 +9,7 @@ export const article: BlogArticle = {
   readingTime: "7 min read",
   publishedAt: "2026-03-10",
   coverGradient: "from-violet/10 via-info/8 to-violet/5",
+  image: "/BlogImages/client-communication-best-practices.jpeg",
   featured: false,
   seoTitle: "Client Communication Best Practices | ORKA",
   seoDescription: "Learn how agencies and freelancers can improve client communication with clear expectations, regular updates, transparency, and structured workflows.",
