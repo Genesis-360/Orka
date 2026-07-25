@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Star } from "lucide-react";
+import { ArrowRight, BookOpen, ChevronDown, FileText, Mail, Rss, Star, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { companyLinks, productLinks, resourcesLinks } from "../lib/content";
+import { blogPosts } from "../lib/blog-data";
 import StaggeredMenu, { type StaggeredMenuItem, type StaggeredMenuSocialItem } from "./ui/staggered-menu";
+
+const GITHUB_URL = "https://github.com/x0lg0n/Orka";
 
 type MenuLink = {
   label: string;
@@ -230,6 +233,6 @@ export default function Navbar() {
           />
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
