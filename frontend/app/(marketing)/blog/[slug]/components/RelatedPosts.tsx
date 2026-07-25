@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blogs/types";
 
@@ -21,10 +22,12 @@ export default function RelatedPosts({ posts }: { posts: BlogPostMeta[] }) {
               className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03] relative overflow-hidden`}
             >
               {post.image ? (
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
                 <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">

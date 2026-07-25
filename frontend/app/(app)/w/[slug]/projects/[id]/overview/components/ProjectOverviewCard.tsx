@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Pencil } from "lucide-react";
 
 function formatDate(dateStr: string) {
@@ -54,10 +55,13 @@ export function ProjectOverviewCard({
           <span className="text-xs text-gray-400">Project Owner</span>
           <div className="flex items-center gap-2">
             {owner?.avatar_url ? (
-              <img
+              <Image
                 src={owner.avatar_url}
                 alt=""
-                className="h-5 w-5 rounded-full"
+                width={20}
+                height={20}
+                className="rounded-full"
+                unoptimized
               />
             ) : (
               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-200 text-[8px] font-bold text-gray-600">

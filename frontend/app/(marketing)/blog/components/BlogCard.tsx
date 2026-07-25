@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Calendar } from "lucide-react";
 import type { BlogPost } from "./types";
 
@@ -26,12 +27,14 @@ export default function BlogCard({ post }: { post: BlogPost }) {
       <div
         className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03] relative overflow-hidden`}
       >
-        {post.image ? (
-          <img
-            src={post.image}
-            alt={post.title}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          {post.image ? (
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
         ) : (
           <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet">

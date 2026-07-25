@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FileText } from "lucide-react";
 import type { BlogArticle } from "@/lib/blogs/types";
 import ShareButtons from "./ShareButtons";
@@ -57,10 +58,12 @@ export default function ArticleHeader({ post }: { post: BlogArticle }) {
         className={`mt-8 aspect-[16/9] w-full rounded-2xl bg-gradient-to-br ${post.coverGradient} p-8 relative overflow-hidden`}
       >
         {post.image ? (
-          <img
+          <Image
             src={post.image}
             alt={post.title}
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            className="object-cover"
+            sizes="100vw"
           />
         ) : (
           <div className="flex size-14 items-center justify-center rounded-xl bg-white/80 shadow-sm">
