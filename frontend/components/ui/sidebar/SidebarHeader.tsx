@@ -11,7 +11,7 @@ export function SidebarHeader() {
       aria-label="ORKA home"
     >
       <Image
-        src="/Logo/LOGO.svg"
+        src="/Logo/logo.svg"
         alt="ORKA"
         width={32}
         height={32}

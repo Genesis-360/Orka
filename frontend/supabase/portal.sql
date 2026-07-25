@@ -32,7 +32,12 @@ begin
       from public.organizations o where o.id = p.org_id
     ),
     'client', (
-      select jsonb_build_object('name', c.name)
+      select jsonb_build_object(
+        'id', c.id,
+        'name', c.name,
+        'email', c.email,
+        'stellar_address', c.stellar_address
+      )
       from public.clients c where c.id = p.client_id
     ),
     'milestones', coalesce((
@@ -59,14 +64,25 @@ begin
     ), '[]'::jsonb),
     'proposals', coalesce((
       select jsonb_agg(jsonb_build_object(
-        'id', pr.id,
-        'status', pr.status,
-        'asset', pr.asset,
-        'contract_id', pr.contract_id,
-        'milestones', pr.milestones
-      ) order by pr.created_at)
-      from public.proposals pr where pr.project_id = p.id
-    ), '[]'::jsonb)
+        'id', pp.id,
+        'title', pp.title,
+        'status', pp.status,
+        'markdown', pp.markdown
+      ) order by pp.updated_at desc)
+      from public.project_proposals pp where pp.project_id = p.id
+    ), '[]'::jsonb),
+    'contract_address', (
+      select ec.contract_address
+      from public.escrow_contracts ec where ec.project_id = p.id
+      limit 1
+    ),
+    'custody_mode', coalesce((
+      select prof.custody_mode::text
+      from public.profiles prof
+      join public.organization_members om on om.user_id = prof.id
+      where om.org_id = p.org_id and prof.custody_mode is not null
+      limit 1
+    ), 'orka')
   )
   into v_result
   from public.projects p

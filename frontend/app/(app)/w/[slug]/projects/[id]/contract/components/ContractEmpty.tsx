@@ -1,0 +1,55 @@
+"use client";
+import { useState } from "react";
+import { FileSignature, Sparkles } from "lucide-react";
+import { generateContract } from "../../actions";
+
+export function ContractEmpty({
+  slug,
+  projectId,
+  orgId,
+}: {
+  slug: string;
+  projectId: string;
+  orgId: string;
+}) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleGenerate() {
+    setBusy(true);
+    setError(null);
+    const res = await generateContract({ projectId, orgId });
+    setBusy(false);
+    if (!res.ok) {
+      setError(res.error);
+      return;
+    }
+    window.location.reload();
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 bg-white px-8 py-16 text-center shadow-sm">
+      <div className="mb-5 rounded-xl bg-[#7c3aed]/10 p-4">
+        <FileSignature className="h-8 w-8 text-[#7c3aed]" />
+      </div>
+      <h2 className="mb-2 text-xl font-bold text-gray-900">
+        No contract yet
+      </h2>
+      <p className="mb-6 max-w-sm text-sm leading-relaxed text-gray-500">
+        Generate a professional contract pre-filled with your project and
+        proposal details. You can edit every clause before signing.
+      </p>
+      <button
+        onClick={handleGenerate}
+        disabled={busy}
+        className="inline-flex items-center gap-2 rounded-lg bg-[#7c3aed] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#6d28d9] disabled:opacity-50"
+      >
+        <Sparkles className="h-4 w-4" />
+        {busy ? "Generating…" : "Generate contract"}
+      </button>
+      {error && (
+        <p className="mt-3 max-w-sm text-sm text-red-600">{error}</p>
+      )}
+    </div>
+  );
+}

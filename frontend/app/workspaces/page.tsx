@@ -12,7 +12,7 @@ function formatLastActive(iso: string | null): string {
   if (days <= 0) return "Today";
   if (days === 1) return "Yesterday";
   if (days < 7) return `${days} days ago`;
-  return new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 export default async function WorkspacesPage({
@@ -24,6 +24,7 @@ export default async function WorkspacesPage({
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
   if (!user) redirect("/signup");
 
   const { error } = await searchParams;
@@ -84,18 +85,27 @@ export default async function WorkspacesPage({
 
   return (
     <main className="product-ui dashboard-light min-h-screen bg-shell font-product">
-      <WorkspaceNav name={name} initials={initials} />
+      <WorkspaceNav
+        name={name}
+        email={user.email ?? ""}
+        initials={initials}
+        hasWorkspaces={workspaces.length > 0}
+      />
 
-      <div className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-[32px] font-extrabold tracking-[-0.035em] text-foreground sm:text-[38px]">Choose a Workspace</h1>
+      <div className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8 sm:py-12">
+        <div className="flex flex-col gap-2 pb-6">
+          <h1 className="text-[32px] font-extrabold tracking-[-0.035em] text-foreground sm:text-[38px]">
+            {workspaces.length === 0 ? "Create your first workspace" : "Choose a Workspace"}
+          </h1>
           <p className="text-[15px] font-bold text-muted-foreground sm:text-[16px]">
-            Select a workspace to continue or create a new one.
+            {workspaces.length === 0
+              ? "Start with one place for your projects, clients, and payments."
+              : "Select a workspace to continue or create a new one."}
           </p>
         </div>
 
         {error ? (
-          <p className="mt-6 max-w-120 rounded-[10px] border border-danger/35 bg-danger/10 px-4 py-3 text-sm font-bold text-red-100">
+          <p className="mt-6 max-w-120 rounded-[10px] border border-danger/35 bg-danger/10 px-4 py-3 text-sm font-bold text-destructive">
             {error}
           </p>
         ) : null}

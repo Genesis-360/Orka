@@ -8,7 +8,7 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-paper">
-      <div className="sticky top-0 z-30 bg-night">
+      <div className="bg-night pt-5">
         <Navbar />
       </div>
       <main className="flex-1">{children}</main>

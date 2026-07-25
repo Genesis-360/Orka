@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "sonner";
 
 const jetbrainsMonoHeading = JetBrains_Mono({subsets:['latin'],variable:'--font-heading'});
 
@@ -48,12 +49,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(anton.variable, dmSans.variable, jetbrains.variable, jetbrainsMonoHeading.variable)}>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange>
+        <ThemeProvider>
           <TooltipProvider delayDuration={200}>{children}</TooltipProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

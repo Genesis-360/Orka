@@ -1,14 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "./Navbar";
-import WaitlistForm from "./WaitlistForm";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-night rounded-b-[42px] px-4 pb-16 pt-5 text-white md:rounded-b-[72px] md:px-8 lg:px-12">
       {/* Floating decorations */}
       <Image
-        src="/Elements/Star-Violet.svg"
+        src="/Elements/star-violet.svg"
         alt=""
         aria-hidden
         width={40}
@@ -16,7 +16,7 @@ export default function Hero() {
         className="pointer-events-none absolute right-[14%] bottom-[52%] hidden w-8 object-contain md:block lg:w-10 float-1"
       />
       <Image
-        src="/Elements/Plus-Teal.svg"
+        src="/Elements/plus-teal.svg"
         alt=""
         aria-hidden
         width={36}
@@ -24,7 +24,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[14%] top-[30%] hidden w-7 object-contain md:block lg:w-9 float-2"
       />
       <Image
-        src="/Elements/Star-Blue.svg"
+        src="/Elements/star-blue.svg"
         alt=""
         aria-hidden
         width={28}
@@ -32,7 +32,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-[5%] bottom-[30%] hidden w-6 object-contain opacity-70 sm:block float-3"
       />
       <Image
-        src="/Elements/Plus-Lime.svg"
+        src="/Elements/plus-lime.svg"
         alt=""
         aria-hidden
         width={32}
@@ -40,7 +40,7 @@ export default function Hero() {
         className="pointer-events-none absolute right-[6%] bottom-[22%] hidden w-7 object-contain opacity-70 sm:block float-4"
       />
       <Image
-        src="/Elements/Asterics-Orange.svg"
+        src="/Elements/asterisk-orange.svg"
         alt=""
         aria-hidden
         width={30}
@@ -52,8 +52,8 @@ export default function Hero() {
       {/* Hero content */}
       <div className="relative z-10 mx-auto max-w-7xl pt-16 pb-8">
         <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <span className="text-center text-[15px] font-medium text-white sm:text-[18px]">
-            ❤️ #1 Financial OS for Service Work
+          <span className="rounded-full border border-white/20 bg-white/8 px-4 py-1.5 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[14px]">
+            Launch — start building today
           </span>
         </div>
 
@@ -68,10 +68,19 @@ export default function Hero() {
           and freelancers working across borders.
         </p>
 
-        <div className="mt-8 flex justify-center ">
-          <div className="rounded-[18px] bg-white p-5 text-night md:p-6">
-            <WaitlistForm compact />
-          </div>
+        <div className="mt-8 flex justify-center gap-4">
+          <Link
+            href="/signup"
+            className="inline-flex min-h-14 items-center gap-3 rounded-full bg-violet px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#a78cff] hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Get started <ArrowRight size={18} />
+          </Link>
+          <Link
+            href="/pricing"
+            className="inline-flex min-h-14 items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-bold text-white/80 transition-all hover:bg-white/8 hover:text-white hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            See pricing
+          </Link>
         </div>
       </div>
       {/* Stats + tag cloud row */}
@@ -98,9 +107,9 @@ export default function Hero() {
             </span>
           ))}
           <p className="mt-3 w-full text-[24px] font-medium uppercase leading-[28px] text-white/90 sm:text-[32px] sm:leading-[35px]">
-            5X achieved ROI on ad spend consistently! Average{" "}
+            From rough brief to{" "}
             <span className="text-white/50">
-              increase in ROI for our clients.
+              paid and reconciled in 4 steps.
             </span>
           </p>
         </div>
@@ -130,8 +139,7 @@ export default function Hero() {
             </p>
           </div>
           <p className="text-[14px] font-medium text-white/80">
-            Helping brands thrive with strategic campaigns, creative content,
-            and results-focused marketing precision marketing.
+              50+ design partners and early adopters already using ORKA.
           </p>
         </div>
       </div>
