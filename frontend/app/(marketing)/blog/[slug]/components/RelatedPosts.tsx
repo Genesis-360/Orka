@@ -2,17 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blogs/types";
 
-const CAT_COLORS: Record<string, string> = {
-  AI: "bg-violet-500",
-  Agency: "bg-lime-500",
-  Payments: "bg-teal-500",
-  Contracts: "bg-orange-500",
-  Escrow: "bg-teal-500",
-  Guides: "bg-violet-400",
-  Productivity: "bg-blue-500",
-  "Client Management": "bg-sky-500",
-};
-
 export default function RelatedPosts({ posts }: { posts: BlogPostMeta[] }) {
   if (posts.length === 0) return null;
 
@@ -29,23 +18,30 @@ export default function RelatedPosts({ posts }: { posts: BlogPostMeta[] }) {
             className="group block overflow-hidden rounded-[18px] border-2 border-night bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)]"
           >
             <div
-              className={`aspect-16/10 bg-linear-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03]`}
+              className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03] relative overflow-hidden`}
             >
-              <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                </svg>
-              </div>
+              {post.image ? (
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </div>
+              )}
             </div>
             <div className="p-5">
-              <span className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-night/8 px-3 py-1 text-2xs font-black uppercase tracking-wider text-night/60">
-                <span className={`h-1.5 w-1.5 rounded-full ${CAT_COLORS[post.category] ?? "bg-night/30"}`} />
+              <span className="mb-2 inline-block rounded-full bg-night/5 px-3 py-1 text-2xs font-black uppercase tracking-wider text-night/60">
                 {post.category}
               </span>
-              <h3 className="text-lg uppercase font-black leading-tight text-night">
+              <h3 className="display text-lg uppercase leading-tight text-night">
                 {post.title}
               </h3>
               <div className="mt-3 flex items-center gap-2">
