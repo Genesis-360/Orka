@@ -32,28 +32,28 @@ export function WorkspaceSwitcher({
         <button
           type="button"
           aria-label="Switch workspace"
-          className="group flex w-full items-center gap-3 rounded-lg border border-white/6 bg-white/3 px-3 py-2.5 text-left transition-colors hover:bg-white/6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/20"
+          className="group flex w-full items-center gap-2.5 rounded-lg border border-white/[0.06] bg-white/[0.04] px-3 py-2.5 text-left transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
         >
-          <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary text-sm font-extrabold text-white">
+          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary/15 text-sm font-bold text-primary">
             {current.name.charAt(0).toUpperCase()}
           </span>
           <span className="min-w-0 flex-1">
-            <span className="block truncate text-sm font-extrabold text-white">
+            <span className="block truncate text-sm font-semibold text-white">
               {current.name}
             </span>
-            <span className="mt-0.5 block text-xs font-semibold text-white/45">
+            <span className="mt-px block truncate text-xs text-white/40">
               {orgs.length} workspace{orgs.length === 1 ? "" : "s"}
             </span>
           </span>
-          <ChevronsUpDown className="size-4 text-white/40 transition-colors group-hover:text-white/70" aria-hidden />
+          <ChevronsUpDown className="size-3.5 shrink-0 text-white/30 transition-colors group-hover:text-white/60" aria-hidden />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"
         align="start"
-        className="w-(--radix-dropdown-menu-trigger-width) border-white/6 bg-[#0c1a2e] text-white shadow-2xl"
+        className="border-white/[0.06] bg-[#0f131e] p-1.5"
       >
-        <DropdownMenuLabel className="px-3 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-white/35">
+        <DropdownMenuLabel className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white/30">
           Workspaces
         </DropdownMenuLabel>
         {orgs.map((org) => {
@@ -62,31 +62,28 @@ export function WorkspaceSwitcher({
             <DropdownMenuItem
               key={org.slug}
               onSelect={() => router.push(urlForSlug(org.slug))}
-              className={`gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold outline-hidden transition-colors hover:bg-white/6 hover:text-white focus:bg-white/6 focus:text-white data-highlighted:bg-white/6 data-highlighted:text-white ${
-                active ? "bg-primary/20 text-white" : "text-white/65"
+              className={`mb-0.5 gap-2.5 rounded-lg px-3 py-2 text-sm font-medium last:mb-0 focus:text-white hover:bg-white/[0.08] hover:text-white ${
+                active ? "bg-primary/15 text-white" : "text-white/60"
               }`}
             >
               <span
-                className={`grid size-7 shrink-0 place-items-center rounded-md text-xs font-extrabold ${
+                className={`grid size-7 shrink-0 place-items-center rounded-md text-xs font-bold ${
                   active
-                    ? "bg-primary/30 text-primary"
-                    : "bg-white/6 text-white/60"
+                    ? "bg-primary/25 text-primary"
+                    : "bg-white/[0.06]"
                 }`}
               >
                 {org.name.charAt(0).toUpperCase()}
               </span>
               <span className="truncate">{org.name}</span>
-              {active && <Check className="ml-auto size-4 text-primary" aria-hidden />}
+              {active && <Check className="ml-auto size-3.5 text-primary" aria-hidden />}
             </DropdownMenuItem>
           );
         })}
-        <DropdownMenuSeparator className="bg-white/6" />
-        <DropdownMenuItem
-          asChild
-          className="gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-white/65 outline-hidden transition-colors hover:bg-white/6 hover:text-white focus:bg-white/6 focus:text-white data-highlighted:bg-white/6 data-highlighted:text-white"
-        >
-          <Link href="/workspaces">
-            <Plus className="size-4 text-white/50" aria-hidden />
+        <DropdownMenuSeparator className="bg-white/[0.06]" />
+        <DropdownMenuItem asChild className="focus:text-white hover:bg-white/[0.08] hover:text-white">
+          <Link href="/workspaces" className="text-sm font-medium text-white/60">
+            <Plus className="size-4" aria-hidden />
             Manage workspaces
           </Link>
         </DropdownMenuItem>

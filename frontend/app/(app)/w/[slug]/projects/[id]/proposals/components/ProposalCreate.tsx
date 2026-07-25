@@ -11,7 +11,7 @@ import { PROPOSAL_TEMPLATE } from "@/lib/contractTemplates";
 export function ProposalCreate({ projectId }: { projectId: string }) {
   const router = useRouter();
   const editor = useCreateBlockNote({
-    initialContent: PROPOSAL_TEMPLATE as never,
+    initialContent: PROPOSAL_TEMPLATE,
   });
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState<string[]>([]);

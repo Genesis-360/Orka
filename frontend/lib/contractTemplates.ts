@@ -4,36 +4,58 @@
 type Block = {
   type: string;
   props?: Record<string, unknown>;
-  content?: { text: string }[] | string;
+  content?: { type: string; text: string; styles?: Record<string, boolean> }[];
 };
 
 function heading(text: string, level = 1): Block {
   return {
     type: "heading",
     props: { level },
-    content: [{ text }],
+    content: [{ type: "text", text }],
   };
 }
 
 function paragraph(text: string): Block {
   return {
     type: "paragraph",
-    content: [{ text }],
+    content: [{ type: "text", text }],
   };
 }
 
 function bullet(text: string): Block {
   return {
     type: "bulletListItem",
-    content: [{ text }],
+    content: [{ type: "text", text }],
   };
 }
 
 function numbered(text: string): Block {
   return {
     type: "numberedListItem",
-    content: [{ text }],
+    content: [{ type: "text", text }],
   };
+}
+
+// Normalizes blocks stored with the old format (content items missing `type: "text"`)
+// so BlockNote v0.52 can parse them without throwing "Error creating document".
+export function normalizeBlocks(blocks: unknown[]): unknown[] {
+  if (!Array.isArray(blocks)) return blocks;
+  return blocks.map((b: unknown) => {
+    if (!b || typeof b !== "object") return b;
+    const block = { ...(b as Record<string, unknown>) };
+    if (Array.isArray(block.content)) {
+      block.content = block.content.map((c: unknown) => {
+        if (c && typeof c === "object" && "text" in (c as Record<string, unknown>) && !("type" in (c as Record<string, unknown>))) {
+          return { ...(c as Record<string, unknown>), type: "text" };
+        }
+        return c;
+      });
+    }
+    if (Array.isArray(block.children)) {
+      block.children = normalizeBlocks(block.children);
+    }
+    return block;
+  });
 }
 
 // Default proposal template — used when creating a new proposal from scratch.
