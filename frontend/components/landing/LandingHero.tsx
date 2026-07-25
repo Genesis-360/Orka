@@ -13,31 +13,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(min-width: 1024px)", () => {
-        const tl = gsap.timeline({
+        const vh = window.innerHeight;
+
+        gsap.set(dashboardRef.current, { y: vh * 1.5 });
+
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=400%",
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        });
+
+        gsap.to(dashboardRef.current, {
+          y: 0,
+          ease: "power3.inOut",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=400%",
-            pin: true,
+            end: "+=200%",
             scrub: 1,
-            invalidateOnRefresh: true,
           },
         });
-
-        // Dashboard slides up from below, covers heading (which stays fixed)
-        tl.fromTo(
-          dashboardRef.current,
-          { y: "120vh" },
-          { y: 0, ease: "power3.inOut" },
-          0,
-        );
       });
     }, sectionRef);
 
@@ -73,11 +77,7 @@ export default function LandingHero() {
         </div>
 
         {/* Headline */}
-        <h1
-          ref={headlineRef}
-          className="display mx-auto max-w-5xl text-center text-[2.6rem] uppercase leading-[1.05] text-white sm:text-[4.4rem] md:text-[6.4rem] lg:text-[7.3rem]"
-          style={{ willChange: "transform, opacity" }}
-        >
+        <h1 className="display mx-auto max-w-5xl text-center text-[2.6rem] uppercase leading-[1.05] text-white sm:text-[4.4rem] md:text-[6.4rem] lg:text-[7.3rem]">
           Autonomous <span className="text-orange">financial OS</span> for{" "}
           global <span className="text-violet">service work.</span>
         </h1>
