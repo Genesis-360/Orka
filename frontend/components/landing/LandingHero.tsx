@@ -1,115 +1,128 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import VideoBackground from "./VideoBackground";
-import Particles from "./Particles";
 import Dashboard from "./Dashboard";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const dashboardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        const vh = window.innerHeight;
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
 
-        gsap.set(dashboardRef.current, { y: vh * 1.5 });
-
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=400%",
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        });
-
-        gsap.to(dashboardRef.current, {
-          y: 0,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=200%",
-            scrub: 1,
-          },
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const dashY = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#081B2E] overflow-hidden"
-      style={{ minHeight: "100vh" }}
+      className="relative min-h-[200vh] bg-[#081B2E]"
     >
-      {/* Video background */}
-      <div className="absolute inset-0">
-        <VideoBackground />
-      </div>
+      {/* Sticky wrapper — keeps video + content in view while scrolling */}
+      <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center overflow-hidden">
+        {/* Full-width 16:9 video + dashboard container */}
+        <div
+          className="relative w-screen flex-shrink-0 overflow-hidden"
+          style={{
+            marginLeft: "calc(-50vw + 50%)",
+            aspectRatio: "16 / 9",
+          }}
+        >
+          {/* Background video */}
+          <video
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+              type="video/mp4"
+            />
+          </video>
 
-      {/* Gradient overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#081B2E] via-transparent to-[#081B2E]" />
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-1/4 -top-1/4 h-[600px] w-[600px] rounded-full bg-violet/10 blur-[150px] animate-pulse" />
-        <div className="absolute -bottom-1/4 -right-1/4 h-[500px] w-[500px] rounded-full bg-orange/10 blur-[120px] animate-pulse" />
-      </div>
+          {/* Gradient overlay on video */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#081B2E]/40 via-transparent to-[#081B2E]/80" />
 
-      {/* Particles */}
-      <Particles />
+          {/* Dashboard with parallax + luminosity blend */}
+          <motion.div
+            style={{ y: dashY }}
+            className="absolute left-1/2 top-1/2 w-[90%] max-w-5xl -translate-x-1/2 -translate-y-1/2"
+          >
+            <div className="overflow-hidden rounded-2xl shadow-2xl" style={{ mixBlendMode: "luminosity" }}>
+              <Dashboard />
+            </div>
+          </motion.div>
 
-      {/* Content wrapper - fills full height */}
-      <div className="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center">
-        {/* Tag pill */}
-        <div className="mb-6 animate-fade-in rounded-full border border-white/20 bg-white/8 px-4 py-1.5 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[14px]">
-          Launch — start building today
+          {/* Bottom gradient fade */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-40 bg-gradient-to-b from-transparent to-[#081B2E]" />
         </div>
 
-        {/* Headline */}
-        <h1 className="display mx-auto max-w-5xl text-center text-[2.6rem] uppercase leading-[1.05] text-white sm:text-[4.4rem] md:text-[6.4rem] lg:text-[7.3rem]">
-          Autonomous <span className="text-orange">financial OS</span> for{" "}
-          global <span className="text-violet">service work.</span>
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-2xl text-center text-base font-normal leading-7 text-white/70 sm:text-lg sm:leading-8">
-          ORKA eliminates the admin tax of proposals, escrow, milestone
-          verification, payouts, invoices, and financial records for agencies
-          and freelancers working across borders.
-        </p>
-
-        <div className="mt-8 flex justify-center gap-4">
-          <Link
-            href="/signup"
-            className="inline-flex min-h-14 items-center gap-3 rounded-full bg-violet px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#a78cff] hover:-translate-y-0.5"
+        {/* Hero text — overlaid, fades on scroll */}
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+          <motion.div
+            style={{ y: textY, opacity: textOpacity }}
+            className="pointer-events-auto flex flex-col items-center"
           >
-            Get started <ArrowRight size={18} />
-          </Link>
-          <Link
-            href="/pricing"
-            className="inline-flex min-h-14 items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-bold text-white/80 transition-all hover:bg-white/8 hover:text-white hover:-translate-y-0.5"
-          >
-            See pricing
-          </Link>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="mb-6 rounded-full border border-white/20 bg-white/8 px-4 py-1.5 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[14px]">
+                Launch — start building today
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="display mx-auto max-w-5xl text-center text-[2.6rem] uppercase leading-[1.05] text-white sm:text-[4.4rem] md:text-[6.4rem] lg:text-[7.3rem]"
+            >
+              Autonomous <span className="text-orange">financial OS</span> for{" "}
+              global <span className="text-violet">service work.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mx-auto mt-6 max-w-2xl text-center text-base font-normal leading-7 text-white/70 sm:text-lg sm:leading-8"
+            >
+              ORKA eliminates the admin tax of proposals, escrow, milestone
+              verification, payouts, invoices, and financial records for agencies
+              and freelancers working across borders.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-8 flex justify-center gap-4"
+            >
+              <Link
+                href="/signup"
+                className="inline-flex min-h-14 items-center gap-3 rounded-full bg-violet px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#a78cff] hover:-translate-y-0.5"
+              >
+                Get started <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex min-h-14 items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-base font-bold text-white/80 transition-all hover:bg-white/8 hover:text-white hover:-translate-y-0.5"
+              >
+                See pricing
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
-
-      {/* Dashboard - starts from below viewport, slides up over the heading */}
-      <div
-        ref={dashboardRef}
-        className="relative z-30 mx-auto mt-8 w-full max-w-[1400px] px-6 pb-32"
-      >
-        <Dashboard />
       </div>
     </section>
   );
