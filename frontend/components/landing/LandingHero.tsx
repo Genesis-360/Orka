@@ -21,55 +21,15 @@ export default function LandingHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[200vh] bg-[#081B2E]"
+      className="relative min-h-[250vh] bg-[#081B2E]"
     >
-      {/* Sticky wrapper — keeps video + content in view while scrolling */}
-      <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Full-width 16:9 video + dashboard container */}
-        <div
-          className="relative w-screen flex-shrink-0 overflow-hidden"
-          style={{
-            marginLeft: "calc(-50vw + 50%)",
-            aspectRatio: "16 / 9",
-          }}
-        >
-          {/* Background video */}
-          <video
-            autoPlay
-            muted
-            playsInline
-            loop
-            preload="auto"
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
-              type="video/mp4"
-            />
-          </video>
-
-          {/* Gradient overlay on video */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#081B2E]/40 via-transparent to-[#081B2E]/80" />
-
-          {/* Dashboard with parallax + luminosity blend */}
-          <motion.div
-            style={{ y: dashY }}
-            className="absolute left-1/2 top-1/2 w-[90%] max-w-5xl -translate-x-1/2 -translate-y-1/2"
-          >
-            <div className="overflow-hidden rounded-2xl shadow-2xl" style={{ mixBlendMode: "luminosity" }}>
-              <Dashboard />
-            </div>
-          </motion.div>
-
-          {/* Bottom gradient fade */}
-          <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-40 bg-gradient-to-b from-transparent to-[#081B2E]" />
-        </div>
-
-        {/* Hero text — overlaid, fades on scroll */}
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+      {/* Sticky wrapper */}
+      <div className="sticky top-0 flex min-h-screen flex-col overflow-hidden">
+        {/* Hero text at top with generous spacing */}
+        <div className="z-20 flex flex-col items-center px-6 pt-28 pb-8 text-center">
           <motion.div
             style={{ y: textY, opacity: textOpacity }}
-            className="pointer-events-auto flex flex-col items-center"
+            className="flex flex-col items-center"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -98,8 +58,8 @@ export default function LandingHero() {
               className="mx-auto mt-6 max-w-2xl text-center text-base font-normal leading-7 text-white/70 sm:text-lg sm:leading-8"
             >
               ORKA eliminates the admin tax of proposals, escrow, milestone
-              verification, payouts, invoices, and financial records for agencies
-              and freelancers working across borders.
+              verification, payouts, invoices, and financial records for
+              agencies and freelancers working across borders.
             </motion.p>
 
             <motion.div
@@ -122,6 +82,48 @@ export default function LandingHero() {
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+
+        {/* Video + Dashboard area — pushed below, covers heading on scroll */}
+        <div className="mt-auto w-full flex-shrink-0 relative z-30">
+          <div
+            className="relative w-screen overflow-hidden"
+            style={{
+              marginLeft: "calc(-50vw + 50%)",
+              aspectRatio: "16 / 9",
+            }}
+          >
+            {/* Background video with quality improvements */}
+            <video
+              autoPlay
+              muted
+              playsInline
+              loop
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+                type="video/mp4"
+              />
+            </video>
+
+            {/* Gradient overlay on video */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#081B2E]/60 via-transparent to-[#081B2E]" />
+
+            {/* Dashboard (replaces with static image once available) */}
+            <motion.div
+              style={{ y: dashY }}
+              className="absolute left-1/2 top-1/2 w-[90%] max-w-5xl -translate-x-1/2 -translate-y-1/2"
+            >
+              <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
+                <Dashboard />
+              </div>
+            </motion.div>
+
+            {/* Bottom gradient fade */}
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-40 bg-gradient-to-b from-transparent to-[#081B2E]" />
+          </div>
         </div>
       </div>
     </section>
