@@ -15,10 +15,9 @@ function calc(iso: string): string {
 }
 
 export function TimeAgo({ iso }: { iso: string }) {
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState(calc(iso));
 
   useEffect(() => {
-    setLabel(calc(iso));
     const interval = setInterval(() => setLabel(calc(iso)), 60_000);
     return () => clearInterval(interval);
   }, [iso]);
