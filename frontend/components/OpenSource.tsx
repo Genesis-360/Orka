@@ -2,26 +2,32 @@
 
 import { IconCloud } from "@/components/ui/icon-cloud"
 import { GitPullRequestArrow, Star } from "lucide-react"
+import {
+  SiNextdotjs, SiReact, SiTypescript, SiRust, SiTailwindcss,
+  SiSupabase, SiNodedotjs, SiPnpm, SiGit, SiDocker,
+  SiPostgresql, SiRedis, SiNginx, SiGithubactions,
+  SiVsco, SiEslint,
+} from "react-icons/si"
 
 const GITHUB_URL = "https://github.com/x0lg0n/Orka"
 
 const techIcons = [
-  "https://cdn.simpleicons.org/nextdotjs/eee",
-  "https://cdn.simpleicons.org/react/61DAFB",
-  "https://cdn.simpleicons.org/typescript/3178C6",
-  "https://cdn.simpleicons.org/rust/DEA584",
-  "https://cdn.simpleicons.org/tailwindcss/06B6D4",
-  "https://cdn.simpleicons.org/supabase/3ECF8E",
-  "https://cdn.simpleicons.org/nodedotjs/339933",
-  "https://cdn.simpleicons.org/pnpm/F69220",
-  "https://cdn.simpleicons.org/git/F05032",
-  "https://cdn.simpleicons.org/docker/2496ED",
-  "https://cdn.simpleicons.org/postgresql/4169E1",
-  "https://cdn.simpleicons.org/redis/DC382D",
-  "https://cdn.simpleicons.org/nginx/009639",
-  "https://cdn.simpleicons.org/githubactions/2088FF",
-  "https://cdn.simpleicons.org/visualstudiocode/007ACC",
-  "https://cdn.simpleicons.org/eslint/4B32C3",
+  <SiNextdotjs key="next" />,
+  <SiReact key="react" />,
+  <SiTypescript key="ts" />,
+  <SiRust key="rust" />,
+  <SiTailwindcss key="tailwind" />,
+  <SiSupabase key="supabase" />,
+  <SiNodedotjs key="node" />,
+  <SiPnpm key="pnpm" />,
+  <SiGit key="git" />,
+  <SiDocker key="docker" />,
+  <SiPostgresql key="pg" />,
+  <SiRedis key="redis" />,
+  <SiNginx key="nginx" />,
+  <SiGithubactions key="gha" />,
+  <SiVsco key="vsc" />,
+  <SiEslint key="eslint" />,
 ]
 
 export default function OpenSource() {
@@ -76,7 +82,7 @@ export default function OpenSource() {
           {/* ── Right: Icon Cloud ── */}
           <div className="flex items-center justify-center">
             <div className="relative">
-              <IconCloud images={techIcons} showControl={false} />
+              <IconCloud icons={techIcons} showControl={false} />
             </div>
           </div>
         </div>
