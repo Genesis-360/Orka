@@ -206,14 +206,7 @@ export default function Footer() {
 function SocialIcon({ label }: { label: string }) {
   switch (label) {
     case "Discord":
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-full">
-          <path d="M8.5 17.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
-          <path d="M15.5 17.5V19a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2v-3" />
-          <path d="M8.5 17.5V19a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2v-3" />
-          <path d="M5.5 14V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9" />
-        </svg>
-      )
+      return <i class="ri-discord-fill"></i>;
     case "X (Twitter)":
       return (
         <svg viewBox="0 0 24 24" fill="currentColor" className="size-full">
