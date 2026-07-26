@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { RiTwitterXFill } from "react-icons/ri";
+import { RiDiscordFill, RiTwitterXFill } from "react-icons/ri";
 import { ClientTweetCard } from "@/components/ui/client-tweet-card";
 import { testimonials } from "@/lib/content/testimonials";
 
@@ -48,7 +48,7 @@ export default function Testimonials() {
               href="#"
               className="inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#a78cff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
             >
-              <MessageCircle size={16} />
+              <RiDiscordFill size={16} />
               Join us on Discord
             </a>
             <a
