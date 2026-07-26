@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { RiTwitterXFill } from "react-icons/ri";
 import { ClientTweetCard } from "@/components/ui/client-tweet-card";
 import { testimonials } from "@/lib/content/testimonials";
 
@@ -54,15 +55,7 @@ export default function Testimonials() {
               href="#"
               className="inline-flex items-center gap-2 rounded-md border border-night/15 px-4 py-2.5 text-sm font-semibold text-night/78 transition-colors hover:border-night/30 hover:bg-night/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
+              <RiTwitterXFill size={16} />
               Follow on X
             </a>
           </div>

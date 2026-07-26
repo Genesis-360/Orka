@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FileText, Shield, CreditCard, Check } from "lucide-react";
 
 export default function BlogHero() {
   return (
@@ -110,7 +111,7 @@ export default function BlogHero() {
           <div className="sticker absolute left-[8%] top-[3%] z-10 rounded-2xl bg-white px-5 py-4 shadow-[0_12px_40px_rgba(124,58,237,0.3)]">
             <div className="mb-2 flex items-center gap-2">
               <span className="grid size-8 place-items-center rounded-lg bg-violet/10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-violet"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <FileText size={14} className="text-violet" />
               </span>
               <span className="text-sm font-black text-night">Proposals</span>
             </div>
@@ -121,7 +122,7 @@ export default function BlogHero() {
           <div className="sticker absolute left-[0%] top-[42%] z-10 rounded-2xl bg-white px-5 py-4 shadow-[0_12px_40px_rgba(20,184,166,0.3)]" style={{ transform: "rotate(-2deg)" }}>
             <div className="mb-2 flex items-center gap-2">
               <span className="grid size-8 place-items-center rounded-lg bg-teal/10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-teal"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <Shield size={14} className="text-teal" />
               </span>
               <span className="text-sm font-black text-night">Escrow</span>
             </div>
@@ -132,7 +133,7 @@ export default function BlogHero() {
           <div className="sticker absolute right-[3%] top-[32%] z-10 rounded-2xl bg-white px-5 py-4 shadow-[0_12px_40px_rgba(255,134,34,0.3)]" style={{ transform: "rotate(3deg)" }}>
             <div className="mb-2 flex items-center gap-2">
               <span className="grid size-8 place-items-center rounded-lg bg-orange/10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-orange"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <CreditCard size={14} className="text-orange" />
               </span>
               <span className="text-sm font-black text-night">Payments</span>
             </div>
@@ -143,7 +144,7 @@ export default function BlogHero() {
           <div className="sticker absolute right-[12%] bottom-[8%] z-10 rounded-2xl bg-white px-5 py-4 shadow-[0_12px_40px_rgba(234,255,53,0.22)]" style={{ transform: "rotate(-1deg)" }}>
             <div className="mb-2 flex items-center gap-2">
               <span className="grid size-8 place-items-center rounded-lg bg-lime/10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-lime"><polyline points="20 6 9 17 4 12"/></svg>
+                <Check size={14} className="text-lime" />
               </span>
               <span className="text-sm font-black text-night">Milestones</span>
             </div>
