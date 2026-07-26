@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronRight, Clock } from "lucide-react"
 import { RiDiscordFill, RiTwitterXFill, RiLinkedinFill, RiYoutubeFill, RiMailFill } from "react-icons/ri"
-import { SiNextdotjs, SiStellar, SiRust, SiTailwindcss } from "react-icons/si"
 
 const socials = [
   { label: "Discord", href: "https://discord.gg/orka" },
@@ -32,10 +31,10 @@ const col2 = [
 ];
 
 const techLogos = [
-  { label: "Next.js", href: "https://nextjs.org", icon: SiNextdotjs },
-  { label: "Stellar", href: "https://stellar.org", icon: SiStellar },
-  { label: "Rust", href: "https://rust-lang.org", icon: SiRust },
-  { label: "Tailwind", href: "https://tailwindcss.com", icon: SiTailwindcss },
+  { label: "Next.js", href: "https://nextjs.org", src: "https://cdn.simpleicons.org/nextdotjs/111" },
+  { label: "Stellar", href: "https://stellar.org", src: "https://cdn.simpleicons.org/stellar/111" },
+  { label: "Rust", href: "https://rust-lang.org", src: "https://cdn.simpleicons.org/rust/111" },
+  { label: "Tailwind", href: "https://tailwindcss.com", src: "https://cdn.simpleicons.org/tailwindcss/111" },
 ]
 
 function UtcClock() {
@@ -190,7 +189,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 transition-opacity hover:opacity-70">
-                  <t.icon size={16} />
+                  <img src={t.src} alt={t.label} className="size-4" />
                   <span>{t.label}</span>
                 </a>
                 {i < techLogos.length - 1 && (

@@ -2,33 +2,31 @@
 
 import { IconCloud } from "@/components/ui/icon-cloud"
 import { GitPullRequestArrow, Star } from "lucide-react"
-import {
-  SiNextdotjs, SiReact, SiTypescript, SiRust, SiTailwindcss,
-  SiSupabase, SiNodedotjs, SiPnpm, SiGit, SiDocker,
-  SiPostgresql, SiRedis, SiNginx, SiGithubactions,
-  SiVsco, SiEslint,
-} from "react-icons/si"
 
 const GITHUB_URL = "https://github.com/x0lg0n/Orka"
 
-const techIcons = [
-  <SiNextdotjs key="next" />,
-  <SiReact key="react" />,
-  <SiTypescript key="ts" />,
-  <SiRust key="rust" />,
-  <SiTailwindcss key="tailwind" />,
-  <SiSupabase key="supabase" />,
-  <SiNodedotjs key="node" />,
-  <SiPnpm key="pnpm" />,
-  <SiGit key="git" />,
-  <SiDocker key="docker" />,
-  <SiPostgresql key="pg" />,
-  <SiRedis key="redis" />,
-  <SiNginx key="nginx" />,
-  <SiGithubactions key="gha" />,
-  <SiVsco key="vsc" />,
-  <SiEslint key="eslint" />,
+const slugs = [
+  "nextdotjs",
+  "react",
+  "typescript",
+  "rust",
+  "tailwindcss",
+  "supabase",
+  "nodedotjs",
+  "pnpm",
+  "git",
+  "docker",
+  "postgresql",
+  "redis",
+  "nginx",
+  "githubactions",
+  "visualstudiocode",
+  "eslint",
 ]
+
+const techIcons = slugs.map(
+  (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
+)
 
 export default function OpenSource() {
   return (
@@ -82,7 +80,7 @@ export default function OpenSource() {
           {/* ── Right: Icon Cloud ── */}
           <div className="flex items-center justify-center">
             <div className="relative">
-              <IconCloud icons={techIcons} showControl={false} />
+              <IconCloud images={techIcons} showControl={false} />
             </div>
           </div>
         </div>
