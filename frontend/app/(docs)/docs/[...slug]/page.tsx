@@ -66,7 +66,7 @@ export default async function DocPage({ params }: Props) {
   const headings = extractHeadings(source);
   const breadcrumbs = getBreadcrumbPath(slugPath);
 
-  const renderedContent = await renderMDX(source);
+  const renderedContent = renderMDX(source);
 
   return (
     <div className="flex min-h-screen flex-col">

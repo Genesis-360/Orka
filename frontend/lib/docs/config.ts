@@ -53,11 +53,6 @@ export const docsNavigation: DocSection[] = [
         title: "Create Workspace",
         slug: "create-workspace",
         description: "Set up your business hub in Orka.",
-        children: [
-          { title: "Overview", slug: "overview" },
-          { title: "Workspace Settings", slug: "workspace-settings" },
-          { title: "Branding", slug: "branding" },
-        ],
       },
       {
         title: "Connect Wallet",
