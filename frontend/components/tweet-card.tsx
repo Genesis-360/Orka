@@ -95,7 +95,7 @@ export const TweetNotFound = ({
   </div>
 )
 
-export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
+export const TweetHeader = ({ tweet, hideTwitterIcon }: { tweet: EnrichedTweet; hideTwitterIcon?: boolean }) => (
   <div className="flex flex-row items-start justify-between tracking-normal">
     <div className="flex items-center space-x-3">
       <a
@@ -138,10 +138,12 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
         </div>
       </div>
     </div>
-    <a href={tweet.url} target="_blank" rel="noreferrer">
-      <span className="sr-only">Link to tweet</span>
-      <Twitter className="text-night/60 hover:text-night size-5 items-start transition-all ease-in-out hover:scale-105" />
-    </a>
+    {!hideTwitterIcon && (
+      <a href={tweet.url} target="_blank" rel="noreferrer">
+        <span className="sr-only">Link to tweet</span>
+        <Twitter className="text-night/60 hover:text-night size-5 items-start transition-all ease-in-out hover:scale-105" />
+      </a>
+    )}
   </div>
 )
 
@@ -254,10 +256,12 @@ const withSafeEntities = <T extends { entities?: Tweet["entities"] }>(
 export const MagicTweet = ({
   tweet,
   className,
+  hideTwitterIcon,
   ...props
 }: {
   tweet: Tweet
   className?: string
+  hideTwitterIcon?: boolean
 }) => {
   const safeTweet: Tweet = {
     ...withSafeEntities(tweet),
@@ -269,12 +273,12 @@ export const MagicTweet = ({
   return (
     <div
       className={cn(
-        "relative flex h-fit w-full max-w-lg flex-col gap-4 overflow-hidden rounded-xl border border-night/10 bg-white p-5",
+        "relative flex h-fit w-full flex-col gap-4 overflow-hidden rounded-xl border border-night/10 bg-white p-5",
         className
       )}
       {...props}
     >
-      <TweetHeader tweet={enrichedTweet} />
+      <TweetHeader tweet={enrichedTweet} hideTwitterIcon={hideTwitterIcon} />
       <TweetBody tweet={enrichedTweet} />
       <TweetMedia tweet={enrichedTweet} />
     </div>

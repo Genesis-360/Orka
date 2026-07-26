@@ -1,36 +1,88 @@
-import { Quote } from "lucide-react"
-import { ClientTweetCard } from "@/components/ui/client-tweet-card"
-import { testimonials } from "@/lib/content/testimonials"
+"use client";
+
+import { useEffect, useState } from "react";
+import { MessageCircle } from "lucide-react";
+import { ClientTweetCard } from "@/components/ui/client-tweet-card";
+import { testimonials } from "@/lib/content/testimonials";
+
+const SHOW_COUNT = 9;
+const ROTATE_INTERVAL = 8000;
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function pickRandom<T>(arr: T[], count: number): T[] {
+  return shuffleArray(arr).slice(0, count);
+}
 
 export default function Testimonials() {
+  const [visible, setVisible] = useState(() => pickRandom(testimonials, SHOW_COUNT));
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setVisible(pickRandom(testimonials, SHOW_COUNT));
+    }, ROTATE_INTERVAL);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section className="px-4 py-16 md:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <p className="section-label text-coral">Loved by builders</p>
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="section-label text-coral">Community</p>
           <h2 className="display mt-2 text-4xl uppercase sm:text-5xl md:text-6xl lg:text-7xl">
-            What people are saying.
+            Join the community.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base font-normal leading-7 text-night/80 sm:text-[18px]">
-            Freelancers, agencies, and founders use ORKA to ship work and get paid
-            securely. Here is what they share.
+          <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-night/70 sm:text-lg">
+            Discover what our community has to say about their ORKA experience.
           </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#a78cff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
+            >
+              <MessageCircle size={16} />
+              Join us on Discord
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 rounded-md border border-night/15 px-4 py-2.5 text-sm font-semibold text-night/78 transition-colors hover:border-night/30 hover:bg-night/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              Follow on X
+            </a>
+          </div>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((item, i) =>
+        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 [column-fill:_balance]">
+          {visible.map((item, i) =>
             item.type === "tweet" ? (
               <ClientTweetCard
-                key={`tweet-${i}`}
+                key={`tweet-${item.id}`}
                 id={item.id}
-                className="cut-corner rounded-[14px] border-2 border-night bg-white"
+                hideTwitterIcon
+                className="mb-4 rounded-2xl border-2 border-night/8 bg-white shadow-sm transition-all duration-300 hover:border-violet/40 hover:shadow-md break-inside-avoid"
               />
             ) : (
               <figure
                 key={`quote-${i}`}
-                className="cut-corner flex flex-col justify-between rounded-[14px] border-2 border-night bg-white p-6"
+                className="mb-4 flex flex-col justify-between rounded-2xl border-2 border-night/8 bg-white p-6 shadow-sm transition-all duration-300 hover:border-violet/40 hover:shadow-md break-inside-avoid"
               >
-                <Quote size={28} className="mb-3 text-violet/40" />
+                <MessageCircle size={28} className="mb-3 text-violet/40" />
                 <blockquote className="text-sm font-bold leading-6 text-night/80">
                   &ldquo;{item.quote}&rdquo;
                 </blockquote>
@@ -51,5 +103,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  )
+  );
 }
