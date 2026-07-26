@@ -419,10 +419,11 @@ export function getAdjacentDocs(slug: string): {
 } {
   const allItems = docsNavigation.flatMap((section) =>
     section.items.flatMap((item) => {
-      const withParent = [item];
+      const fullSlug = `${section.slug}/${item.slug}`;
+      const withParent: DocItem[] = [{ ...item, slug: fullSlug }];
       if (item.children) {
         for (const child of item.children) {
-          withParent.push({ ...child, slug: `${item.slug}/${child.slug}` });
+          withParent.push({ ...child, slug: `${fullSlug}/${child.slug}` });
         }
       }
       return withParent;

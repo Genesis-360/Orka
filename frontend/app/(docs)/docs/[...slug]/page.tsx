@@ -91,7 +91,7 @@ export default async function DocPage({ params }: Props) {
           </div>
         </div>
 
-        <DocsRightSidebar headings={headings} />
+        <DocsRightSidebar headings={headings} slug={slugPath} />
       </div>
     </div>
   );

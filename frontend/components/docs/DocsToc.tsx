@@ -91,21 +91,6 @@ export default function DocsToc({ headings }: DocsTocProps) {
         </a>
       </div>
 
-      <div className="mt-4 rounded-xl border border-night/10 bg-white p-3 text-center">
-        <p className="text-[11px] font-black text-night">Was this helpful?</p>
-        <p className="text-[10px] font-bold text-night/50">
-          Your feedback helps us improve.
-        </p>
-        <div className="mt-2 flex justify-center gap-2">
-          <button className="rounded-lg border border-night/10 px-3 py-1 text-[11px] font-bold text-night/60 transition hover:border-violet hover:text-violet">
-            Yes
-          </button>
-          <button className="rounded-lg border border-night/10 px-3 py-1 text-[11px] font-bold text-night/60 transition hover:border-violet hover:text-violet">
-            No
-          </button>
-        </div>
-      </div>
-
       <div className="mt-4 rounded-xl border border-night/10 bg-white p-3">
         <div className="flex items-center gap-2">
           <span className="grid size-7 place-items-center rounded-full bg-violet/10">
