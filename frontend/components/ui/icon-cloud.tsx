@@ -19,6 +19,7 @@ interface IconCloudProps {
   icons?: React.ReactNode[]
   images?: string[]
   showControl?: boolean
+  size?: number
 }
 
 function easeOutCubic(t: number): number {
@@ -29,6 +30,7 @@ export function IconCloud({
   icons,
   images,
   showControl = true,
+  size = 400,
 }: IconCloudProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [iconPositions, setIconPositions] = useState<Icon[]>([])
@@ -339,8 +341,8 @@ export function IconCloud({
     <div className="relative inline-block">
       <canvas
         ref={canvasRef}
-        width={400}
-        height={400}
+        width={size}
+        height={size}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

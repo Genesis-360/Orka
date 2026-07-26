@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { createClient } from "../lib/supabase/server";
-import { getSupabase } from "../lib/supabase";
+import { getSupabase } from "../lib/supabase"; // still used elsewhere
 import { fakeTx, getActiveOrgId } from "../lib/orka";
 import { callServices } from "../lib/backend";
 
@@ -123,8 +123,7 @@ export async function createOrg(formData: FormData) {
       .replace(/^-+|-+$/g, "")
       .slice(0, 60) || undefined;
 
-  const admin = getSupabase();
-  const { data: org, error } = await admin
+  const { data: org, error } = await supabase
     .from("organizations")
     .insert({ name, slug, type })
     .select("id, slug")
@@ -138,16 +137,16 @@ export async function createOrg(formData: FormData) {
   if (logoFile instanceof File && logoFile.size > 0) {
     const ext = (logoFile.name.split(".").pop() || "png").toLowerCase().replace(/[^a-z0-9]/g, "");
     const path = `${org.id}/${crypto.randomUUID()}.${ext}`;
-    const { error: upErr } = await admin.storage
+    const { error: upErr } = await supabase.storage
       .from("workspace-logos")
       .upload(path, logoFile, { upsert: true, contentType: logoFile.type || "image/png" });
     if (!upErr) {
-      const { data: urlData } = admin.storage.from("workspace-logos").getPublicUrl(path);
-      await admin.from("organizations").update({ logo_url: urlData.publicUrl }).eq("id", org.id);
+      const { data: urlData } = supabase.storage.from("workspace-logos").getPublicUrl(path);
+      await supabase.from("organizations").update({ logo_url: urlData.publicUrl }).eq("id", org.id);
     }
   }
 
-  await admin
+  await supabase
     .from("organization_members")
     .insert({ org_id: org.id, user_id: user.id, role: "owner" });
 
