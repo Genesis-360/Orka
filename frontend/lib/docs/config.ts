@@ -29,6 +29,9 @@ export interface DocMeta {
   lastUpdated?: string;
   featured?: boolean;
   draft?: boolean;
+  difficulty?: "Beginner" | "Intermediate" | "Advanced";
+  readingTime?: string;
+  estimatedSetup?: string;
 }
 
 export const docsNavigation: DocSection[] = [

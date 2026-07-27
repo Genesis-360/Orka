@@ -42,6 +42,20 @@ function extractHeadings(source: string): { id: string; text: string; level: num
   return headings;
 }
 
+function DifficultyBadge({ level }: { level: string }) {
+  const colors: Record<string, string> = {
+    Beginner: "bg-[#22bd93]/10 text-[#22bd93]",
+    Intermediate: "bg-[#3b82f6]/10 text-[#3b82f6]",
+    Advanced: "bg-[#ff8a22]/10 text-[#ff8a22]",
+    Mixed: "bg-[#9474ff]/10 text-[#9474ff]",
+  };
+  return (
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${colors[level] || colors.Beginner}`}>
+      {level}
+    </span>
+  );
+}
+
 export default async function DocPage({ params }: Props) {
   const { slug } = await params;
   const slugPath = Array.isArray(slug) ? slug.join("/") : slug;
@@ -72,7 +86,9 @@ export default async function DocPage({ params }: Props) {
   const breadcrumbs = getBreadcrumbPath(slugPath);
 
   const renderedContent = renderMDX(source);
-  const readingTime = calculateReadingTime(source);
+  const readingTime = (data as any).readingTime || calculateReadingTime(source);
+  const difficulty = (data as any).difficulty;
+  const estimatedSetup = (data as any).estimatedSetup;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -81,6 +97,18 @@ export default async function DocPage({ params }: Props) {
       <div className="flex flex-1 gap-0">
         <div className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
+            <div className="mb-6 flex items-center gap-3">
+              {difficulty && <DifficultyBadge level={difficulty} />}
+              <span className="text-[12px] font-medium text-[#5f6b86]">
+                {readingTime} min read
+              </span>
+              {estimatedSetup && (
+                <span className="text-[12px] text-[#5f6b86]/60">
+                  · Setup: {estimatedSetup}
+                </span>
+              )}
+            </div>
+
             <article className="docs-content">
               {renderedContent}
             </article>
