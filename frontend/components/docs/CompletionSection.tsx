@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { useDocsProgress } from "@/lib/docs/progress";
@@ -14,9 +14,14 @@ export default function CompletionSection({ slug }: CompletionSectionProps) {
   const { markCompleted, isCompleted, getNextRecommended } = useDocsProgress();
   const [justCompleted, setJustCompleted] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const completed = isCompleted(slug);
-  const nextDoc = getNextRecommended(slug);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const completed = mounted && isCompleted(slug);
+  const nextDoc = mounted ? getNextRecommended(slug) : null;
 
   const handleMarkCompleted = useCallback(() => {
     if (completed) return;
