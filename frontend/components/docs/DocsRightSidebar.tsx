@@ -12,7 +12,7 @@ export default function DocsRightSidebar({ headings, slug }: DocsRightSidebarPro
   const [helpful, setHelpful] = useState<"yes" | "no" | null>(null);
 
   return (
-    <aside className="hidden w-[300px] shrink-0 self-start lg:block">
+    <aside className="hidden w-[300px] shrink-0 lg:block">
       <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto py-8 pr-4">
         {/* Table of Contents */}
         <div className="mb-6">
