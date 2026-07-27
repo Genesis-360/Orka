@@ -29,6 +29,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { docsNavigation } from "@/lib/docs/config";
+import { useDocsProgress } from "@/lib/docs/progress";
 
 const quickStartItems = [
   {
@@ -203,6 +204,56 @@ const whatsNew = [
   },
 ];
 
+function ContinueLearningProgress() {
+  const { getSectionProgress, isLoaded } = useDocsProgress();
+
+  if (!isLoaded) return null;
+
+  const sections = ["start-here", "guides", "concepts", "clients", "projects", "payments", "ai", "team", "workspace", "developers", "resources"];
+  let totalCompleted = 0;
+  let totalItems = 0;
+
+  for (const sectionSlug of sections) {
+    const progress = getSectionProgress(sectionSlug);
+    totalCompleted += progress.completed;
+    totalItems += progress.total;
+  }
+
+  if (totalItems === 0) return null;
+
+  const percent = Math.round((totalCompleted / totalItems) * 100);
+  const isComplete = totalCompleted === totalItems;
+
+  return (
+    <section className="border-b border-black/[0.06] bg-white px-8 py-8 lg:px-12">
+      <div className="mx-auto max-w-5xl">
+        <div className="flex items-center gap-6 rounded-xl border border-black/[0.06] bg-[#f7f8fc] p-5">
+          <div className="flex-1">
+            <p className="text-[14px] font-bold text-[#082033]">
+              {isComplete ? "🎉 Documentation Complete" : "Continue Learning"}
+            </p>
+            <p className="mt-1 text-[13px] text-[#5f6b86]">
+              {totalCompleted} / {totalItems} pages completed
+            </p>
+            <div className="mt-3 h-[6px] overflow-hidden rounded-full bg-black/[0.06]">
+              <div
+                className="h-full rounded-full bg-[#22bd93] transition-all duration-500 ease-out"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+            <p className="mt-2 text-[12px] font-bold text-[#22bd93]">
+              {percent}%{!isComplete && " — Keep going!"}
+            </p>
+          </div>
+          {isComplete && (
+            <div className="text-[2rem]">🎉</div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function DocsPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
@@ -337,6 +388,9 @@ export default function DocsPage() {
           </div>
         </div>
       </section>
+
+      {/* Continue Learning Progress */}
+      <ContinueLearningProgress />
 
       {/* Quick Start */}
       <section className="px-8 py-14 lg:px-12">
