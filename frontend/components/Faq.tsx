@@ -5,7 +5,6 @@ export default function Faq() {
   return (
     <section id="faq" className="px-4 py-16 md:px-8 lg:px-12">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
-        {/* Left — heading + related */}
         <div className="text-center lg:sticky lg:top-10 lg:self-start lg:text-left">
           <p className="section-label text-violet">FAQ</p>
           <h2 className="display mt-2 text-4xl uppercase sm:text-5xl md:text-6xl lg:text-[80px]">
@@ -17,21 +16,24 @@ export default function Faq() {
           </p>
         </div>
 
-        {/* Right — questions + answers */}
-        <div className="flex flex-col">
+        <div className="flex flex-col divide-y divide-night/10">
           {faqs.map(([question, answer]) => (
-            <details key={question} className="group py-6">
-              <summary className="flex cursor-pointer gap-4">
-                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-night text-white transition-all duration-300 group-open:rotate-45 group-open:bg-violet">
+            <details key={question} className="group py-5 open:pb-8">
+              <summary className="flex cursor-pointer items-start gap-4">
+                <span className="mt-1 grid size-9 shrink-0 place-items-center rounded-full bg-night text-white transition-all duration-500 group-open:rotate-45 group-open:bg-violet">
                   <Plus size={24} className="transition-transform duration-200 group-hover:scale-110" />
                 </span>
-                <span className="display text-[22px] font-normal uppercase leading-7.5 text-night transition-colors duration-200 group-open:text-violet sm:text-[28px] sm:leading-9.75">
+                <span className="display text-[22px] font-normal uppercase leading-7.5 text-night transition-colors duration-300 group-open:text-violet sm:text-[28px] sm:leading-9.75">
                   {question}
                 </span>
               </summary>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-night/80 sm:text-[18px] sm:leading-7.5">
-                {answer}
-              </p>
+              <div className="grid grid-rows-[0fr] transition-all duration-500 group-open:grid-rows-[1fr]">
+                <div className="overflow-hidden">
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-night/80 sm:text-[18px] sm:leading-7">
+                    {answer}
+                  </p>
+                </div>
+              </div>
             </details>
           ))}
         </div>

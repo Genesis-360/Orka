@@ -12,10 +12,10 @@ type ThemeContext = {
 const ThemeCtx = createContext<ThemeContext | null>(null);
 
 function getStoredTheme(): Theme {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem("theme");
   if (stored === "light" || stored === "dark") return stored;
-  return "dark";
+  return "light";
 }
 
 function applyTheme(t: Theme) {

@@ -34,7 +34,7 @@ export default async function WorkspaceLayout({
     (user.email ?? "");
 
   return (
-    <div className="flex h-dvh overflow-hidden bg-surfaceMuted">
+    <div className="dashboard-light flex h-dvh overflow-hidden bg-surfaceMuted">
       <WorkspaceSidebar
         orgs={orgs.map((o) => ({ slug: o.slug, name: o.name }))}
         currentSlug={slug}

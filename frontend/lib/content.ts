@@ -168,10 +168,14 @@ export const steps: MethodStep[] = [
 ];
 
 export const faqs: Faq[] = [
-  ["Is ORKA a marketplace?", "No. ORKA starts after the sale, helping agencies and freelancers operate projects, escrow, verification, payouts, and finance."],
-  ["Do users need crypto wallets?", "No. ORKA is designed as a Web2 product experience, using Stellar and Soroban under the hood."],
-  ["Who is it for first?", "Mid-sized digital agencies, global freelancers, remote startups, and niche service marketplaces."],
-  ["Is the product live?", "This landing page is for the early waitlist and design partners while the hackathon/pre-seed foundation is built."],
+  ["Is ORKA a marketplace?", "No. ORKA starts after the sale, helping agencies and freelancers operate projects, escrow, verification, payouts, and finance — not find clients."],
+  ["Do users need crypto wallets?", "No. ORKA is designed as a Web2 product experience, using Stellar and Soroban under the hood. You never touch a blockchain directly."],
+  ["Who is it for first?", "Mid-sized digital agencies, global freelancers, remote startups, and niche service marketplaces looking to automate back-office finance."],
+  ["Is the product live?", "This landing page is for the early waitlist and design partners while the hackathon/pre-seed foundation is built. Sign up to get early access."],
+  ["How is ORKA different from invoicing tools?", "Invoicing tools send a bill and hope. ORKA handles the full loop: proposal → escrow → milestone verification → payout → invoice → ledger. Everything is automatic, cross-currency, and audit-ready."],
+  ["How does milestone verification work?", "You define milestones in a proposal. When work is submitted, the client reviews and approves. ORKA automatically releases escrowed funds to your account. No chasing payments."],
+  ["What about fees and pricing?", "Pricing details are being finalized. We are designing for transparent, predictable fees — significantly lower than payment processors and cross-border wire fees."],
+  ["Is my data secure?", "Yes. Data is encrypted at rest and in transit. We use Supabase for storage and Stellar for escrow. Smart contract logic is open-source and auditable."],
 ];
 
 export const productLinks = [

@@ -16,7 +16,7 @@ export const ClientTweetCard = ({
   fetchOptions,
   onError,
   ...props
-}: TweetProps & { className?: string }) => {
+}: TweetProps & { className?: string; hideTwitterIcon?: boolean }) => {
   const { data, error, isLoading } = useTweet(id, apiUrl, fetchOptions)
 
   if (isLoading) return fallback

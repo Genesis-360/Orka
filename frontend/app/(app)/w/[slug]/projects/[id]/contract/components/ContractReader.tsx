@@ -5,6 +5,7 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { Pencil, History, FileSignature } from "lucide-react";
+import { normalizeBlocks } from "@/lib/contractTemplates";
 import { ContractEditorClient } from "./ContractEditorClient";
 import { ContractSigningPanel } from "./ContractSigningPanel";
 import { ContractVersionsPanel } from "./ContractVersionsPanel";
@@ -48,7 +49,7 @@ export function ContractReader({
   const [editing, setEditing] = useState(false);
   const [showVersions, setShowVersions] = useState(false);
   const editor = useCreateBlockNote({
-    initialContent: (blocks?.length ? blocks : undefined) as never,
+    initialContent: (blocks?.length ? normalizeBlocks(blocks) : undefined) as never,
   });
 
   if (editing) {

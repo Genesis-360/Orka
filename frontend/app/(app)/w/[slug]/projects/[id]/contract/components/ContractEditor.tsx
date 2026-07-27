@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
+import { normalizeBlocks } from "@/lib/contractTemplates";
 import { saveContract } from "../../actions";
 import { ContractSigningPanel } from "./ContractSigningPanel";
 
@@ -30,7 +31,7 @@ export function ContractEditor({
 }: Props) {
   const router = useRouter();
   const editor = useCreateBlockNote({
-    initialContent: (initialBlocks?.length ? initialBlocks : undefined) as never,
+    initialContent: (initialBlocks?.length ? normalizeBlocks(initialBlocks) : undefined) as never,
   });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);

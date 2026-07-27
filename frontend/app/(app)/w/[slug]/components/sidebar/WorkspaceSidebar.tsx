@@ -24,12 +24,12 @@ export function WorkspaceSidebar({
     <Sidebar>
       <SidebarHeader />
 
-      <div className="px-4 pb-4 pt-2">
+      <div className="px-4 pb-5">
         <WorkspaceSwitcher orgs={orgs} currentSlug={currentSlug} />
       </div>
 
       <nav
-        className="flex flex-1 flex-col gap-1 px-4 pb-4"
+        className="flex flex-1 flex-col gap-0.5 px-3 pb-4"
         aria-label="Workspace navigation"
       >
         {flatSidebarNav.map((item) => {
@@ -41,19 +41,19 @@ export function WorkspaceSidebar({
               key={item.path}
               href={href}
               aria-current={active ? "page" : undefined}
-              className={`flex h-10 items-center gap-3 rounded-lg px-3 text-sm font-semibold transition-colors duration-150 ${
+              className={`group relative flex h-9 items-center gap-2.5 rounded-md px-3 text-sm font-medium transition-colors ${
                 active
-                  ? "bg-primary/20 text-white"
-                  : "text-white/65 hover:bg-white/6 hover:text-white"
+                  ? "bg-white/[0.08] font-semibold text-white before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:rounded-r-full before:bg-primary"
+                  : "text-white/55 hover:bg-white/[0.04] hover:text-white/80"
               }`}
             >
               <Icon
-                className={`size-4.5 shrink-0 ${active ? "text-primary" : ""}`}
+                className={`size-4 shrink-0 ${active ? "text-primary" : "text-white/35 group-hover:text-white/60"}`}
                 aria-hidden="true"
               />
-              <span className="flex-1 truncate">{item.title}</span>
+              <span className="truncate">{item.title}</span>
               {item.badge && (
-                <span className="rounded-full bg-primary/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                <span className="ml-auto rounded-md bg-primary/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
                   {item.badge}
                 </span>
               )}

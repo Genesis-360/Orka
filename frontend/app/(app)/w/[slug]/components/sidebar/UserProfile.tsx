@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronsUpDown, User as UserIcon, Settings, LogOut } from "lucide-react";
+import { ChevronsUpDown, User, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -32,53 +32,57 @@ export function UserProfile({
         <button
           type="button"
           aria-label="Account menu"
-          className="group flex w-full items-center justify-center gap-3 rounded-lg border border-white/6 bg-white/3 px-3 py-2.5 text-left transition-colors hover:bg-white/6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/20"
+          className="group flex w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-1.5 text-left transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
         >
           <Avatar className="size-7 shrink-0">
             <AvatarImage src={user.avatarUrl ?? ""} alt={user.name} />
             <AvatarFallback
               style={{ backgroundImage: "linear-gradient(to bottom right, #fb923c, #9474ff)" }}
-              className="text-[11px] font-extrabold text-white"
+              className="text-[10px] font-bold text-white"
             >
               {initials || "?"}
             </AvatarFallback>
           </Avatar>
-          <span className="min-w-0 flex-1 truncate text-sm font-extrabold text-white">
-            {user.name}
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-medium text-white">
+              {user.name}
+            </span>
+            <span className="block truncate text-xs text-white/35">
+              {user.email}
+            </span>
           </span>
-          <ChevronsUpDown className="size-4 shrink-0 text-white/40 transition-colors group-hover:text-white/70" aria-hidden />
+          <ChevronsUpDown className="size-3.5 shrink-0 self-center text-white/30 transition-colors group-hover:text-white/60" aria-hidden />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="top"
         align="start"
-        className="w-(--radix-dropdown-menu-trigger-width) border-white/6 bg-[#0c1a2e] text-white shadow-2xl"
+        className="border-white/[0.06] bg-[#0f131e] p-1.5"
       >
-        <DropdownMenuItem
-          asChild
-          className="flex justify-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-white/65 outline-hidden transition-colors hover:bg-white/6 hover:text-white focus:bg-white/6 focus:text-white data-highlighted:bg-white/6 data-highlighted:text-white"
-        >
-          <Link href={`/w/${slug}/settings`}>
-            <UserIcon className="size-4 text-white/50" aria-hidden />
-            Workspace Settings
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          asChild
-          className="flex justify-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-white/65 outline-hidden transition-colors hover:bg-white/6 hover:text-white focus:bg-white/6 focus:text-white data-highlighted:bg-white/6 data-highlighted:text-white"
-        >
-          <Link href="/settings">
-            <Settings className="size-4 text-white/50" aria-hidden />
-            Personal Settings
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-white/10" />
-        <DropdownMenuItem
-          asChild
-          className="flex justify-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold text-white/65 outline-hidden transition-colors hover:bg-white/6 hover:text-white focus:bg-white/6 focus:text-white data-highlighted:bg-white/6 data-highlighted:text-white"
-        >
-          <SignOutButton />
-        </DropdownMenuItem>
+        <div className="border-b border-white/[0.06] px-3 py-2.5">
+          <p className="truncate text-sm font-medium text-white">{user.name}</p>
+          <p className="mt-0.5 truncate text-xs text-white/40">{user.email}</p>
+        </div>
+        <div className="p-1">
+          <DropdownMenuItem asChild className="focus:text-white hover:bg-white/[0.08] hover:text-white">
+            <Link href={`/w/${slug}/settings`} className="gap-2.5 text-sm font-medium text-white/60">
+              <User className="size-4" aria-hidden />
+              Workspace Settings
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild className="focus:text-white hover:bg-white/[0.08] hover:text-white">
+            <Link href="/settings" className="gap-2.5 text-sm font-medium text-white/60">
+              <Settings className="size-4" aria-hidden />
+              Personal Settings
+            </Link>
+          </DropdownMenuItem>
+        </div>
+        <DropdownMenuSeparator className="bg-white/[0.06]" />
+        <div className="p-1">
+          <DropdownMenuItem asChild className="focus:text-white hover:bg-white/[0.08] hover:text-white">
+            <SignOutButton />
+          </DropdownMenuItem>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
