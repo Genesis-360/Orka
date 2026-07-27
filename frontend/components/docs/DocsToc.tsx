@@ -40,29 +40,31 @@ export default function DocsToc({ headings }: DocsTocProps) {
   if (headings.length === 0) return null;
 
   return (
-    <aside className="w-full">
-      <p className="mb-3 text-xs font-black uppercase text-night/50">
-        On this page
-      </p>
-      <nav className="space-y-1">
-        {headings.map((heading) => (
-          <a
-            key={heading.id}
-            href={`#${heading.id}`}
-            className={`block border-l-[3px] py-1 text-[13px] font-bold transition-colors ${
-              heading.level === 3 ? "pl-6" : "pl-3"
-            } ${
-              activeId === heading.id
-                ? "border-violet text-violet"
-                : "border-transparent text-night/50 hover:text-night/80"
-            }`}
-          >
-            {heading.text}
-          </a>
-        ))}
-      </nav>
+    <aside className="w-full space-y-8">
+      <div>
+        <p className="mb-3 text-xs font-black uppercase text-night/50">
+          On this page
+        </p>
+        <nav className="space-y-1.5">
+          {headings.map((heading) => (
+            <a
+              key={heading.id}
+              href={`#${heading.id}`}
+              className={`block border-l-[3px] py-1.5 text-[13px] font-bold transition-colors ${
+                heading.level === 3 ? "pl-6" : "pl-3"
+              } ${
+                activeId === heading.id
+                  ? "border-violet text-violet"
+                  : "border-transparent text-night/50 hover:text-night/80"
+              }`}
+            >
+              {heading.text}
+            </a>
+          ))}
+        </nav>
+      </div>
 
-      <div className="mt-8 space-y-3 border-t border-night/10 pt-4">
+      <div className="border-t border-night/10 pt-4">
         <div className="text-[11px] font-bold text-night/40">
           <span className="block">Last Updated: Jul 2026</span>
           <span className="block">Reading Time: 5 min</span>
@@ -75,15 +77,15 @@ export default function DocsToc({ headings }: DocsTocProps) {
             <RiHeadphoneLine size={14} className="text-violet" />
           </span>
           <div>
-            <p className="text-[11px] font-black text-night">Still stuck?</p>
-            <p className="text-[10px] font-bold text-night/50">
+            <p className="text-[12px] font-black text-night">Still stuck?</p>
+            <p className="text-[11px] font-bold text-night/50">
               Our support team is here to help.
             </p>
           </div>
         </div>
         <a
           href="/contact"
-          className="mt-2 flex items-center justify-center gap-1 rounded-lg bg-violet px-3 py-1.5 text-[11px] font-black text-white transition hover:bg-violet/90"
+          className="mt-3 flex items-center justify-center gap-1 rounded-lg bg-violet px-3 py-2 text-[12px] font-black text-white transition hover:bg-violet/90"
         >
           Contact Support
         </a>
@@ -110,15 +112,15 @@ export default function DocsToc({ headings }: DocsTocProps) {
             <RiCloseLine size={14} className="text-violet" />
           </span>
           <div>
-            <p className="text-[11px] font-black text-night">Join Community</p>
-            <p className="text-[10px] font-bold text-night/50">
+            <p className="text-[12px] font-black text-night">Join Community</p>
+            <p className="text-[11px] font-bold text-night/50">
               Connect with the Orka team.
             </p>
           </div>
         </div>
         <a
           href="#"
-          className="mt-2 flex items-center justify-center gap-1 text-[11px] font-black text-violet hover:underline"
+          className="mt-3 flex items-center justify-center gap-1 text-[12px] font-black text-violet hover:underline"
         >
           Join on Discord
         </a>

@@ -2,9 +2,15 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { getAllDocSlugs, getDocBySlug, getParentSlug } from "@/lib/docs/config";
+import Link from "next/link";
+import {
+  getAllDocSlugs,
+  getDocBySlug,
+  getParentSlug,
+  getBreadcrumbPath,
+} from "@/lib/docs/config";
 import { renderMDX } from "@/lib/docs/mdx";
-import DocsBreadcrumbs from "@/components/docs/DocsBreadcrumbs";
+import DocsTopbar from "@/components/docs/DocsTopbar";
 import DocsRightSidebar from "@/components/docs/DocsRightSidebar";
 import PrevNextNav from "@/components/docs/PrevNextNav";
 import Feedback from "@/components/docs/Feedback";
@@ -48,10 +54,6 @@ export default async function DocPage({ params }: Props) {
   if (!fs.existsSync(filePath) && parentSlug) {
     filePath = path.join(docsDir, `${slugPath}/overview.mdx`);
   }
-  
-  if (!fs.existsSync(filePath)) {
-    filePath = path.join(docsDir, `${parentSlug || slugPath}.mdx`);
-  }
 
   if (!fs.existsSync(filePath)) {
     notFound();
@@ -59,33 +61,37 @@ export default async function DocPage({ params }: Props) {
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { content, data } = matter(raw);
-  const headings = extractHeadings(content);
-  const mdxContent = await renderMDX(content);
+
+  const source = content || "";
+  const headings = extractHeadings(source);
+  const breadcrumbs = getBreadcrumbPath(slugPath);
+
+  const renderedContent = renderMDX(source);
 
   return (
-    <div className="mx-auto max-w-7xl overflow-x-hidden px-4 py-8 md:px-8 lg:px-12">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <article className="min-w-0">
-          <DocsBreadcrumbs slug={slugPath} />
+    <div className="flex min-h-screen flex-col">
+      <DocsTopbar breadcrumbs={breadcrumbs} />
 
-          <h1 className="display text-4xl uppercase sm:text-5xl text-night">
-            {data.title || doc.title}
-          </h1>
+      <div className="flex flex-1 gap-0">
+        <div className="flex-1 overflow-y-auto">
+          <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
+            <article className="docs-content">
+              {renderedContent}
+            </article>
 
-          {data.description && (
-            <p className="mt-3 text-base font-normal leading-7 text-night/60 sm:text-[18px]">
-              {data.description}
-            </p>
-          )}
+            <div className="mt-10 border-t border-black/[0.06] pt-6">
+              <PrevNextNav slug={slugPath} />
+            </div>
 
-          <div className="mt-8">{mdxContent}</div>
+            <RelatedArticles slug={slugPath} />
 
-          <PrevNextNav slug={slugPath} />
-          <Feedback slug={slugPath} />
-          <RelatedArticles slug={slugPath} />
-        </article>
+            <div className="mt-10 border-t border-black/[0.06] pt-6">
+              <Feedback slug={slugPath} />
+            </div>
+          </div>
+        </div>
 
-        <DocsRightSidebar headings={headings} />
+        <DocsRightSidebar headings={headings} slug={slugPath} />
       </div>
     </div>
   );
