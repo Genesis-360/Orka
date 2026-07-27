@@ -39,11 +39,9 @@ const iconMap: Record<string, typeof Rocket> = {
   lightbulb: Lightbulb,
 };
 
-interface DocsSidebarProps {
-  onOpenSearch?: () => void;
-}
+interface DocsSidebarProps {}
 
-export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps) {
+export default function DocsSidebar({}: DocsSidebarProps) {
   const pathname = usePathname();
   const { isCompleted, getSectionProgress, isLoaded } = useDocsProgress();
   const [expandedSection, setExpandedSection] = useState<string | null>(() => {
@@ -70,20 +68,6 @@ export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps) {
             orka
           </span>
         </Link>
-      </div>
-
-      {/* Search — fixed at top */}
-      <div className="shrink-0 px-3 pb-4">
-        <button
-          onClick={onOpenSearch}
-          className="flex w-full items-center gap-2.5 rounded-xl border border-black/[0.06] bg-[#f7f8fc] px-3 py-2.5 text-[13px] font-medium text-[#5f6b86] transition-colors hover:border-[#9474ff]/30 hover:bg-[#9474ff]/[0.03]"
-        >
-          <Search size={14} className="shrink-0 opacity-50" />
-          <span className="flex-1 text-left">Search docs</span>
-          <kbd className="hidden rounded-md border border-black/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-semibold text-[#5f6b86] sm:inline-block">
-            ⌘K
-          </kbd>
-        </button>
       </div>
 
       {/* Everything below scrolls as one unit */}
