@@ -1,7 +1,6 @@
 "use client";
 
 import DocsToc, { TocItem } from "./DocsToc";
-import Feedback from "./Feedback";
 
 interface DocsRightSidebarProps {
   headings: TocItem[];
@@ -13,9 +12,6 @@ export default function DocsRightSidebar({ headings, slug }: DocsRightSidebarPro
     <div className="hidden w-[300px] shrink-0 self-stretch lg:block">
       <div className="sticky top-[96px] space-y-8 py-8">
         <DocsToc headings={headings} />
-        <div className="border-t border-night/10 pt-6">
-          <Feedback slug={slug} />
-        </div>
       </div>
     </div>
   );

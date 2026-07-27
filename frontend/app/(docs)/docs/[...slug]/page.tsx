@@ -13,7 +13,7 @@ import { renderMDX } from "@/lib/docs/mdx";
 import DocsTopbar from "@/components/docs/DocsTopbar";
 import DocsRightSidebar from "@/components/docs/DocsRightSidebar";
 import PrevNextNav from "@/components/docs/PrevNextNav";
-import Feedback from "@/components/docs/Feedback";
+import CompletionSection from "@/components/docs/CompletionSection";
 import RelatedArticles from "@/components/docs/RelatedArticles";
 
 interface Props {
@@ -22,6 +22,11 @@ interface Props {
 
 export async function generateStaticParams() {
   return getAllDocSlugs().map((slug) => ({ slug: slug.split("/") }));
+}
+
+function calculateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
 }
 
 function extractHeadings(source: string): { id: string; text: string; level: number }[] {
@@ -67,6 +72,7 @@ export default async function DocPage({ params }: Props) {
   const breadcrumbs = getBreadcrumbPath(slugPath);
 
   const renderedContent = renderMDX(source);
+  const readingTime = calculateReadingTime(source);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -85,9 +91,7 @@ export default async function DocPage({ params }: Props) {
 
             <RelatedArticles slug={slugPath} />
 
-            <div className="mt-10 border-t border-black/[0.06] pt-6">
-              <Feedback slug={slugPath} />
-            </div>
+            <CompletionSection slug={slugPath} readingTime={readingTime} />
           </div>
         </div>
 
