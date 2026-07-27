@@ -18,8 +18,12 @@ import {
   MessageSquare,
   GitBranch,
   Zap,
+  Map,
+  Lightbulb,
+  Check,
 } from "lucide-react";
 import { docsNavigation, DocSection } from "@/lib/docs/config";
+import { useDocsProgress } from "@/lib/docs/progress";
 
 const iconMap: Record<string, typeof Rocket> = {
   rocket: Rocket,
@@ -31,6 +35,8 @@ const iconMap: Record<string, typeof Rocket> = {
   settings: Settings,
   code: Code,
   book: BookOpen,
+  map: Map,
+  lightbulb: Lightbulb,
 };
 
 interface DocsSidebarProps {
@@ -39,6 +45,7 @@ interface DocsSidebarProps {
 
 export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps) {
   const pathname = usePathname();
+  const { isCompleted, getSectionProgress, isLoaded } = useDocsProgress();
   const [expandedSection, setExpandedSection] = useState<string | null>(() => {
     const parts = pathname.split("/").filter(Boolean);
     if (parts[0] === "docs" && parts[1]) {
@@ -90,6 +97,9 @@ export default function DocsSidebar({ onOpenSearch }: DocsSidebarProps) {
               isExpanded={expandedSection === section.slug}
               onToggle={() => toggleSection(section.slug)}
               pathname={pathname}
+              isCompleted={isCompleted}
+              getSectionProgress={getSectionProgress}
+              isLoaded={isLoaded}
             />
           ))}
         </div>
@@ -159,13 +169,20 @@ function SidebarSection({
   isExpanded,
   onToggle,
   pathname,
+  isCompleted,
+  getSectionProgress,
+  isLoaded,
 }: {
   section: DocSection;
   isExpanded: boolean;
   onToggle: () => void;
   pathname: string;
+  isCompleted: (slug: string) => boolean;
+  getSectionProgress: (sectionSlug: string) => { completed: number; total: number; percent: number };
+  isLoaded: boolean;
 }) {
   const Icon = iconMap[section.icon] || Rocket;
+  const progress = getSectionProgress(section.slug);
 
   return (
     <div>
@@ -189,6 +206,11 @@ function SidebarSection({
           <Icon size={14} />
         </span>
         <span className="flex-1 text-left">{section.title}</span>
+        {isLoaded && progress.completed > 0 && (
+          <span className="text-[10px] font-bold text-[#22bd93]">
+            {progress.completed}/{progress.total}
+          </span>
+        )}
         <ChevronDown
           size={12}
           className={`shrink-0 transition-transform duration-150 ${
@@ -199,22 +221,43 @@ function SidebarSection({
 
       {isExpanded && (
         <div className="ml-[18px] mt-1 space-y-0.5 border-l border-black/[0.06] pl-3">
+          {/* Progress bar */}
+          {isLoaded && progress.completed > 0 && (
+            <div className="mb-2 px-2.5">
+              <div className="h-[3px] overflow-hidden rounded-full bg-black/[0.06]">
+                <div
+                  className="h-full rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    width: `${progress.percent}%`,
+                    backgroundColor: section.color,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           {section.items.map((item) => {
             const itemPath = `/docs/${section.slug}/${item.slug}`;
             const isItemActive =
               pathname === itemPath ||
               pathname.startsWith(itemPath + "/");
+            const itemCompleted = isLoaded && isCompleted(`${section.slug}/${item.slug}`);
 
             return (
               <Link
                 key={item.slug}
                 href={itemPath}
-                className={`block rounded-lg px-2.5 py-1.5 text-[12px] font-medium transition-colors ${
+                className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-[12px] font-medium transition-colors ${
                   isItemActive
                     ? "bg-[#9474ff]/[0.06] font-semibold text-[#9474ff]"
                     : "text-[#5f6b86] hover:bg-black/[0.03] hover:text-[#082033]"
                 }`}
               >
+                {itemCompleted ? (
+                  <Check size={12} className="shrink-0 text-[#22bd93]" />
+                ) : (
+                  <span className="size-[12px] shrink-0" />
+                )}
                 {item.title}
               </Link>
             );
