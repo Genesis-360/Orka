@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const jetbrainsMonoHeading = JetBrains_Mono({subsets:['latin'],variable:'--font-heading'});
 
@@ -50,7 +51,9 @@ export default function RootLayout({
       className={cn(anton.variable, dmSans.variable, jetbrains.variable, jetbrainsMonoHeading.variable)}>
       <body>
         <ThemeProvider>
-          <TooltipProvider delayDuration={200}>{children}</TooltipProvider>
+          <TooltipProvider delayDuration={200}>
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          </TooltipProvider>
           <Toaster />
         </ThemeProvider>
       </body>

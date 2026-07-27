@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { RiHeadphoneLine, RiCloseLine } from "react-icons/ri";
 
 export interface TocItem {
   id: string;
@@ -70,13 +71,10 @@ export default function DocsToc({ headings }: DocsTocProps) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-night/10 bg-white p-4">
-        <div className="flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-full bg-violet/10">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9474ff" strokeWidth="2">
-              <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-            </svg>
+      <div className="mt-4 rounded-xl border border-night/10 bg-white p-3">
+        <div className="flex items-center gap-2">
+          <span className="grid size-7 place-items-center rounded-full bg-violet/10">
+            <RiHeadphoneLine size={14} className="text-violet" />
           </span>
           <div>
             <p className="text-[12px] font-black text-night">Still stuck?</p>
@@ -93,13 +91,25 @@ export default function DocsToc({ headings }: DocsTocProps) {
         </a>
       </div>
 
-      <div className="rounded-xl border border-night/10 bg-white p-4">
-        <div className="flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-full bg-violet/10">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9474ff" strokeWidth="2">
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
+      <div className="mt-4 rounded-xl border border-night/10 bg-white p-3 text-center">
+        <p className="text-[11px] font-black text-night">Was this helpful?</p>
+        <p className="text-[10px] font-bold text-night/50">
+          Your feedback helps us improve.
+        </p>
+        <div className="mt-2 flex justify-center gap-2">
+          <button className="rounded-lg border border-night/10 px-3 py-1 text-[11px] font-bold text-night/60 transition hover:border-violet hover:text-violet">
+            Yes
+          </button>
+          <button className="rounded-lg border border-night/10 px-3 py-1 text-[11px] font-bold text-night/60 transition hover:border-violet hover:text-violet">
+            No
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-xl border border-night/10 bg-white p-3">
+        <div className="flex items-center gap-2">
+          <span className="grid size-7 place-items-center rounded-full bg-violet/10">
+            <RiCloseLine size={14} className="text-violet" />
           </span>
           <div>
             <p className="text-[12px] font-black text-night">Join Community</p>

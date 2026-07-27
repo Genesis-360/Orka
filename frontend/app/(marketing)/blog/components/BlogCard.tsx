@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, FileText } from "lucide-react";
 import type { BlogPost } from "./types";
 
 const CAT_COLORS: Record<string, string> = {
@@ -37,12 +37,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             />
         ) : (
           <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
+            <FileText size={20} className="text-violet" />
           </div>
         )}
       </div>
