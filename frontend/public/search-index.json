@@ -662,5 +662,117 @@
     "description": "Set up and manage your workspace — team members, billing, and settings.",
     "content": "A workspace is your agency's home on ORKA. It contains all your projects, team members, and billing settings in one place.  Creating a Workspace 1. Click Create Workspace from the dashboard 2. Enter a name for your workspace 3. Set your default currency and timezone 4. Invite team members by email  ",
     "url": "/docs/workspaces"
+  },
+  {
+    "id": "guides/send-first-invoice",
+    "title": "Send First Invoice",
+    "category": "Guides",
+    "description": "Step-by-step guide to creating and sending your first invoice.",
+    "content": "Send First Invoice Sending your first invoice in Orka takes just a few minutes. This guide walks you through the entire process. Why it matters A professional invoice gets you paid faster. Before you begin Make sure you have an active workspace, at least one client, and a project with completed milestones. Step-by-step Navigate to Invoices, create new invoice, add line items, set payment terms, review and send.",
+    "url": "/docs/guides/send-first-invoice"
+  },
+  {
+    "id": "guides/create-first-proposal",
+    "title": "Create First Proposal",
+    "category": "Guides",
+    "description": "Draft and send a winning proposal to a client using Orka's AI-powered tools.",
+    "content": "Create First Proposal A strong proposal sets expectations, defines scope, and wins clients. Why it matters Proposals protect both you and your client. Before you begin You need a client, clear scope understanding, and pricing ideas. Step-by-step Start new proposal, use AI generator, edit and customize, add branding, send to client.",
+    "url": "/docs/guides/create-first-proposal"
+  },
+  {
+    "id": "guides/milestone-payments",
+    "title": "Milestone Payments",
+    "category": "Guides",
+    "description": "Set up milestone-based payments with escrow to get paid securely.",
+    "content": "Milestone Payments Break your project into payable units. Each milestone has its own deliverable, deadline, and payment. Why it matters Getting paid per milestone improves cash flow and reduces risk. Step-by-step Define milestones, client funds escrow, complete work, client approves, payment released.",
+    "url": "/docs/guides/milestone-payments"
+  },
+  {
+    "id": "guides/manage-clients",
+    "title": "Manage Clients",
+    "category": "Guides",
+    "description": "Build and maintain strong client relationships in Orka.",
+    "content": "Manage Clients Good client management is the foundation of a successful service business. Why it matters Strong client relationships lead to repeat business and referrals. Step-by-step Add new client, set up client portal, organize with tags, track communication, review client health.",
+    "url": "/docs/guides/manage-clients"
+  },
+  {
+    "id": "guides/international-payments",
+    "title": "International Payments",
+    "category": "Guides",
+    "description": "Send and receive payments across borders with multi-currency support.",
+    "content": "International Payments Orka supports international payments through Stellar's global network. Send and receive payments in multiple currencies with minimal fees. Step-by-step Set project currency, create invoice, client pays, receive funds.",
+    "url": "/docs/guides/international-payments"
+  },
+  {
+    "id": "guides/team-collaboration",
+    "title": "Team Collaboration",
+    "category": "Guides",
+    "description": "Work together with your team seamlessly in Orka.",
+    "content": "Team Collaboration Orka makes it easy to collaborate with your team on projects, proposals, and invoices. Step-by-step Invite team members, assign to projects, set up approval workflows, use activity feed, communicate in context.",
+    "url": "/docs/guides/team-collaboration"
+  },
+  {
+    "id": "guides/agency-workflow",
+    "title": "Agency Workflow",
+    "category": "Guides",
+    "description": "Run your agency end-to-end with Orka — from proposal to payment.",
+    "content": "Agency Workflow This guide covers the complete agency workflow in Orka. From winning a client to getting paid. Step-by-step Win the client with proposal, set up project with milestones, deliver the work, get approval and payment, manage the relationship, repeat and scale.",
+    "url": "/docs/guides/agency-workflow"
+  },
+  {
+    "id": "concepts/workspaces",
+    "title": "Workspaces",
+    "category": "Concepts",
+    "description": "What workspaces are and how they organize your business in Orka.",
+    "content": "Workspaces A workspace is your agency's home on Orka. It contains all your projects, team members, clients, and billing settings. Why does Orka use it? Isolation, organization, access control, branding. How does it work? Create workspace, set currency, invite team, add clients.",
+    "url": "/docs/concepts/workspaces"
+  },
+  {
+    "id": "concepts/clients",
+    "title": "Clients",
+    "category": "Concepts",
+    "description": "How client relationships work in Orka.",
+    "content": "Clients Clients are the companies or individuals you work with. Orka manages the entire client lifecycle. What is it? A record with contact info, project history, invoices, and communication. Why does Orka use it? Single source of truth, relationship tracking, portal access, permission control.",
+    "url": "/docs/concepts/clients"
+  },
+  {
+    "id": "concepts/projects",
+    "title": "Projects",
+    "category": "Concepts",
+    "description": "How projects structure your work and deliverables in Orka.",
+    "content": "Projects Projects are the core of Orka. Each project tracks proposals, contracts, milestones, payments, and files. Why does Orka use it? Structure, payment tracking, file management, activity feed. How does it work? Create project, add milestones, track progress, manage files, get paid.",
+    "url": "/docs/concepts/projects"
+  },
+  {
+    "id": "concepts/milestones",
+    "title": "Milestones",
+    "category": "Concepts",
+    "description": "Breaking work into trackable, payable units.",
+    "content": "Milestones Milestones divide your project into clear, manageable units. Each has a deliverable, deadline, and payment. Why does Orka use it? Clear expectations, cash flow, accountability, escrow integration. How does it work? Define milestones, client funds escrow, complete work, client approves, payment released.",
+    "url": "/docs/concepts/milestones"
+  },
+  {
+    "id": "concepts/escrow",
+    "title": "Escrow",
+    "category": "Concepts",
+    "description": "How Stellar-powered escrow protects both parties in Orka.",
+    "content": "Escrow Escrow holds funds securely until work is approved. It protects both you and your client. Why does Orka use it? Security, trust, automation, transparency. How does it work? Client funds escrow, work begins, milestone approval, funds release, record created.",
+    "url": "/docs/concepts/escrow"
+  },
+  {
+    "id": "concepts/wallets",
+    "title": "Wallets",
+    "category": "Concepts",
+    "description": "Connecting and managing Stellar wallets in Orka.",
+    "content": "Wallets Wallets are how you receive payments on the Stellar network. Orka uses Freighter, a secure browser wallet extension. Why does Orka use it? Self-custody, security, speed, compatibility. How does it work? Install Freighter, create wallet, connect to Orka, receive payments, sign transactions.",
+    "url": "/docs/concepts/wallets"
+  },
+  {
+    "id": "concepts/permissions",
+    "title": "Permissions",
+    "category": "Concepts",
+    "description": "Role-based access control for teams and clients in Orka.",
+    "content": "Permissions Permissions control what team members and clients can see and do. Orka uses role-based access control. Team roles: Owner, Admin, Member, Viewer. Client access: Portal access, file access, no admin access. Why does Orka use it? Security, accountability, client safety, compliance.",
+    "url": "/docs/concepts/permissions"
   }
 ]
