@@ -95,7 +95,7 @@ export default async function DocPage({ params }: Props) {
       <DocsTopbar breadcrumbs={breadcrumbs} />
 
       <div className="flex flex-1 gap-0">
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1">
           <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
               {difficulty && <DifficultyBadge level={difficulty} />}
