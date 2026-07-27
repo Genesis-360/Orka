@@ -91,11 +91,11 @@ export default async function DocPage({ params }: Props) {
   const estimatedSetup = (data as any).estimatedSetup;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <DocsTopbar breadcrumbs={breadcrumbs} />
 
-      <div className="flex flex-1 gap-0">
-        <div className="flex-1">
+      <div className="flex flex-1">
+        <div className="flex-1 min-w-0">
           <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
               {difficulty && <DifficultyBadge level={difficulty} />}

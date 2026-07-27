@@ -26,9 +26,9 @@ export default function DocsShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen bg-[#fffaf2]">
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
       <DocsSidebar onOpenSearch={handleOpenSearch} />
-      <div className="ml-[260px] flex-1 overflow-x-hidden">
+      <main className="ml-[260px] flex-1">
         {children}
-      </div>
+      </main>
     </div>
   );
 }
