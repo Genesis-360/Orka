@@ -22,6 +22,13 @@ import {
   Code,
   Eye,
   LinkIcon,
+  Info as InfoIcon,
+  AlertTriangle,
+  Lightbulb,
+  CheckCircle2,
+  HelpCircle,
+  ChevronRight,
+  ListOrdered,
 } from "lucide-react";
 
 /* ─── Hero ─── */
@@ -548,6 +555,104 @@ export function FounderNote({ children }: { children: ReactNode }) {
         </span>
       </div>
       <div className="text-[13px] leading-relaxed text-[#082033]/80 space-y-3">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Info ─── */
+export function Info({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-6 flex items-start gap-3 rounded-xl border border-[#3b82f6]/20 bg-[#3b82f6]/[0.04] p-4">
+      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#3b82f6]/15">
+        <InfoIcon size={10} className="text-[#3b82f6]" />
+      </span>
+      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Tip ─── */
+export function Tip({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-6 flex items-start gap-3 rounded-xl border border-[#22bd93]/20 bg-[#22bd93]/[0.04] p-4">
+      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#22bd93]/15">
+        <Lightbulb size={10} className="text-[#22bd93]" />
+      </span>
+      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Success ─── */
+export function Success({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-6 flex items-start gap-3 rounded-xl border border-[#22bd93]/20 bg-[#22bd93]/[0.04] p-4">
+      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#22bd93]/15">
+        <CheckCircle2 size={10} className="text-[#22bd93]" />
+      </span>
+      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Warning ─── */
+export function Warning({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-6 flex items-start gap-3 rounded-xl border border-[#ff8a22]/20 bg-[#ff8a22]/[0.04] p-4">
+      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#ff8a22]/15">
+        <AlertTriangle size={10} className="text-[#ff8a22]" />
+      </span>
+      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── DidYouKnow ─── */
+export function DidYouKnow({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-6 flex items-start gap-3 rounded-xl border border-[#9474ff]/20 bg-[#9474ff]/[0.04] p-4">
+      <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#9474ff]/15">
+        <HelpCircle size={10} className="text-[#9474ff]" />
+      </span>
+      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Steps ─── */
+export function Steps({ children }: { children: ReactNode }) {
+  return <div className="my-6 space-y-6">{children}</div>;
+}
+
+export function Step({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="relative pl-8">
+      <div className="absolute left-0 top-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#9474ff] text-[11px] font-bold text-white">
+        <ListOrdered size={12} />
+      </div>
+      <div className="absolute left-[11px] top-6 bottom-0 w-px bg-[#9474ff]/20" />
+      <h4 className="mb-2 text-[14px] font-bold text-[#082033]">
+        {title}
+      </h4>
+      <div className="text-[13px] leading-relaxed text-[#5f6b86]">
         {children}
       </div>
     </div>

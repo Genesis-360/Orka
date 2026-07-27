@@ -24,6 +24,13 @@ import {
   HeroCard,
   FeatureComparison,
   Callout,
+  Info,
+  Tip,
+  Success,
+  Warning,
+  DidYouKnow,
+  Steps,
+  Step,
 } from "@/components/docs/DocComponents";
 
 type InlineToken =
@@ -661,9 +668,37 @@ function renderComponentBlock(
       return <FeatureComparison key={key}>{children}</FeatureComparison>;
     case "Callout":
       return <Callout key={key} type={props.type}>{renderMarkdownContent(children)}</Callout>;
+    case "Info":
+      return <Info key={key}>{renderMarkdownContent(children)}</Info>;
+    case "Tip":
+      return <Tip key={key}>{renderMarkdownContent(children)}</Tip>;
+    case "Success":
+      return <Success key={key}>{renderMarkdownContent(children)}</Success>;
+    case "Warning":
+      return <Warning key={key}>{renderMarkdownContent(children)}</Warning>;
+    case "DidYouKnow":
+      return <DidYouKnow key={key}>{renderMarkdownContent(children)}</DidYouKnow>;
+    case "Steps":
+      return <Steps key={key}>{renderStepsChildren(children)}</Steps>;
+    case "Step":
+      return <Step key={key} title={props.title || ""}>{renderMarkdownContent(children)}</Step>;
     default:
       return null;
   }
+}
+
+function renderStepsChildren(children: string): React.ReactNode {
+  const stepPattern = /<Step\s+title="([^"]+)"[^>]*>([\s\S]*?)<\/Step>/g;
+  const steps: React.ReactNode[] = [];
+  let match;
+  while ((match = stepPattern.exec(children)) !== null) {
+    steps.push(
+      <Step key={steps.length} title={match[1]}>
+        {renderMarkdownContent(match[2].trim())}
+      </Step>
+    );
+  }
+  return steps;
 }
 
 function renderCardChildren(children: string): React.ReactNode {
