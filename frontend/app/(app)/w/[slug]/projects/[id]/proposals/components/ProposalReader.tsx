@@ -4,6 +4,7 @@ import { Pencil, History } from "lucide-react";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
+import { normalizeBlocks } from "@/lib/contractTemplates";
 import { ProposalTags } from "./ProposalTags";
 import { ProposalEditor } from "./ProposalEditor";
 import { ProposalVersionsPanel } from "./ProposalVersionsPanel";
@@ -43,7 +44,7 @@ export function ProposalReader({
   const [showVersions, setShowVersions] = useState(false);
 
   const editor = useCreateBlockNote({
-    initialContent: (proposal.blocks?.length ? proposal.blocks : undefined) as never,
+    initialContent: (proposal.blocks?.length ? normalizeBlocks(proposal.blocks) : undefined) as never,
   });
 
   if (editing) {

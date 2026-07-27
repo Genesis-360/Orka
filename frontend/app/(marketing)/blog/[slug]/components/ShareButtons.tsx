@@ -1,16 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link2, Bookmark, Share2, Check } from "lucide-react";
 
 export default function ShareButtons() {
   const [copied, setCopied] = useState(false);
-  const [saved, setSaved] = useState(false);
-
-  useEffect(() => {
-    const key = `saved-article-${window.location.pathname}`;
-    setSaved(localStorage.getItem(key) === "true");
-  }, []);
+  const [saved, setSaved] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(`saved-article-${window.location.pathname}`) === "true";
+  });
 
   async function handleCopyLink() {
     try {

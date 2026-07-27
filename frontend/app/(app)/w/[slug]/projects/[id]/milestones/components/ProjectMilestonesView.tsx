@@ -11,6 +11,7 @@ import { EscrowDetailsCard } from "./EscrowDetailsCard";
 import { UpcomingMilestonesCard } from "./UpcomingMilestonesCard";
 import { MilestonePaymentFlow } from "./MilestonePaymentFlow";
 import { AddMilestoneButton } from "./AddMilestoneButton";
+import { AddMilestoneWizard } from "./AddMilestoneWizard";
 import { BoardView } from "./BoardView";
 import { MilestoneEmptyState } from "./MilestoneEmptyState";
 import type { WorkflowRole, WorkflowState } from "@/lib/workflow";
@@ -233,7 +234,23 @@ export function ProjectMilestonesView({
 
       {/* Main content: list/board + payment flow + sidebar */}
       {milestones.length === 0 ? (
-        <MilestoneEmptyState onAdd={() => setAddOpen(true)} stage={workflowState.stage} />
+        <>
+          <MilestoneEmptyState onAdd={() => setAddOpen(true)} stage={workflowState.stage} />
+          <AddMilestoneWizard
+            open={addOpen}
+            onClose={() => setAddOpen(false)}
+            onComplete={async (data) => {
+              const res = await saveMilestones({ orgId, projectId, slug, milestones: [data] });
+              if (res.ok) {
+                toast.success("Milestone created");
+                setAddOpen(false);
+                router.refresh();
+              } else {
+                toast.error(res.error ?? "Failed to create milestone");
+              }
+            }}
+          />
+        </>
       ) : (
         <div className="space-y-5">
           {view === "list" ? (
