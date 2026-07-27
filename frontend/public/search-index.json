@@ -774,5 +774,21 @@
     "description": "Role-based access control for teams and clients in Orka.",
     "content": "Permissions Permissions control what team members and clients can see and do. Orka uses role-based access control. Team roles: Owner, Admin, Member, Viewer. Client access: Portal access, file access, no admin access. Why does Orka use it? Security, accountability, client safety, compliance.",
     "url": "/docs/concepts/permissions"
+  },
+  {
+    "id": "start-here/welcome-to-orka",
+    "title": "Welcome to Orka",
+    "category": "Start Here",
+    "description": "Your introduction to Orka's AI-powered financial operating system.",
+    "content": "Welcome to Orka The AI-powered financial operating system for service businesses. Run your entire business from one place. Why service businesses choose Orka. What you'll accomplish. How Orka works. Win Clients, Manage Projects, Handle Contracts, Get Paid. What makes Orka different. Next steps.",
+    "url": "/docs/start-here/welcome-to-orka"
+  },
+  {
+    "id": "start-here/why-orka",
+    "title": "Why Orka?",
+    "category": "Start Here",
+    "description": "Learn why Orka exists, the problem it solves for freelancers and agencies, and the vision behind building an AI Operating System for service businesses.",
+    "content": "Why Orka Service businesses don't need more software. They need an operating system. The problem isn't your team. It's your workflow. The administrative tax. Today's service business stack. We asked a different question. Meet Orka. Built around the client journey. AI that works with you. Who we built Orka for. What makes Orka different. Our vision. Common misconceptions.",
+    "url": "/docs/start-here/why-orka"
   }
 ]

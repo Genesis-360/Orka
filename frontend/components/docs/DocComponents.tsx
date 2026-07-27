@@ -14,6 +14,14 @@ import {
   Users,
   ChevronDown,
   Zap,
+  FileText,
+  Folder,
+  Receipt,
+  Repeat,
+  Palette,
+  Code,
+  Eye,
+  LinkIcon,
 } from "lucide-react";
 
 /* ─── Hero ─── */
@@ -148,6 +156,12 @@ export function Card({
     target: Sparkles,
     shield: Sparkles,
     dollar: Sparkles,
+    "file-text": FileText,
+    folder: Folder,
+    receipt: Receipt,
+    repeat: Repeat,
+    palette: Palette,
+    code: Code,
   };
   const Icon = icon ? iconMap[icon] || Sparkles : Sparkles;
 
@@ -205,6 +219,9 @@ export function FeatureCard({
     briefcase: Briefcase,
     building: Building,
     users: Users,
+    palette: Palette,
+    code: Code,
+    sparkles: Sparkles,
   };
   const Icon = icon ? iconMap[icon] || Briefcase : Briefcase;
 
@@ -363,6 +380,159 @@ export function NextStepCard({
 /* ─── DocsPagination ─── */
 export function DocsPagination({ next }: { next?: string; prev?: string }) {
   return null; // Handled by PrevNextNav component
+}
+
+/* ─── Quote ─── */
+export function Quote({ children }: { children: ReactNode }) {
+  return (
+    <blockquote className="my-8 border-l-4 border-[#9474ff] bg-[#9474ff]/[0.04] py-4 pl-6 pr-4">
+      <div className="text-[15px] font-semibold leading-relaxed text-[#082033]">
+        {children}
+      </div>
+    </blockquote>
+  );
+}
+
+/* ─── ComparisonTable ─── */
+export function ComparisonTable({ children }: { children: ReactNode }) {
+  const text = typeof children === "string" ? children : "";
+  const lines = text.split("\n").filter((l) => l.trim());
+  const rows: string[][] = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("|") && !trimmed.match(/^\|[\s\-:|]+\|$/)) {
+      const cells = trimmed
+        .split("|")
+        .slice(1, -1)
+        .map((c) => c.trim());
+      if (cells.length >= 2) rows.push(cells);
+    }
+  }
+  if (rows.length === 0) return null;
+  const header = rows[0];
+  const body = rows.slice(1);
+  return (
+    <div className="my-6 overflow-x-auto rounded-xl border border-black/[0.06]">
+      <table className="w-full border-collapse text-left text-[14px]">
+        <thead>
+          <tr>
+            {header.map((cell, j) => (
+              <th
+                key={j}
+                className="border-b border-black/[0.06] bg-[#f7f8fc] px-4 py-3 text-[12px] font-bold uppercase text-[#5f6b86]"
+              >
+                {cell}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {body.map((row, ri) => (
+            <tr key={ri}>
+              {row.map((cell, ci) => (
+                <td
+                  key={ci}
+                  className="border-b border-black/[0.06] px-4 py-3 text-[14px] font-medium text-[#082033]"
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ─── HeroCard ─── */
+export function HeroCard({ children }: { children: ReactNode }) {
+  return (
+    <div className="my-8 rounded-2xl border border-[#9474ff]/20 bg-gradient-to-br from-[#9474ff]/[0.06] via-white to-[#22bd93]/[0.04] p-6">
+      {children}
+    </div>
+  );
+}
+
+/* ─── FeatureComparison ─── */
+export function FeatureComparison({ children }: { children: ReactNode }) {
+  const text = typeof children === "string" ? children : "";
+  const lines = text.split("\n").filter((l) => l.trim());
+  const rows: string[][] = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("|") && !trimmed.match(/^\|[\s\-:|]+\|$/)) {
+      const cells = trimmed
+        .split("|")
+        .slice(1, -1)
+        .map((c) => c.trim());
+      if (cells.length >= 2) rows.push(cells);
+    }
+  }
+  if (rows.length === 0) return null;
+  const header = rows[0];
+  const body = rows.slice(1);
+  return (
+    <div className="my-6 overflow-x-auto rounded-xl border border-black/[0.06]">
+      <table className="w-full border-collapse text-left text-[14px]">
+        <thead>
+          <tr>
+            {header.map((cell, j) => (
+              <th
+                key={j}
+                className="border-b border-black/[0.06] bg-[#f7f8fc] px-4 py-3 text-[12px] font-bold uppercase text-[#5f6b86]"
+              >
+                {cell}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {body.map((row, ri) => (
+            <tr key={ri}>
+              {row.map((cell, ci) => (
+                <td
+                  key={ci}
+                  className="border-b border-black/[0.06] px-4 py-3 text-[14px] font-medium text-[#082033]"
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ─── Callout ─── */
+export function Callout({
+  type,
+  children,
+}: {
+  type?: string;
+  children: ReactNode;
+}) {
+  const colors: Record<string, { border: string; bg: string; icon: typeof Sparkles }> = {
+    vision: { border: "border-[#9474ff]", bg: "bg-[#9474ff]/[0.04]", icon: Eye },
+    info: { border: "border-[#3b82f6]", bg: "bg-[#3b82f6]/[0.04]", icon: Sparkles },
+    warning: { border: "border-[#ff8a22]", bg: "bg-[#ff8a22]/[0.04]", icon: Zap },
+  };
+  const style = colors[type || "info"] || colors.info;
+  const Icon = style.icon;
+  return (
+    <div className={`my-8 rounded-xl border-l-4 ${style.border} ${style.bg} p-5`}>
+      <div className="flex items-start gap-3">
+        <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-white/60">
+          <Icon size={12} className="text-[#9474ff]" />
+        </span>
+        <div className="text-[13px] leading-relaxed text-[#082033]/80">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /* ─── FounderNote ─── */

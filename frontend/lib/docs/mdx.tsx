@@ -19,6 +19,11 @@ import {
   NextStepCard,
   DocsPagination,
   FounderNote,
+  Quote,
+  ComparisonTable,
+  HeroCard,
+  FeatureComparison,
+  Callout,
 } from "@/components/docs/DocComponents";
 
 type InlineToken =
@@ -646,6 +651,16 @@ function renderComponentBlock(
       return <DocsPagination key={key} next={props.next} prev={props.prev} />;
     case "FounderNote":
       return <FounderNote key={key}>{renderMarkdownContent(children)}</FounderNote>;
+    case "Quote":
+      return <Quote key={key}>{renderMarkdownContent(children)}</Quote>;
+    case "ComparisonTable":
+      return <ComparisonTable key={key}>{children}</ComparisonTable>;
+    case "HeroCard":
+      return <HeroCard key={key}>{renderMarkdownContent(children)}</HeroCard>;
+    case "FeatureComparison":
+      return <FeatureComparison key={key}>{children}</FeatureComparison>;
+    case "Callout":
+      return <Callout key={key} type={props.type}>{renderMarkdownContent(children)}</Callout>;
     default:
       return null;
   }
@@ -666,7 +681,7 @@ function renderCardChildren(children: string): React.ReactNode {
 }
 
 function renderFeatureCardChildren(children: string): React.ReactNode {
-  const pattern = /<FeatureCard\s+title="([^"]+)"\s+description="([^"]+)"\s+icon="([^"]+)"[^>]*\/?>/g;
+  const pattern = /<FeatureCard\s+title="([^"]+)"(?:\s+description="([^"]*)")?\s*(?:icon="([^"]*)")?[^>]*\/?>/g;
   const items: React.ReactNode[] = [];
   let match;
   while ((match = pattern.exec(children)) !== null) {
