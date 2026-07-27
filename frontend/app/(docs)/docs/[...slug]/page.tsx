@@ -85,13 +85,13 @@ export default async function DocPage({ params }: Props) {
               {renderedContent}
             </article>
 
+            <CompletionSection slug={slugPath} />
+
             <div className="mt-10 border-t border-black/[0.06] pt-6">
               <PrevNextNav slug={slugPath} />
             </div>
 
             <RelatedArticles slug={slugPath} />
-
-            <CompletionSection slug={slugPath} readingTime={readingTime} />
           </div>
         </div>
 
