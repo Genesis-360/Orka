@@ -13,7 +13,6 @@ import {
   Code,
   BookOpen,
   ChevronDown,
-  Search,
   Headphones,
   MessageSquare,
   GitBranch,
@@ -24,6 +23,7 @@ import {
 } from "lucide-react";
 import { docsNavigation, DocSection } from "@/lib/docs/config";
 import { useDocsProgress } from "@/lib/docs/progress";
+import SidebarSearch from "./SidebarSearch";
 
 const iconMap: Record<string, typeof Rocket> = {
   rocket: Rocket,
@@ -70,20 +70,9 @@ export default function DocsSidebar({}: DocsSidebarProps) {
         </Link>
       </div>
 
-      {/* Search — triggers inline search in topbar */}
+      {/* Search */}
       <div className="shrink-0 px-3 pb-4">
-        <button
-          onClick={() => {
-            window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
-          }}
-          className="flex w-full items-center gap-2.5 rounded-xl border border-black/[0.06] bg-[#f7f8fc] px-3 py-2.5 text-[13px] font-medium text-[#5f6b86] transition-colors hover:border-[#9474ff]/30 hover:bg-[#9474ff]/[0.03]"
-        >
-          <Search size={14} className="shrink-0 opacity-50" />
-          <span className="flex-1 text-left">Search docs</span>
-          <kbd className="hidden rounded-md border border-black/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-semibold text-[#5f6b86] sm:inline-block">
-            ⌘K
-          </kbd>
-        </button>
+        <SidebarSearch />
       </div>
 
       {/* Everything below scrolls as one unit */}
