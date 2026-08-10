@@ -373,6 +373,35 @@ input {
   }
 }
 
+/* ── Gradient border utility ── */
+.border-gradient {
+  position: relative;
+}
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(148,116,255,0.3), rgba(255,107,53,0.2), rgba(45,212,191,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Fade + slide in animation ── */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── ORKA product UI system ── */
 .product-ui {
   --product-ease: cubic-bezier(0.23, 1, 0.32, 1);

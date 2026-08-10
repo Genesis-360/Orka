@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -81,6 +82,62 @@ const sections = [
     ),
   },
   {
+    id: "blockchain-stellar",
+    title: "Blockchain and Stellar network",
+    content: (
+      <>
+        <p>
+          ORKA uses the Stellar network to facilitate on-chain escrow, milestone
+          verification, and payment settlements. Transactions on the Stellar
+          network are public, irreversible once confirmed, and subject to network
+          fees determined by the Stellar consensus protocol.
+        </p>
+        <p>
+          You are responsible for selecting the correct network (testnet or
+          mainnet), verifying transaction details before signing, and maintaining
+          custody of your Stellar account keys, seed phrases, and any associated
+          recovery mechanisms. ORKA cannot reverse, cancel, or modify a
+          confirmed blockchain transaction.
+        </p>
+        <p>
+          Smart contracts deployed by ORKA on the Stellar network are provided
+          &ldquo;as is&rdquo; without warranty of merchantability or fitness for
+          a particular purpose. Users should review contract source code
+          independently before committing funds.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "ai-features",
+    title: "AI-assisted features",
+    content: (
+      <>
+        <p>
+          ORKA may offer AI-assisted features — including suggestions for
+          project descriptions, contract terms, scope breakdowns, and
+          communications — to help you work more efficiently. These features are
+          powered by third-party large language models and are provided as
+          assistance only.
+        </p>
+        <p>
+          AI-generated output may contain errors, omissions, or inaccuracies.
+          You are solely responsible for reviewing, editing, and approving any
+          AI-generated content before using it in a project, proposal, contract,
+          invoice, or other professional context. Do not rely on AI output as
+          legal, financial, tax, or investment advice.
+        </p>
+        <p>
+          Prompts and context data submitted to AI features may be processed by
+          third-party model providers. Do not submit sensitive personal
+          information, trade secrets, or confidential data unless you are
+          comfortable with such processing. ORKA does not use your workspace
+          data to train or improve third-party models unless you explicitly opt in.
+        </p>
+      </>
+    ),
+  },
+  {
     id: "third-parties-wallets",
     title: "Third-party services and wallets",
     content: (
@@ -128,10 +185,11 @@ const sections = [
           we develop the product.
         </p>
         <p>
-          ORKA is provided on an “as is” and “as available” basis to the extent
-          permitted by applicable law. AI-generated suggestions are assistance,
-          not professional, financial, legal, tax, or investment advice. Review
-          important work, agreements, and payment decisions independently.
+          ORKA is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo;
+          basis to the extent permitted by applicable law. AI-generated suggestions
+          are assistance, not professional, financial, legal, tax, or investment
+          advice. Review important work, agreements, and payment decisions
+          independently.
         </p>
       </>
     ),
@@ -200,7 +258,7 @@ const sections = [
         >
           contact page
         </Link>{" "}
-        and include “Terms” in your message so it reaches the right team.
+        and include &ldquo;Terms&rdquo; in your message so it reaches the right team.
       </p>
     ),
   },
@@ -208,10 +266,58 @@ const sections = [
 
 export default function TermsPage() {
   return (
-    <div>
-      <section className="bg-night px-4 pb-12 pt-12 text-white md:px-8 md:pb-16 md:pt-16 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal">Legal</p>
+    <div className="bg-paper overflow-hidden">
+      <section className="relative overflow-hidden rounded-b-[42px] bg-night px-4 pb-12 pt-12 text-white md:rounded-b-[72px] md:px-8 md:pb-16 md:pt-16 lg:px-12">
+        <div className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-violet/10 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-32 -left-32 size-60 rounded-full bg-orange/8 blur-3xl" aria-hidden="true" />
+
+        <Image
+          src="/Elements/star-blue.svg"
+          alt=""
+          aria-hidden
+          width={40}
+          height={40}
+          className="pointer-events-none absolute right-[14%] top-[20%] hidden w-8 object-contain opacity-60 md:block lg:w-10 float-1"
+        />
+        <Image
+          src="/Elements/plus-teal.svg"
+          alt=""
+          aria-hidden
+          width={36}
+          height={36}
+          className="pointer-events-none absolute left-[10%] top-[32%] hidden w-7 object-contain opacity-50 md:block lg:w-9 float-2"
+        />
+        <Image
+          src="/Elements/asterisk-orange.svg"
+          alt=""
+          aria-hidden
+          width={30}
+          height={30}
+          className="pointer-events-none absolute right-[8%] top-[52%] hidden w-6 object-contain opacity-50 lg:block float-5"
+        />
+        <Image
+          src="/Elements/star-violet.svg"
+          alt=""
+          aria-hidden
+          width={32}
+          height={32}
+          className="pointer-events-none absolute left-[6%] bottom-[25%] hidden w-7 object-contain opacity-40 sm:block float-4"
+        />
+        <Image
+          src="/Elements/plus-lime.svg"
+          alt=""
+          aria-hidden
+          width={28}
+          height={28}
+          className="pointer-events-none absolute right-[16%] bottom-[22%] hidden w-6 object-contain opacity-40 sm:block float-3"
+        />
+
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="flex items-center gap-4 text-sm text-white/40">
+            <span className="h-px w-12 bg-white/10" />
+            <span className="text-xs font-semibold uppercase tracking-widest">Legal</span>
+            <span className="h-px w-12 bg-white/10" />
+          </div>
           <h1 className="display mt-5 text-5xl uppercase sm:text-6xl md:text-7xl">Terms of service</h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
             These terms explain the ground rules for using ORKA&apos;s workspace,
@@ -232,14 +338,14 @@ export default function TermsPage() {
           </aside>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-            <nav aria-label="Terms contents" className="border-b border-night/15 pb-6 lg:border-b-0 lg:pb-0">
+            <nav aria-label="Terms contents" className="lg:border-b-0 lg:pb-0">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">On this page</p>
-              <ol className="mt-4 grid gap-x-5 gap-y-2 sm:grid-cols-2 lg:block lg:space-y-1">
+              <ol className="mt-4 flex gap-x-5 gap-y-2 overflow-x-auto pb-4 lg:block lg:space-y-1">
                 {sections.map((section, index) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="group flex items-baseline gap-2 py-1 text-sm leading-5 text-night/70 transition-colors hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet"
+                      className="group flex items-baseline gap-2 whitespace-nowrap py-1 text-sm leading-5 text-night/70 transition-colors hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet lg:whitespace-normal"
                     >
                       <span className="font-mono text-xs text-violet">{String(index + 1).padStart(2, "0")}</span>
                       <span className="group-hover:underline group-hover:decoration-orange group-hover:decoration-2 group-hover:underline-offset-4">{section.title}</span>
