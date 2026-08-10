@@ -8,6 +8,7 @@ const tabs = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "projects", label: "Projects", icon: FolderKanban },
   { id: "escrow", label: "Escrow & Payments", icon: ShieldCheck },
+  { id: "analytics", label: "Analytics", icon: FolderKanban },
 ];
 
 type TabId = (typeof tabs)[number]["id"];
@@ -16,6 +17,7 @@ const images: Record<TabId, string> = {
   dashboard: "/dashboard.png",
   projects: "",
   escrow: "/invoices-tab.jpeg",
+  analytics: "/analytics-tab.jpeg",
 };
 
 export default function DashboardFeatures() {

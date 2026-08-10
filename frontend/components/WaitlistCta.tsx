@@ -36,7 +36,7 @@ export default function WaitlistCta() {
 
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <p className="section-label text-orange">Get started</p>
-          <h2 className="display mt-3 text-4xl uppercase leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-[80px] lg:leading-[80px]">
+          <h2 className="display mt-3 text-4xl uppercase leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl lg:leading-none">
             Ready to own your financial{" "}
             <span className="text-orange">operations</span>?
           </h2>

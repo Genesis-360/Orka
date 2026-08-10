@@ -33,17 +33,17 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="px-4 py-16 md:px-8 lg:px-12">
+    <section className="px-4 py-20 md:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <p className="section-label text-coral">Community</p>
-          <h2 className="display mt-2 text-4xl uppercase sm:text-5xl md:text-6xl lg:text-7xl">
+          <h2 className="display mt-3 text-4xl uppercase tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
             Join the community.
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-night/70 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
             Discover what our community has to say about their ORKA experience.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href="#"
               className="inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#a78cff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
@@ -53,7 +53,7 @@ export default function Testimonials() {
             </a>
             <a
               href="#"
-              className="inline-flex items-center gap-2 rounded-md border border-night/15 px-4 py-2.5 text-sm font-semibold text-night/78 transition-colors hover:border-night/30 hover:bg-night/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
+              className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
             >
               <RiTwitterXFill size={16} />
               Follow on X
@@ -61,7 +61,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 [column-fill:_balance]">
+        <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4 [column-fill:_balance]">
           {visible.map((item, i) =>
             item.type === "tweet" ? (
               <ClientTweetCard
