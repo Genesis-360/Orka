@@ -7,7 +7,7 @@ import { ArrowRight, ChevronRight, Clock } from "lucide-react"
 import { RiDiscordFill, RiTwitterXFill, RiLinkedinFill, RiYoutubeFill, RiMailFill } from "react-icons/ri"
 
 const socials = [
-  { label: "Discord", href: "https://discord.gg/orka" },
+  { label: "Discord", href: "https://discord.gg/KbW5pPCDyY" },
   { label: "X (Twitter)", href: "https://x.com/get_orka" },
   { label: "LinkedIn", href: "https://linkedin.com/company/orka" },
   { label: "YouTube", href: "https://youtube.com/@orka" },

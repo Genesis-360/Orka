@@ -45,14 +45,14 @@ export default function Testimonials() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="#"
+              href="https://discord.gg/KbW5pPCDyY"
               className="inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#a78cff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
             >
               <RiDiscordFill size={16} />
               Join us on Discord
             </a>
             <a
-              href="#"
+              href="https://x.com/get_orka"
               className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet/50"
             >
               <RiTwitterXFill size={16} />

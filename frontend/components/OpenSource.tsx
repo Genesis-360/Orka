@@ -3,7 +3,7 @@
 import { IconCloud } from "@/components/ui/icon-cloud"
 import { GitPullRequestArrow, Star } from "lucide-react"
 
-const GITHUB_URL = "https://github.com/x0lg0n/Orka"
+const GITHUB_URL = "https://github.com/Genesis-360/Orka"
 
 const slugs = [
   "nextdotjs",

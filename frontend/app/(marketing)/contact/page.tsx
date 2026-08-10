@@ -104,7 +104,7 @@ export default function ContactPage() {
             </a>
             <span className="h-6 w-px bg-white/10" />
             <a
-              href="https://discord.gg/orka"
+              href="https://discord.gg/KbW5pPCDyY"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 transition-all duration-200 hover:scale-110 hover:bg-white/5 hover:text-white"
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </a>
             <span className="h-6 w-px bg-white/10" />
             <a
-              href="https://github.com/orka"
+              href="https://github.com/Genesis-360/Orka"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 transition-all duration-200 hover:scale-110 hover:bg-white/5 hover:text-white"
@@ -246,7 +246,7 @@ export default function ContactPage() {
                           <RiTwitterXFill size={14} /> X
                         </a>
                         <a
-                          href="https://discord.gg/orka"
+                          href="https://discord.gg/KbW5pPCDyY"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex size-10 items-center justify-center rounded-full bg-white text-night transition-colors duration-200 hover:bg-white/90"
@@ -255,7 +255,7 @@ export default function ContactPage() {
                           <RiDiscordFill size={18} />
                         </a>
                         <a
-                          href="https://github.com/orka"
+                          href="https://github.com/Genesis-360/Orka"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex size-10 items-center justify-center rounded-full bg-white text-night transition-colors duration-200 hover:bg-white/90"
