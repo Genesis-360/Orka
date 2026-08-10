@@ -191,7 +191,7 @@ export function Card({
 export function Workflow({ children }: { children: ReactNode }) {
   return (
     <div className="my-6 rounded-xl border border-black/[0.06] bg-[#f7f8fc] p-5">
-      <pre className="overflow-x-auto text-[13px] leading-6 text-[#082033]/80 [&_code]:bg-transparent">
+      <pre className="overflow-x-auto text-[13px] leading-6 text-[#082033] [&_code]:bg-transparent">
         <code>{children}</code>
       </pre>
     </div>
@@ -534,7 +534,7 @@ export function Callout({
         <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-white/60">
           <Icon size={12} className="text-[#9474ff]" />
         </span>
-        <div className="text-[13px] leading-relaxed text-[#082033]/80">
+        <div className="text-[13px] leading-relaxed text-[#082033]">
           {children}
         </div>
       </div>
@@ -554,7 +554,7 @@ export function FounderNote({ children }: { children: ReactNode }) {
           Founder&apos;s Note
         </span>
       </div>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80 space-y-3">
+      <div className="text-[13px] leading-relaxed text-[#082033] space-y-3">
         {children}
       </div>
     </div>
@@ -568,7 +568,7 @@ export function Info({ children }: { children: ReactNode }) {
       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#3b82f6]/15">
         <InfoIcon size={10} className="text-[#3b82f6]" />
       </span>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+      <div className="text-[13px] leading-relaxed text-[#082033]">
         {children}
       </div>
     </div>
@@ -582,7 +582,7 @@ export function Tip({ children }: { children: ReactNode }) {
       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#22bd93]/15">
         <Lightbulb size={10} className="text-[#22bd93]" />
       </span>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+      <div className="text-[13px] leading-relaxed text-[#082033]">
         {children}
       </div>
     </div>
@@ -596,7 +596,7 @@ export function Success({ children }: { children: ReactNode }) {
       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#22bd93]/15">
         <CheckCircle2 size={10} className="text-[#22bd93]" />
       </span>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+      <div className="text-[13px] leading-relaxed text-[#082033]">
         {children}
       </div>
     </div>
@@ -610,7 +610,7 @@ export function Warning({ children }: { children: ReactNode }) {
       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#ff8a22]/15">
         <AlertTriangle size={10} className="text-[#ff8a22]" />
       </span>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+      <div className="text-[13px] leading-relaxed text-[#082033]">
         {children}
       </div>
     </div>
@@ -624,7 +624,7 @@ export function DidYouKnow({ children }: { children: ReactNode }) {
       <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#9474ff]/15">
         <HelpCircle size={10} className="text-[#9474ff]" />
       </span>
-      <div className="text-[13px] leading-relaxed text-[#082033]/80">
+      <div className="text-[13px] leading-relaxed text-[#082033]">
         {children}
       </div>
     </div>

@@ -46,8 +46,9 @@ export default function DocsNavbar() {
 
             <Link
               href="/docs"
-              className="display text-xl uppercase text-white"
+              className="display flex items-center gap-2 text-xl uppercase text-white"
             >
+              <img src="/Logo/orka-logo.png" alt="Orka" className="size-7 rounded-lg object-contain" />
               ORKA
             </Link>
           </div>

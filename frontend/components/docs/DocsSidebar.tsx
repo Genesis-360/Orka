@@ -57,14 +57,12 @@ export default function DocsSidebar({}: DocsSidebarProps) {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[260px] flex-col border-r border-black/[0.06] bg-white">
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[260px] flex-col border-r border-white/10 bg-[#071426]">
       {/* Logo — fixed at top */}
       <div className="flex h-14 shrink-0 items-center px-5">
         <Link href="/docs" className="flex items-center gap-2">
-          <div className="flex size-7 items-center justify-center rounded-lg bg-[#9474ff]">
-            <Zap size={14} className="text-white" />
-          </div>
-          <span className="font-display text-lg font-black uppercase tracking-tight text-[#082033]">
+          <img src="/Logo/orka-logo.png" alt="Orka" className="size-7 rounded-lg object-contain" />
+          <span className="font-display text-lg font-black uppercase tracking-tight text-white">
             orka
           </span>
         </Link>
@@ -72,7 +70,7 @@ export default function DocsSidebar({}: DocsSidebarProps) {
 
       {/* Search */}
       <div className="shrink-0 px-3 pb-4">
-        <SidebarSearch />
+        <SidebarSearch variant="dark" />
       </div>
 
       {/* Everything below scrolls as one unit */}
@@ -101,10 +99,10 @@ export default function DocsSidebar({}: DocsSidebarProps) {
                 <Sparkles size={14} className="text-[#9474ff]" />
               </span>
               <div>
-                <p className="text-[12px] font-bold text-[#082033]">
+                <p className="text-[12px] font-bold text-white">
                   Orka AI
                 </p>
-                <p className="mt-0.5 text-[11px] leading-[1.4] text-[#5f6b86]">
+                <p className="mt-0.5 text-[11px] leading-[1.4] text-white/50">
                   Your AI copilot for proposals, invoices and more.
                 </p>
               </div>
@@ -120,28 +118,28 @@ export default function DocsSidebar({}: DocsSidebarProps) {
         </div>
 
         {/* Need Help */}
-        <div className="mt-5 border-t border-black/[0.06] pt-5">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-wider text-[#5f6b86]/60">
+        <div className="mt-5 border-t border-white/10 pt-5">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-wider text-white/40">
             Need help?
           </p>
           <div className="space-y-2">
             <a
               href="/contact"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
             >
               <Headphones size={13} />
               Support
             </a>
             <a
               href="#"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
             >
               <MessageSquare size={13} />
               Community
             </a>
             <a
               href="#"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
             >
               <GitBranch size={13} />
               GitHub
@@ -179,8 +177,8 @@ function SidebarSection({
         onClick={onToggle}
         className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-semibold transition-all ${
           isExpanded
-            ? "bg-[#9474ff]/[0.06] text-[#082033]"
-            : "text-[#5f6b86] hover:bg-black/[0.03] hover:text-[#082033]"
+            ? "bg-white/10 text-white"
+            : "text-white/60 hover:bg-white/5 hover:text-white"
         }`}
       >
         <span
@@ -204,16 +202,16 @@ function SidebarSection({
           size={12}
           className={`shrink-0 transition-transform duration-150 ${
             isExpanded ? "rotate-180" : ""
-          } ${isExpanded ? "text-[#9474ff]" : "text-[#5f6b86]/40"}`}
+          } ${isExpanded ? "text-[#9474ff]" : "text-white/30"}`}
         />
       </button>
 
       {isExpanded && (
-        <div className="ml-[18px] mt-1 space-y-0.5 border-l border-black/[0.06] pl-3">
+        <div className="ml-[18px] mt-1 space-y-0.5 border-l border-white/10 pl-3">
           {/* Progress bar */}
           {isLoaded && progress.completed > 0 && (
             <div className="mb-2 px-2.5">
-              <div className="h-[3px] overflow-hidden rounded-full bg-black/[0.06]">
+              <div className="h-[3px] overflow-hidden rounded-full bg-white/10">
                 <div
                   className="h-full rounded-full transition-all duration-500 ease-out"
                   style={{
@@ -238,8 +236,8 @@ function SidebarSection({
                 href={itemPath}
                 className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-[12px] font-medium transition-colors ${
                   isItemActive
-                    ? "bg-[#9474ff]/[0.06] font-semibold text-[#9474ff]"
-                    : "text-[#5f6b86] hover:bg-black/[0.03] hover:text-[#082033]"
+                    ? "bg-white/10 font-semibold text-[#9474ff]"
+                    : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {itemCompleted ? (

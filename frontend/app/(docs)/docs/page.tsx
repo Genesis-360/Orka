@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
 import {
   Rocket,
   Wallet,
@@ -22,14 +20,12 @@ import {
   GitBranch,
   Settings,
   Zap,
-  Search,
-  Clock,
   TrendingUp,
   Star,
-  ArrowUpRight,
 } from "lucide-react";
 import { docsNavigation } from "@/lib/docs/config";
 import { useDocsProgress } from "@/lib/docs/progress";
+import SidebarSearch from "@/components/docs/SidebarSearch";
 
 const quickStartItems = [
   {
@@ -255,24 +251,6 @@ function ContinueLearningProgress() {
 }
 
 export default function DocsPage() {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      if (searchQuery.trim()) {
-        // Trigger the Cmd+K search modal instead
-        document.dispatchEvent(
-          new KeyboardEvent("keydown", {
-            key: "k",
-            metaKey: true,
-          })
-        );
-      }
-    },
-    [searchQuery]
-  );
 
   return (
     <div className="min-h-screen">
@@ -294,32 +272,9 @@ export default function DocsPage() {
           </p>
 
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mt-8 max-w-lg">
-            <div className="relative">
-              <Search
-                size={18}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5f6b86]/50"
-              />
-              <input
-                type="text"
-                placeholder="Search documentation..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() =>
-                  document.dispatchEvent(
-                    new KeyboardEvent("keydown", {
-                      key: "k",
-                      metaKey: true,
-                    })
-                  )
-                }
-                className="w-full rounded-xl border border-black/[0.08] bg-[#f7f8fc] py-3.5 pl-11 pr-20 text-[14px] text-[#082033] outline-none transition-colors placeholder:text-[#5f6b86]/50 focus:border-[#9474ff]/40 focus:ring-2 focus:ring-[#9474ff]/10"
-              />
-              <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg border border-black/[0.06] bg-white px-2 py-1 text-[11px] font-semibold text-[#5f6b86]">
-                ⌘ K
-              </kbd>
-            </div>
-          </form>
+          <div className="mt-8 max-w-lg">
+            <SidebarSearch />
+          </div>
 
           {/* CTAs */}
           <div className="mt-6 flex flex-wrap gap-3">

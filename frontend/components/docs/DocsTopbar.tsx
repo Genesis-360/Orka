@@ -10,7 +10,7 @@ interface DocsTopbarProps {
 
 export default function DocsTopbar({ breadcrumbs }: DocsTopbarProps) {
   return (
-    <div className="sticky top-0 z-30 flex h-12 items-center border-b border-black/[0.06] bg-white/80 px-6 backdrop-blur-md">
+    <div className="sticky top-0 z-30 flex h-12 items-center border-b border-black/[0.06] bg-[#fffaf2]/80 px-6 backdrop-blur-md">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-[12px] font-medium text-[#5f6b86]">
         <Link

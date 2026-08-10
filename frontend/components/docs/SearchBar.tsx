@@ -135,29 +135,26 @@ export default function SearchBar() {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="flex items-center gap-2 rounded-lg border border-black/[0.06] bg-[#f7f8fc] px-3 py-1.5 text-[12px] font-medium text-[#5f6b86] transition-colors hover:border-[#9474ff]/30"
+          className="flex items-center gap-2 rounded-lg border border-black/[0.06] bg-white px-3 py-1.5 text-[12px] font-medium text-[#082033]/40 shadow-sm transition-all hover:border-[#9474ff]/20 hover:text-[#082033]/60"
         >
-          <Search size={12} />
+          <Search size={13} />
           <span>Search</span>
-          <kbd className="hidden rounded border border-black/[0.06] bg-white px-1 py-0.5 text-[9px] font-semibold sm:inline-block">
-            ⌘K
-          </kbd>
         </button>
       ) : (
-        <div className="flex items-center gap-2 rounded-lg border border-[#9474ff]/30 bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#9474ff]/20">
-          <Search size={12} className="shrink-0 text-[#5f6b86]" />
+        <div className="flex items-center gap-2 rounded-lg border border-[#9474ff]/20 bg-white px-3 py-1.5 shadow-sm">
+          <Search size={13} className="shrink-0 text-[#082033]/30" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Search docs..."
-            className="w-64 bg-transparent text-[12px] text-[#082033] outline-none placeholder:text-[#5f6b86]/50"
+            placeholder="Search..."
+            className="w-56 bg-transparent text-[12px] text-[#082033] outline-none placeholder:text-[#082033]/30"
           />
           <button
             onClick={() => setOpen(false)}
-            className="shrink-0 rounded p-0.5 text-[#5f6b86]/50 hover:text-[#082033]"
+            className="shrink-0 rounded p-0.5 text-[#082033]/30 hover:text-[#082033]/60"
           >
             <X size={12} />
           </button>
@@ -165,15 +162,15 @@ export default function SearchBar() {
       )}
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-xl border border-black/[0.06] bg-white shadow-xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-80 overflow-hidden rounded-xl border border-black/[0.04] bg-[#fffaf2] shadow-[0_8px_30px_-4px_rgba(0,0,0,0.12),0_2px_6px_-2px_rgba(0,0,0,0.06)]">
           <div className="max-h-[360px] overflow-y-auto p-2">
             {loading && (
-              <p className="py-6 text-center text-[12px] text-[#5f6b86]">
+              <p className="py-6 text-center text-[12px] text-[#082033]/40">
                 Loading...
               </p>
             )}
             {!loading && query && results.length === 0 && (
-              <p className="py-6 text-center text-[12px] text-[#5f6b86]">
+              <p className="py-6 text-center text-[12px] text-[#082033]/40">
                 No results for &ldquo;{query}&rdquo;
               </p>
             )}
@@ -185,25 +182,25 @@ export default function SearchBar() {
                       onClick={() => navigateTo(result.url)}
                       className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
                         i === selectedIndex
-                          ? "bg-[#9474ff]/5 text-[#9474ff]"
-                          : "text-[#082033] hover:bg-[#f7f8fc]"
+                          ? "bg-[#9474ff]/[0.08] text-[#9474ff]"
+                          : "text-[#082033] hover:bg-[#082033]/[0.04]"
                       }`}
                     >
-                      <FileText size={14} className="shrink-0 text-[#5f6b86]/40" />
+                      <FileText size={14} className="shrink-0 text-[#082033]/25" />
                       <div className="flex-1 min-w-0">
                         <p className="text-[12px] font-bold truncate">{result.title}</p>
-                        <p className="text-[10px] font-medium text-[#5f6b86] truncate">
+                        <p className="text-[10px] font-medium text-[#082033]/45 truncate">
                           {result.category}
                         </p>
                       </div>
-                      <ArrowRight size={12} className="shrink-0 text-[#5f6b86]/30" />
+                      <ArrowRight size={12} className="shrink-0 text-[#082033]/15" />
                     </button>
                   </li>
                 ))}
               </ul>
             )}
             {!loading && !query && (
-              <p className="py-6 text-center text-[12px] text-[#5f6b86]/60">
+              <p className="py-6 text-center text-[12px] text-[#082033]/30">
                 Type to search...
               </p>
             )}

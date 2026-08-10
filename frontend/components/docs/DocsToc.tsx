@@ -49,7 +49,7 @@ export default function DocsToc({ headings }: DocsTocProps) {
           } ${
             activeId === heading.id
               ? "border-[#9474ff] text-[#082033]"
-              : "border-transparent text-[#5f6b86] hover:text-[#082033]/80"
+              : "border-transparent text-[#082033]/50 hover:text-[#082033]/80"
           }`}
         >
           {heading.text}

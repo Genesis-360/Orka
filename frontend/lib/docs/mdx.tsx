@@ -363,14 +363,14 @@ export function renderMDX(source: string): React.ReactNode {
             break;
           case "p":
             elements.push(
-              <p key={key} className="mb-4 text-[15px] leading-7 text-[#082033]/80">
+              <p key={key} className="mb-4 text-[15px] leading-7 text-[#082033]">
                 {renderInlineString(block.lines.join(" "))}
               </p>
             );
             break;
           case "ul":
             elements.push(
-              <ul key={key} className="mb-4 list-disc pl-6 space-y-2 text-[15px] leading-7 text-[#082033]/80">
+              <ul key={key} className="mb-4 list-disc pl-6 space-y-2 text-[15px] leading-7 text-[#082033]">
                 {block.lines.map((item, j) => (
                   <li key={j} className="font-medium">
                     {renderInlineString(item)}
@@ -381,7 +381,7 @@ export function renderMDX(source: string): React.ReactNode {
             break;
           case "ol":
             elements.push(
-              <ol key={key} className="mb-4 list-decimal pl-6 space-y-2 text-[15px] leading-7 text-[#082033]/80">
+              <ol key={key} className="mb-4 list-decimal pl-6 space-y-2 text-[15px] leading-7 text-[#082033]">
                 {block.lines.map((item, j) => (
                   <li key={j} className="font-medium">
                     {renderInlineString(item)}
@@ -399,7 +399,7 @@ export function renderMDX(source: string): React.ReactNode {
             break;
           case "blockquote":
             elements.push(
-              <blockquote key={key} className="my-6 border-l-4 border-[#9474ff] bg-[#9474ff]/[0.04] py-3 pl-4 text-[#082033]/70 italic">
+              <blockquote key={key} className="my-6 border-l-4 border-[#9474ff] bg-[#9474ff]/[0.04] py-3 pl-4 text-[#082033]/80 italic">
                 {block.lines.map((l, j) => (
                   <p key={j}>{renderInlineString(l)}</p>
                 ))}
@@ -415,7 +415,7 @@ export function renderMDX(source: string): React.ReactNode {
                   <thead>
                     <tr>
                       {headerCells.map((cell, j) => (
-                        <th key={j} className="border-b border-black/[0.06] bg-[#f7f8fc] px-4 py-3 text-[12px] font-bold uppercase text-[#5f6b86]">
+                        <th key={j} className="border-b border-black/[0.06] bg-[#f7f8fc] px-4 py-3 text-[12px] font-bold uppercase text-[#082033]/70">
                           {renderInlineString(cell)}
                         </th>
                       ))}
@@ -748,14 +748,14 @@ function renderMarkdownContent(text: string): React.ReactNode {
     switch (block.type) {
       case "p":
         elements.push(
-          <p key={i} className="mb-3 text-[13px] leading-relaxed text-[#082033]/80">
+          <p key={i} className="mb-3 text-[13px] leading-relaxed text-[#082033]">
             {renderInlineString(block.lines.join(" "))}
           </p>
         );
         break;
       case "ul":
         elements.push(
-          <ul key={i} className="mb-3 list-disc pl-6 space-y-1 text-[13px] text-[#082033]/80">
+          <ul key={i} className="mb-3 list-disc pl-6 space-y-1 text-[13px] text-[#082033]">
             {block.lines.map((item, j) => (
               <li key={j}>{renderInlineString(item)}</li>
             ))}
@@ -764,7 +764,7 @@ function renderMarkdownContent(text: string): React.ReactNode {
         break;
       case "blockquote":
         elements.push(
-          <blockquote key={i} className="my-3 border-l-4 border-[#9474ff] bg-[#9474ff]/[0.04] py-2 pl-3 text-[13px] text-[#082033]/70 italic">
+          <blockquote key={i} className="my-3 border-l-4 border-[#9474ff] bg-[#9474ff]/[0.04] py-2 pl-3 text-[13px] text-[#082033]/80 italic">
             {block.lines.map((l, j) => (
               <p key={j}>{renderInlineString(l)}</p>
             ))}

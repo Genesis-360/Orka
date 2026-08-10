@@ -14,7 +14,7 @@ interface SearchEntry {
   url: string;
 }
 
-export default function SidebarSearch() {
+export default function SidebarSearch({ variant = "light" }: { variant?: "light" | "dark" }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -122,45 +122,67 @@ export default function SidebarSearch() {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="flex w-full items-center gap-2.5 rounded-xl border border-black/[0.06] bg-[#f7f8fc] px-3 py-2.5 text-[13px] font-medium text-[#5f6b86] transition-colors hover:border-[#9474ff]/30 hover:bg-[#9474ff]/[0.03]"
+          className={`flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[13px] font-medium transition-all ${
+            variant === "dark"
+              ? "text-white/40 hover:text-white/60"
+              : "border border-black/[0.06] bg-white text-[#082033]/40 shadow-sm hover:border-[#9474ff]/20 hover:text-[#082033]/60"
+          }`}
         >
-          <Search size={14} className="shrink-0 opacity-50" />
+          <Search size={14} className="shrink-0" />
           <span className="flex-1 text-left">Search docs</span>
-          <kbd className="hidden rounded-md border border-black/[0.06] bg-white px-1.5 py-0.5 text-[10px] font-semibold text-[#5f6b86] sm:inline-block">
+          <kbd className={`hidden rounded px-1.5 py-0.5 text-[10px] font-semibold sm:inline-block ${
+            variant === "dark"
+              ? "text-white/20"
+              : "text-[#082033]/20"
+          }`}>
             ⌘K
           </kbd>
         </button>
       ) : (
-        <div className="rounded-xl border border-[#9474ff]/30 bg-white shadow-sm ring-1 ring-[#9474ff]/20">
-          <div className="flex items-center gap-2 px-3 py-2.5">
-            <Search size={14} className="shrink-0 text-[#5f6b86]" />
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search docs..."
-              className="flex-1 bg-transparent text-[13px] text-[#082033] outline-none placeholder:text-[#5f6b86]/50"
-            />
-            <button
-              onClick={() => setOpen(false)}
-              className="shrink-0 rounded p-0.5 text-[#5f6b86]/50 hover:text-[#082033]"
-            >
-              <X size={12} />
-            </button>
-          </div>
+        <div className={`flex items-center gap-2 rounded-xl border px-3.5 py-2.5 ${
+          variant === "dark"
+            ? ""
+            : "border-black/[0.06] bg-white shadow-sm"
+        }`}>
+          <Search size={14} className={`shrink-0 ${variant === "dark" ? "text-white/40" : "text-[#082033]/30"}`} />
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Search docs..."
+            className={`flex-1 bg-transparent text-[13px] outline-none ${
+              variant === "dark"
+                ? "text-white placeholder:text-white/30"
+                : "text-[#082033] placeholder:text-[#082033]/30"
+            }`}
+          />
+          <button
+            onClick={() => setOpen(false)}
+            className={`shrink-0 rounded p-0.5 ${
+              variant === "dark"
+                ? "text-white/30 hover:text-white/60"
+                : "text-[#082033]/30 hover:text-[#082033]/60"
+            }`}
+          >
+            <X size={12} />
+          </button>
         </div>
       )}
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-1 w-full overflow-hidden rounded-xl border border-black/[0.06] bg-white shadow-xl">
+        <div className={`absolute left-0 top-full z-50 mt-1 w-full overflow-hidden rounded-xl shadow-[0_8px_30px_-4px_rgba(0,0,0,0.15),0_2px_6px_-2px_rgba(0,0,0,0.08)] ${
+          variant === "dark"
+            ? "border border-white/[0.08] bg-[#0e1f33]"
+            : "border border-black/[0.04] bg-[#fffaf2]"
+        }`}>
           <div className="max-h-[300px] overflow-y-auto p-1.5">
             {loading && (
-              <p className="py-4 text-center text-[11px] text-[#5f6b86]">Loading...</p>
+              <p className={`py-4 text-center text-[11px] ${variant === "dark" ? "text-white/30" : "text-[#082033]/30"}`}>Loading...</p>
             )}
             {!loading && query && results.length === 0 && (
-              <p className="py-4 text-center text-[11px] text-[#5f6b86]">
+              <p className={`py-4 text-center text-[11px] ${variant === "dark" ? "text-white/30" : "text-[#082033]/30"}`}>
                 No results for &ldquo;{query}&rdquo;
               </p>
             )}
@@ -171,15 +193,19 @@ export default function SidebarSearch() {
                     <button
                       onClick={() => navigateTo(result.url)}
                       className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
-                        i === selectedIndex
-                          ? "bg-[#9474ff]/5 text-[#9474ff]"
-                          : "text-[#082033] hover:bg-[#f7f8fc]"
+                        variant === "dark"
+                          ? i === selectedIndex
+                            ? "bg-[#9474ff]/[0.12] text-[#9474ff]"
+                            : "text-white/80 hover:bg-white/[0.06]"
+                          : i === selectedIndex
+                            ? "bg-[#9474ff]/[0.08] text-[#9474ff]"
+                            : "text-[#082033] hover:bg-[#082033]/[0.04]"
                       }`}
                     >
-                      <FileText size={12} className="shrink-0 text-[#5f6b86]/40" />
+                      <FileText size={12} className={`shrink-0 ${variant === "dark" ? "text-white/25" : "text-[#082033]/25"}`} />
                       <div className="flex-1 min-w-0">
                         <p className="text-[12px] font-bold truncate">{result.title}</p>
-                        <p className="text-[10px] font-medium text-[#5f6b86] truncate">
+                        <p className={`text-[10px] font-medium truncate ${variant === "dark" ? "text-white/40" : "text-[#082033]/45"}`}>
                           {result.category}
                         </p>
                       </div>
@@ -189,7 +215,7 @@ export default function SidebarSearch() {
               </ul>
             )}
             {!loading && !query && (
-              <p className="py-4 text-center text-[11px] text-[#5f6b86]/60">Type to search...</p>
+              <p className={`py-4 text-center text-[11px] ${variant === "dark" ? "text-white/25" : "text-[#082033]/25"}`}>Type to search...</p>
             )}
           </div>
         </div>

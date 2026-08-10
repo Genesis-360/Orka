@@ -85,17 +85,21 @@ export default async function DocPage({ params }: Props) {
   const headings = extractHeadings(source);
   const breadcrumbs = getBreadcrumbPath(slugPath);
 
-  const renderedContent = renderMDX(source);
   const readingTime = (data as any).readingTime || calculateReadingTime(source);
   const difficulty = (data as any).difficulty;
   const estimatedSetup = (data as any).estimatedSetup;
+  const title = (data as any).title;
+
+  const renderedContent = renderMDX(source);
+
+  const titleId = title ? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "";
 
   return (
     <div className="flex flex-col">
       <DocsTopbar breadcrumbs={breadcrumbs} />
 
       <div className="flex flex-1">
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 bg-[#fffaf2]">
           <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
             <div className="mb-6 flex items-center gap-3">
               {difficulty && <DifficultyBadge level={difficulty} />}
@@ -108,6 +112,12 @@ export default async function DocPage({ params }: Props) {
                 </span>
               )}
             </div>
+
+            {title && (
+              <h1 id={titleId} className="mb-8 text-[2rem] font-black leading-tight tracking-tight text-[#082033] sm:text-[2.5rem]">
+                {title}
+              </h1>
+            )}
 
             <article className="docs-content">
               {renderedContent}
