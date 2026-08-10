@@ -9,9 +9,9 @@ import { RiDiscordFill, RiTwitterXFill, RiLinkedinFill, RiYoutubeFill, RiMailFil
 const socials = [
   { label: "Discord", href: "https://discord.gg/orka" },
   { label: "X (Twitter)", href: "https://x.com/get_orka" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "YouTube", href: "https://youtube.com" },
-  { label: "Email", href: "mailto:hello@orka.app" },
+  { label: "LinkedIn", href: "https://linkedin.com/company/orka" },
+  { label: "YouTube", href: "https://youtube.com/@orka" },
+  { label: "Email", href: "mailto:hello@orka.live" },
 ]
 
 const col1 = [
