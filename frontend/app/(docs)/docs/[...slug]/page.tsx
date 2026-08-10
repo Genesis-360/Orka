@@ -15,6 +15,8 @@ import DocsRightSidebar from "@/components/docs/DocsRightSidebar";
 import PrevNextNav from "@/components/docs/PrevNextNav";
 import CompletionSection from "@/components/docs/CompletionSection";
 import RelatedArticles from "@/components/docs/RelatedArticles";
+import SequentialNav from "@/components/docs/SequentialNav";
+import LearningPathNav from "@/components/docs/LearningPathNav";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -124,6 +126,9 @@ export default async function DocPage({ params }: Props) {
             </article>
 
             <CompletionSection slug={slugPath} />
+
+            <SequentialNav slug={slugPath} />
+            <LearningPathNav slug={slugPath} />
 
             <div className="mt-10 border-t border-black/[0.06] pt-6">
               <PrevNextNav slug={slugPath} />

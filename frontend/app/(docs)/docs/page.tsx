@@ -24,6 +24,7 @@ import {
   Star,
 } from "lucide-react";
 import { docsNavigation } from "@/lib/docs/config";
+import { learningPathFlows } from "@/lib/docs/config";
 import { useDocsProgress } from "@/lib/docs/progress";
 import SidebarSearch from "@/components/docs/SidebarSearch";
 
@@ -279,14 +280,14 @@ export default function DocsPage() {
           {/* CTAs */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/docs/start-here/welcome-to-orka"
+              href="/docs/start-here/create-workspace"
               className="inline-flex items-center gap-2 rounded-xl bg-[#9474ff] px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:bg-[#9474ff]/90 hover:shadow-lg hover:shadow-[#9474ff]/20"
             >
               Start Learning
               <ArrowRight size={14} />
             </Link>
             <Link
-              href="/docs/developers"
+              href="/docs/developers/sdk"
               className="inline-flex items-center gap-2 rounded-xl border border-[#082033]/10 px-5 py-2.5 text-[13px] font-bold text-[#082033] transition-all hover:border-[#082033]/20 hover:bg-black/[0.02]"
             >
               <Code size={14} />
@@ -405,6 +406,10 @@ export default function DocsPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {learningPaths.map((path) => {
               const Icon = path.icon;
+              const flow = learningPathFlows.find(
+                (f) => f.title.toLowerCase() === path.title.toLowerCase()
+              );
+              const firstStepSlug = flow?.steps[0]?.slug;
               return (
                 <div
                   key={path.title}
@@ -448,11 +453,16 @@ export default function DocsPage() {
                       ))}
                     </div>
                   )}
-                  <div className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-3">
-                    <span className="text-[10px] font-semibold text-[#5f6b86]">
-                      {path.progress}
-                    </span>
-                    {path.totalSteps && (
+                  <div className="mt-4 border-t border-black/[0.06] pt-3">
+                    {firstStepSlug && !path.disabled ? (
+                      <Link
+                        href={`/docs/${firstStepSlug}`}
+                        className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
+                      >
+                        Start Path
+                        <ArrowRight size={12} />
+                      </Link>
+                    ) : (
                       <span className="text-[10px] font-semibold text-[#5f6b86]">
                         {path.totalSteps}
                       </span>
@@ -550,7 +560,7 @@ export default function DocsPage() {
               return (
                 <Link
                   key={section.slug}
-                  href={`/docs/${section.slug}`}
+                  href={`/docs/${section.slug}/${section.items[0].slug}`}
                   className="group flex items-center gap-3.5 rounded-xl border border-black/[0.06] bg-[#fffaf2] p-4 transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
                 >
                   <span

@@ -474,6 +474,64 @@ export const docsNavigation: DocSection[] = [
   },
 ];
 
+export const sequentialOnboarding = [
+  { slug: "start-here/create-workspace", title: "Create Workspace" },
+  { slug: "start-here/connect-wallet", title: "Connect Wallet" },
+  { slug: "start-here/invite-team", title: "Invite Team" },
+  { slug: "clients/add-client", title: "Add Client" },
+  { slug: "projects/create-project", title: "Create Project" },
+  { slug: "payments/generate-invoice", title: "Get Paid" },
+];
+
+export interface LearningPathFlow {
+  id: string;
+  title: string;
+  description: string;
+  steps: { slug: string; title: string }[];
+}
+
+export const learningPathFlows: LearningPathFlow[] = [
+  {
+    id: "freelancer",
+    title: "Freelancer",
+    description: "Perfect for solo founders and independent professionals.",
+    steps: [
+      { slug: "start-here/create-workspace", title: "Create Workspace" },
+      { slug: "start-here/connect-wallet", title: "Connect Wallet" },
+      { slug: "clients/add-client", title: "Add Client" },
+      { slug: "ai/generate-proposal", title: "Generate Proposal" },
+      { slug: "projects/create-project", title: "Create Project" },
+      { slug: "payments/generate-invoice", title: "Invoice Client" },
+      { slug: "payments/release-payments", title: "Receive Payment" },
+    ],
+  },
+  {
+    id: "agency",
+    title: "Agency",
+    description: "Manage your agency, team and multiple clients efficiently.",
+    steps: [
+      { slug: "start-here/create-workspace", title: "Create Workspace" },
+      { slug: "start-here/invite-team", title: "Invite Team" },
+      { slug: "clients/add-client", title: "Add Clients" },
+      { slug: "projects/create-project", title: "Create Projects" },
+      { slug: "projects/milestones", title: "Milestones" },
+      { slug: "payments/escrow", title: "Escrow" },
+    ],
+  },
+  {
+    id: "developer",
+    title: "Developer",
+    description: "Integrate Orka into your product or workflow using our API.",
+    steps: [
+      { slug: "developers/authentication", title: "Authentication" },
+      { slug: "developers/sdk", title: "SDK" },
+      { slug: "developers/api", title: "API" },
+      { slug: "developers/webhooks", title: "Webhooks" },
+      { slug: "developers/examples", title: "Examples" },
+    ],
+  },
+];
+
 export function getAllDocSlugs(): string[] {
   const slugs: string[] = [];
   for (const section of docsNavigation) {
