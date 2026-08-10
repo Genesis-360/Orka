@@ -13,9 +13,9 @@ import {
   User,
   X,
 } from "lucide-react";
-import { RiGithubFill } from "react-icons/ri";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { blogPosts } from "../lib/blog-data";
+import { GithubStars } from "./github-stars";
 
 type MenuLink = {
   label: string;
@@ -198,14 +198,15 @@ export default function Navbar() {
         </div>
 
         <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <a
-            href="https://github.com/x0lg0n/Orka"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md border border-white/18 px-3 py-2 text-sm font-medium text-white/78 transition-colors hover:text-white hover:bg-white/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
-            <RiGithubFill className="size-4" />
-            Star
-          </a>
+          <GithubStars
+            repoUrl="https://github.com/x0lg0n/Orka"
+            repoName="x0lg0n/Orka"
+            starCount="3"
+            display="stars"
+            icon="default"
+            variant="outline"
+            className="!border-white/18 !bg-white/6 !text-white hover:!bg-white/8 hover:!text-white"
+          />
           <Link
             href="/signin"
             className="rounded-md px-3 py-2 text-sm font-medium text-white/78 transition-colors border hover:text-white hover:border-white/18 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
