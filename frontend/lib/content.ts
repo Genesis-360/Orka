@@ -178,6 +178,16 @@ export const faqs: Faq[] = [
   ["Is my data secure?", "Yes. Data is encrypted at rest and in transit. We use Supabase for storage and Stellar for escrow. Smart contract logic is open-source and auditable."],
 ];
 
+export const aboutFaqs: Faq[] = [
+  ["Why did ORKA start?", "ORKA started from a simple frustration: managing projects and getting paid shouldn't require spreadsheets, scattered tools, and constant follow-ups. We wanted to make the financial side of service work feel as seamless as the work itself."],
+  ["What does ORKA believe the future of service work looks like?", "We believe financial operations should become invisible — automated, transparent, and built directly into the way service businesses work."],
+  ["Why is ORKA building on Stellar?", "Stellar gives us the infrastructure to build fast, low-cost, and borderless financial workflows that can work across markets."],
+  ["What does \u201cfinancial operating system\u201d mean to ORKA?", "It means bringing the financial workflows around a project — from agreements and milestones to payments and settlement — into one connected system."],
+  ["What are you building toward with ORKA?", "We're building toward a world where service businesses can manage their financial operations with far less manual work, regardless of where their clients are located."],
+  ["What have you learned while building ORKA?", "That financial infrastructure has to be simple for the people using it. Powerful technology only matters when it removes complexity rather than adding to it."],
+  ["What's next for ORKA?", "We're focused on expanding the product, improving automation, strengthening the infrastructure, and moving closer to our vision of a global financial operating system for service businesses."],
+];
+
 export const productLinks = [
   { label: "Engines", href: "/#engines" },
   { label: "Method", href: "/#method" },
