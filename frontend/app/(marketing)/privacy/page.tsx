@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import LegalToc from "@/components/LegalToc";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · ORKA",
@@ -251,34 +252,19 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-6xl">
           <aside className="border-l-4 border-orange bg-bone px-5 py-4 text-sm leading-6 text-night/80" aria-label="Important legal notice">
             <span className="font-bold text-night">Important:</span> This is a clear
-            product privacy template and should be reviewed by qualified legal counsel
-            before ORKA&apos;s production launch. It is not jurisdiction-specific legal advice.
+            product privacy policy and should be reviewed by qualified legal counsel.
+            It is not jurisdiction-specific legal advice.
           </aside>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-            <nav aria-label="Privacy policy contents" className="min-w-0 lg:border-b-0 lg:pb-0">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">On this page</p>
-              <ol className="mt-4 flex gap-x-5 gap-y-2 overflow-x-auto pb-4 lg:block lg:space-y-1">
-                {sections.map((section, index) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      className="group flex items-baseline gap-2 whitespace-nowrap py-1 text-sm leading-5 text-night/70 transition-colors hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet lg:whitespace-normal"
-                    >
-                      <span className="font-mono text-xs text-violet">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="group-hover:underline group-hover:decoration-orange group-hover:decoration-2 group-hover:underline-offset-4">{section.title}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <LegalToc sections={sections} label="Privacy policy" />
 
             <article className="max-w-[70ch] min-w-0">
               {sections.map((section, index) => (
                 <section
                   id={section.id}
                   key={section.id}
-                  className="scroll-mt-8 border-b border-night/15 py-9 first:pt-0 last:border-b-0"
+                  className="scroll-mt-24 border-b border-night/15 py-9 first:pt-0 last:border-b-0 lg:scroll-mt-8"
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="font-mono text-sm font-bold text-violet">{String(index + 1).padStart(2, "0")}</span>

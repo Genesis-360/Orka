@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import LegalToc from "@/components/LegalToc";
 
 export const metadata: Metadata = {
   title: "Disclaimer · ORKA",
   description:
-    "ORKA's disclaimer covering the informational nature of the product, early-stage software, digital assets, warranties, and limitations of liability.",
+    "ORKA's disclaimer covering the informational nature of the product, digital assets, warranties, and limitations of liability.",
 };
 
 const sections = [
@@ -29,20 +30,20 @@ const sections = [
     ),
   },
   {
-    id: "early-stage",
-    title: "Early-stage software",
+    id: "product-status",
+    title: "Product status",
     content: (
       <>
         <p>
-          ORKA is under active development. Features may change, be delayed, or
-          be removed as the product evolves, and parts of the service may
-          operate on testnet infrastructure that is reset or replaced without
-          notice.
+          ORKA is production software that is continuously evolving. Features
+          may change, be improved, or be retired as the product develops, and
+          parts of the service may be updated without notice.
         </p>
         <p>
-          Values shown on testnet — balances, transactions, or milestones — are
-          not a representation of production readiness, and funds locked on
-          testnet networks are not real funds.
+          Testnet environments, where used for development and experimentation,
+          are separate from production: balances, transactions, or milestones
+          shown on testnet are not real funds and may be reset or replaced
+          without notice.
         </p>
       </>
     ),
@@ -250,34 +251,18 @@ export default function DisclaimerPage() {
           <aside className="border-l-4 border-orange bg-bone px-5 py-4 text-sm leading-6 text-night/80" aria-label="Important disclaimer notice">
             <span className="font-bold text-night">Important:</span> This disclaimer is a
             plain-language summary intended to help you understand the product. It is not
-            legal advice and should be reviewed by qualified legal counsel before ORKA&apos;s
-            production launch.
+            legal advice and should be reviewed by qualified legal counsel.
           </aside>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-            <nav aria-label="Disclaimer contents" className="min-w-0 lg:border-b-0 lg:pb-0">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">On this page</p>
-              <ol className="mt-4 flex gap-x-5 gap-y-2 overflow-x-auto pb-4 lg:block lg:space-y-1">
-                {sections.map((section, index) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      className="group flex items-baseline gap-2 whitespace-nowrap py-1 text-sm leading-5 text-night/70 transition-colors hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet lg:whitespace-normal"
-                    >
-                      <span className="font-mono text-xs text-violet">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="group-hover:underline group-hover:decoration-orange group-hover:decoration-2 group-hover:underline-offset-4">{section.title}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <LegalToc sections={sections} label="Disclaimer" />
 
             <article className="max-w-[70ch] min-w-0">
               {sections.map((section, index) => (
                 <section
                   id={section.id}
                   key={section.id}
-                  className="scroll-mt-8 border-b border-night/15 py-9 first:pt-0 last:border-b-0"
+                  className="scroll-mt-24 border-b border-night/15 py-9 first:pt-0 last:border-b-0 lg:scroll-mt-8"
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="font-mono text-sm font-bold text-violet">{String(index + 1).padStart(2, "0")}</span>

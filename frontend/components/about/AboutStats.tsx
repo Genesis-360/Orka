@@ -1,6 +1,6 @@
 export default function AboutStats() {
   const stats = [
-    { value: "50+", label: "Early Users", bg: "bg-violet", text: "text-white" },
+    { value: "50+", label: "Active Users", bg: "bg-violet", text: "text-white" },
     { value: "$120K+", label: "Value Locked (Testnet)", bg: "bg-teal", text: "text-night" },
     { value: "2.5K+", label: "Transactions", bg: "bg-orange", text: "text-white" },
     { value: "10+", label: "Integrations", bg: "bg-lime", text: "text-night" },

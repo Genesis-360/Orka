@@ -20,7 +20,7 @@ export default function AboutJourney() {
     {
       year: "2026",
       title: "What's Next",
-      desc: "Mainnet launch, more automations, global scale.",
+      desc: "Official launch, more automations, global scale.",
       current: true,
     },
   ];
