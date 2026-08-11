@@ -1,38 +1,37 @@
 export default function AboutStats() {
   const stats = [
-    { value: "50+", label: "Early Users" },
-    { value: "$120K+", label: "Value Locked (Testnet)" },
-    { value: "2.5K+", label: "Transactions" },
-    { value: "10+", label: "Integrations" },
-    { value: "2026", label: "Mainnet Vision" },
+    { value: "50+", label: "Early Users", bg: "bg-violet", text: "text-white" },
+    { value: "$120K+", label: "Value Locked (Testnet)", bg: "bg-teal", text: "text-night" },
+    { value: "2.5K+", label: "Transactions", bg: "bg-orange", text: "text-white" },
+    { value: "10+", label: "Integrations", bg: "bg-lime", text: "text-night" },
+    { value: "2026", label: "Mainnet Vision", bg: "bg-coral", text: "text-white" },
   ];
 
   return (
-    <section className="px-4 py-10 md:px-8 lg:px-12">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border/50 bg-white shadow-sm">
-        <div className="px-8 pt-8 pb-10 md:px-12">
-          <p className="mb-8 text-sm font-semibold uppercase tracking-[0.2em] text-violet">
-            Orka in Numbers
-          </p>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
-            {stats.map(({ value, label }, i) => (
-              <div
-                key={label}
-                className={`flex flex-col items-center text-center ${
-                  i < stats.length - 1
-                    ? "border-r border-border/30 max-sm:border-r-0 max-sm:border-b max-sm:pb-6 max-sm:last:border-b-0 max-sm:last:pb-0 md:border-r md:last:border-r-0"
-                    : ""
-                }`}
-              >
-                <span className="display text-3xl text-night sm:text-4xl">
-                  {value}
-                </span>
-                <span className="mt-1.5 text-xs text-muted-foreground">
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
+    <section className="px-4 py-14 md:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="max-w-2xl">
+          <p className="section-label text-violet">Orka in numbers</p>
+          <h2 className="display mt-4 text-4xl uppercase tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            Proof over{" "}
+            <span className="text-violet">promises.</span>
+          </h2>
+        </div>
+
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {stats.map(({ value, label, bg, text }) => (
+            <div
+              key={label}
+              className={`cut-corner rounded-[14px] p-5 shadow-hard transition-transform duration-300 hover:-translate-y-1 ${bg}`}
+            >
+              <p className={`display text-[34px] leading-none ${text}`}>
+                {value}
+              </p>
+              <p className={`mt-2 text-[13px] font-bold uppercase tracking-wide leading-5 ${text}`}>
+                {label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

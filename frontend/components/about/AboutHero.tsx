@@ -6,8 +6,52 @@ import { ArrowRight } from "lucide-react";
 
 export default function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-night px-4 pt-14 pb-10 text-white md:px-8 lg:px-12">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden rounded-b-[42px] bg-night px-4 pt-14 pb-10 text-white md:rounded-b-[72px] md:px-8 lg:px-12">
+      <div className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-violet/10 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -bottom-32 -left-32 size-60 rounded-full bg-orange/8 blur-3xl" aria-hidden="true" />
+
+      <Image
+        src="/Elements/star-violet.svg"
+        alt=""
+        aria-hidden
+        width={40}
+        height={40}
+        className="pointer-events-none absolute right-[14%] top-[18%] hidden w-8 object-contain md:block lg:w-10 float-1"
+      />
+      <Image
+        src="/Elements/plus-teal.svg"
+        alt=""
+        aria-hidden
+        width={36}
+        height={36}
+        className="pointer-events-none absolute left-[10%] top-[30%] hidden w-7 object-contain md:block lg:w-9 float-2"
+      />
+      <Image
+        src="/Elements/asterisk-orange.svg"
+        alt=""
+        aria-hidden
+        width={30}
+        height={30}
+        className="pointer-events-none absolute right-[8%] top-[52%] hidden w-6 object-contain lg:block float-5"
+      />
+      <Image
+        src="/Elements/star-blue.svg"
+        alt=""
+        aria-hidden
+        width={28}
+        height={28}
+        className="pointer-events-none absolute left-[6%] bottom-[24%] hidden w-6 object-contain opacity-60 sm:block float-3"
+      />
+      <Image
+        src="/Elements/plus-lime.svg"
+        alt=""
+        aria-hidden
+        width={32}
+        height={32}
+        className="pointer-events-none absolute right-[16%] bottom-[20%] hidden w-7 object-contain opacity-60 sm:block float-4"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center">
           {/* Left — Text */}
           <div>
