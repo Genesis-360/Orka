@@ -8,6 +8,8 @@ import AboutTechnology from "@/components/about/AboutTechnology";
 import AboutTeam from "@/components/about/AboutTeam";
 import AboutFaq from "@/components/about/AboutFaq";
 import AboutCTA from "@/components/about/AboutCTA";
+import FaqJsonLd from "@/components/FaqJsonLd";
+import { aboutFaqs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About ORKA",
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="bg-paper">
+      <FaqJsonLd faqs={aboutFaqs} />
       <AboutHero />
       <AboutStats />
       <AboutMission />

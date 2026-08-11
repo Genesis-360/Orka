@@ -23,9 +23,9 @@ export default function Faq() {
                 <span className="mt-1 grid size-9 shrink-0 place-items-center rounded-full bg-foreground text-background transition-all duration-500 group-open:rotate-45 group-open:bg-violet">
                   <Plus size={24} className="transition-transform duration-200 group-hover:scale-110" />
                 </span>
-                <span className="display text-[22px] font-normal uppercase leading-7.5 text-foreground transition-colors duration-300 group-open:text-violet sm:text-[28px] sm:leading-9.75">
+                <h3 className="display text-[22px] font-normal uppercase leading-7.5 text-foreground transition-colors duration-300 group-open:text-violet sm:text-[28px] sm:leading-9.75">
                   {question}
-                </span>
+                </h3>
               </summary>
               <div className="grid grid-rows-[0fr] transition-all duration-500 group-open:grid-rows-[1fr]">
                 <div className="overflow-hidden">
