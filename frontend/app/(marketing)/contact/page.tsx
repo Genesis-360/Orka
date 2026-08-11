@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, Calendar, Mail, MessageSquare } from "lucide-react"
 import { RiDiscordFill, RiTwitterXFill, RiGithubFill } from "react-icons/ri"
 import { Button } from "@/components/ui/button"
@@ -273,10 +274,10 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wide text-white/40">Explore</p>
                       <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                        <a href="/" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Home</a>
-                        <a href="/pricing" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Pricing</a>
-                        <a href="/about" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">About</a>
-                        <a href="/blog" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Blog</a>
+                        <Link href="/" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Home</Link>
+                        <Link href="/pricing" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Pricing</Link>
+                        <Link href="/about" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">About</Link>
+                        <Link href="/blog" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Blog</Link>
                       </div>
                     </div>
                     <div>
