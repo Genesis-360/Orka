@@ -57,6 +57,77 @@ function UtcClock() {
   )
 }
 
+type OrbitStatus = "idle" | "loading" | "success" | "error"
+
+function StayInOrbit() {
+  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<OrbitStatus>("idle")
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!email.trim()) return
+    setStatus("loading")
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), newsletter: true }),
+      })
+      const data = await res.json()
+      setStatus(res.ok && data.success ? "success" : "error")
+    } catch {
+      setStatus("error")
+    }
+  }
+
+  return (
+    <div className="flex flex-col rounded-[18px] border border-border bg-card p-7 shadow-sm">
+      <h3 className="text-xl font-semibold text-night">Stay in Orbit</h3>
+      <p className="mt-2 text-md font-semibold leading-relaxed text-muted-foreground">
+        Product updates, escrow tips, and new features for agencies.
+      </p>
+      {status === "success" ? (
+        <p className="mt-6 text-sm font-semibold text-green-600">
+          You&apos;re subscribed to ORKA updates. Talk soon.
+        </p>
+      ) : (
+        <form onSubmit={onSubmit} className="mt-6">
+          <div className="flex items-center gap-2 border-b border-border pb-2">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (status === "error") setStatus("idle")
+              }}
+              placeholder="your email"
+              className="min-w-0 flex-1 bg-transparent px-0 py-1 text-sm text-night placeholder:text-muted-foreground/60"
+              style={{ outline: "none" }}
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              aria-label="Subscribe to ORKA updates"
+              className="inline-flex shrink-0 items-center justify-center text-muted-foreground transition-colors hover:text-orange disabled:opacity-50">
+              {status === "loading" ? (
+                <span className="size-4 animate-spin rounded-full border-2 border-muted-foreground/30 border-t-muted-foreground" />
+              ) : (
+                <ArrowRight size={18} />
+              )}
+            </button>
+          </div>
+          {status === "error" && (
+            <p className="mt-2 text-xs font-semibold text-red-500">
+              Couldn&apos;t save your spot — try again shortly.
+            </p>
+          )}
+        </form>
+      )}
+    </div>
+  )
+}
+
 export default function Footer() {
   return (
     <footer className="bg-paper">
@@ -134,23 +205,7 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="flex flex-col rounded-[18px] border border-border bg-card p-7 shadow-sm">
-            <h3 className="text-xl font-semibold text-night">Stay in Orbit</h3>
-            <p className="mt-2 text-md font-semibold leading-relaxed text-muted-foreground">
-              Product updates, escrow tips, and new features for agencies.
-            </p>
-            <div className="mt-6 flex items-center gap-2 border-b border-border pb-2">
-              <input
-                type="email"
-                placeholder="your email"
-                className="min-w-0 flex-1 bg-transparent px-0 py-1 text-sm text-night placeholder:text-muted-foreground/60"
-                style={{ outline: "none" }}
-              />
-              <button className="inline-flex shrink-0 items-center justify-center text-muted-foreground transition-colors hover:text-orange">
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
+          <StayInOrbit />
 
           <div className="divide-y divide-border/40 rounded-[18px] border border-border bg-card shadow-sm">
             {socials.map(({ label, href }) => (

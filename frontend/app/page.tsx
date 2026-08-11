@@ -3,11 +3,13 @@ import { LogoCloud } from "../components/ui/logo-cloud-2";
 import FeatureBento from "../components/FeatureBento";
 import DashboardFeatures from "../components/DashboardFeatures";
 import Faq from "../components/Faq";
+import FaqJsonLd from "../components/FaqJsonLd";
 import Testimonials from "../components/Testimonials";
 import OpenSource from "../components/OpenSource";
-import WaitlistCta from "../components/WaitlistCta";
+import LaunchCta from "../components/LaunchCta";
 import Footer from "../components/Footer";
 import ClickSpark from "../components/ClickSpark";
+import { faqs } from "../lib/content";
 
 export default function Home() {
   return (
@@ -19,6 +21,7 @@ export default function Home() {
       duration={500}>
       <main className="overflow-hidden bg-paper">
         <Hero />
+        <FaqJsonLd faqs={faqs} />
         <section className="relative mx-auto grid max-w-3xl px-4 py-14">
           <h2 className="mb-8 text-center text-balance font-medium text-lg tracking-tight text-muted-foreground md:text-2xl">
             Companies we{" "}
@@ -32,7 +35,7 @@ export default function Home() {
         <Testimonials />
         <OpenSource />
         <Faq />
-        <WaitlistCta />
+        <LaunchCta />
         <Footer />
       </main>
     </ClickSpark>

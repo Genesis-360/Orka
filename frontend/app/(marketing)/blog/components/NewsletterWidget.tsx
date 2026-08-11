@@ -25,10 +25,10 @@ export default function NewsletterWidget() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, newsletter: true }),
       });
       if (!res.ok) throw new Error("Failed to subscribe");
       setSubmitted(true);

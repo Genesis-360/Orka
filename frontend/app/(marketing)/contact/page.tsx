@@ -3,9 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Calendar, Mail, MessageSquare } from "lucide-react"
 import { RiDiscordFill, RiTwitterXFill, RiGithubFill } from "react-icons/ri"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import ContactForm from "./ContactForm"
 
 export const metadata: Metadata = {
   title: "Contact · ORKA",
@@ -162,40 +160,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <form className="mt-6 space-y-4">
-                  <div>
-                    <Label htmlFor="name" className="text-xs font-semibold text-muted-foreground">
-                      Your name <span className="text-border">*</span>
-                    </Label>
-                    <Input id="name" placeholder="Jane Doe" required className="mt-1 focus-visible:!ring-0 focus-visible:!border-border" />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-xs font-semibold text-muted-foreground">
-                      Email <span className="text-border">*</span>
-                    </Label>
-                    <div className="relative mt-1">
-                      <Mail size={16} className="text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                      <Input id="email" type="email" placeholder="you@example.com" required className="pl-9 focus-visible:!ring-0 focus-visible:!border-border" />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="message" className="text-xs font-semibold text-muted-foreground">
-                      Message
-                    </Label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      placeholder="Tell us what you're building."
-                      className="mt-1 w-full resize-y rounded-xl border border-border bg-input/30 px-3 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:!ring-0 focus-visible:!border-border"
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-semibold">
-                    Send message <ArrowRight size={16} />
-                  </Button>
-                  <p className="text-[11px] font-semibold text-muted-foreground/50">
-                    By submitting, you agree to our Terms and Privacy Policy.
-                  </p>
-                </form>
+                <ContactForm />
               </div>
             </div>
 

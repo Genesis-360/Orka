@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
-export default function WaitlistCta() {
+export default function LaunchCta() {
   return (
-    <section id="waitlist" className="px-4 py-16 md:px-8 lg:px-12">
+    <section id="get-started" className="px-4 py-16 md:px-8 lg:px-12">
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[28px] bg-night p-8 md:p-12 lg:rounded-[36px] lg:p-16">
         {/* Grid overlay */}
         <div
