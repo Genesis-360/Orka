@@ -21,8 +21,9 @@ export const ClientTweetCard = ({
 
   if (isLoading) return fallback
   if (error || !data) {
+    if (onError) return null
     const NotFound = components?.TweetNotFound ?? TweetNotFound
-    return <NotFound error={onError ? onError(error) : error} />
+    return <NotFound error={error} />
   }
 
   return <MagicTweet tweet={data} {...props} />
