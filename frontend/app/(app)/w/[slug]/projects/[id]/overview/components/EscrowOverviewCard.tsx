@@ -44,7 +44,6 @@ export function EscrowOverviewCard({
   refundedAmount,
   totalBudget,
   asset,
-  escrowFundedPct,
   slug,
   projectId,
   contractAddress,

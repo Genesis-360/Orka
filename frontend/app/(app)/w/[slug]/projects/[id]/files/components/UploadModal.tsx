@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { X, Upload, FileText, CheckCircle2 } from "lucide-react";
+import { X, Upload, CheckCircle2 } from "lucide-react";
 
 export function UploadModal({
   open,

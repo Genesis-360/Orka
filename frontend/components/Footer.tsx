@@ -189,7 +189,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 transition-opacity hover:opacity-70">
-                  <img src={t.src} alt={t.label} className="size-4" />
+                  <Image src={t.src} alt={t.label} width={16} height={16} className="size-4" unoptimized />
                   <span>{t.label}</span>
                 </a>
                 {i < techLogos.length - 1 && (

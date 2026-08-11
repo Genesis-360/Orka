@@ -5,16 +5,6 @@ import { WorkspaceGrid, type Workspace } from "./components/WorkspaceGrid";
 
 export const metadata = { title: "Choose a Workspace · ORKA" };
 
-function formatLastActive(iso: string | null): string {
-  if (!iso) return "—";
-  const then = new Date(iso).getTime();
-  const days = Math.floor((Date.now() - then) / 86_400_000);
-  if (days <= 0) return "Today";
-  if (days === 1) return "Yesterday";
-  if (days < 7) return `${days} days ago`;
-  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
-}
-
 export default async function WorkspacesPage({
   searchParams,
 }: {

@@ -15,7 +15,6 @@ type Version = {
 };
 
 export function ProposalVersionsPanel({
-  slug,
   projectId,
   proposalId,
   onClose,

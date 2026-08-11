@@ -15,15 +15,10 @@ import {
 export function FilesToolbar({
   search,
   onSearchChange,
-  filter,
-  onFilterChange,
-  sort,
-  onSortChange,
   view,
   onViewChange,
   onUpload,
   onNewFolder,
-  fileCount,
 }: {
   search: string;
   onSearchChange: (v: string) => void;

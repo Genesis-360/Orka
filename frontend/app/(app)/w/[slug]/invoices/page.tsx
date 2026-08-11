@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { use } from "react";
 import { Search, Filter, Plus, ChevronDown } from "lucide-react";
-import Link from "next/link";
 import InvoiceStats from "./components/InvoiceStats";
 import InvoiceFilters from "./components/InvoiceFilters";
 import InvoiceTable from "./components/InvoiceTable";

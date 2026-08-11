@@ -35,7 +35,7 @@ export default async function ProjectLayout({
   params: Promise<{ slug: string; id: string }>;
 }) {
   const { slug, id } = await params;
-  const { project, milestones } = await getProject(slug, id);
+  const { project } = await getProject(slug, id);
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden bg-gray-50">

@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Check,
   User,
-  Briefcase,
   MapPin,
   Info,
   Sparkles,
@@ -335,7 +334,7 @@ export function NewClientForm({ slug, orgId }: { slug: string; orgId: string }) 
                 { icon: User, label: "Client Information", done: true },
                 { icon: MapPin, label: "Billing & Address", done: false },
                 { icon: Info, label: "Additional Details", done: false },
-              ].map(({ icon: Icon, label, done }, i) => (
+              ].map(({ label, done }, i) => (
                 <li key={label} className="flex items-center gap-3">
                   <span
                     className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${

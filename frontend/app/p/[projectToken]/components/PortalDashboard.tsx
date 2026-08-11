@@ -1,5 +1,5 @@
-import { Calendar, DollarSign, TrendingUp, Wallet, CheckCircle2, Clock, ArrowUpCircle, FileText, FileSignature, Upload, MessageSquare } from "lucide-react";
-import type { PortalProject, PortalMilestone } from "@/lib/portal";
+import { TrendingUp, Wallet, CheckCircle2, Clock, FileText, Upload, MessageSquare } from "lucide-react";
+import type { PortalProject } from "@/lib/portal";
 
 function StatCard({
   icon: Icon,
@@ -49,15 +49,6 @@ function fmtShortAmount(amount: number | null, asset: string) {
   return `${n} ${asset}`;
 }
 
-function fmtDate(iso: string | null | undefined): string {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 function statusBadge(status: string) {
   const map: Record<string, string> = {
     active: "bg-emerald-50 text-emerald-600 border border-emerald-200",
@@ -105,44 +96,6 @@ function milestoneStatusLabel(status: string) {
       return "Completed";
     default:
       return status;
-  }
-}
-
-function activityIcon(type: string) {
-  switch (type) {
-    case "milestone_completed":
-      return { icon: CheckCircle2, color: "text-emerald-500", bg: "bg-emerald-50" };
-    case "payment_released":
-      return { icon: ArrowUpCircle, color: "text-blue-500", bg: "bg-blue-50" };
-    case "proposal_accepted":
-      return { icon: FileText, color: "text-purple-500", bg: "bg-purple-50" };
-    case "contract_signed":
-      return { icon: FileSignature, color: "text-indigo-500", bg: "bg-indigo-50" };
-    case "files_uploaded":
-      return { icon: Upload, color: "text-amber-500", bg: "bg-amber-50" };
-    case "client_commented":
-      return { icon: MessageSquare, color: "text-pink-500", bg: "bg-pink-50" };
-    default:
-      return { icon: CheckCircle2, color: "text-gray-400", bg: "bg-gray-50" };
-  }
-}
-
-function activityTitle(type: string) {
-  switch (type) {
-    case "milestone_completed":
-      return "Milestone completed";
-    case "payment_released":
-      return "Payment released";
-    case "proposal_accepted":
-      return "Proposal accepted";
-    case "contract_signed":
-      return "Contract signed by both parties";
-    case "files_uploaded":
-      return "Files uploaded";
-    case "client_commented":
-      return "Client commented";
-    default:
-      return type.replace(/_/g, " ");
   }
 }
 
