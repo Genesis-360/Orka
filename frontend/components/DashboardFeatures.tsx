@@ -15,7 +15,7 @@ type TabId = (typeof tabs)[number]["id"];
 
 const images: Record<TabId, string> = {
   dashboard: "/dashboard.png",
-  projects: "",
+  projects: "/new-project-tab.jpeg",
   escrow: "/invoices-tab.jpeg",
   analytics: "/analytics-tab.jpeg",
 };

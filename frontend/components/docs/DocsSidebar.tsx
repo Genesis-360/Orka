@@ -148,7 +148,10 @@ function DocsNavContent({
     <>
       {/* Logo — desktop only (mobile drawer has its own header) */}
       <div className="hidden h-14 shrink-0 items-center px-5 lg:flex">
-        <Link href="/" className="flex items-center gap-2" aria-label="ORKA home">
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          aria-label="ORKA home">
           <Image
             src="/Logo/logo.svg"
             alt="ORKA"
@@ -193,9 +196,7 @@ function DocsNavContent({
                 <Sparkles size={14} className="text-[#9474ff]" />
               </span>
               <div>
-                <p className="text-[12px] font-bold text-white">
-                  Orka AI
-                </p>
+                <p className="text-[12px] font-bold text-white">Orka AI</p>
                 <p className="mt-0.5 text-[11px] leading-[1.4] text-white/50">
                   Your AI copilot for proposals, invoices and more.
                 </p>
@@ -204,8 +205,7 @@ function DocsNavContent({
             <Link
               href="/docs/ai"
               onClick={onNavigate}
-              className="mt-3 flex items-center gap-1 text-[11px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="mt-3 flex items-center gap-1 text-[11px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               Learn more
               <span className="text-[10px]">→</span>
             </Link>
@@ -220,22 +220,19 @@ function DocsNavContent({
           <div className="space-y-2">
             <a
               href="/contact"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
-            >
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white">
               <Headphones size={13} />
               Support
             </a>
             <a
-              href="#"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
-            >
+              href="https://discord.gg/KbW5pPCDyY"
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white">
               <MessageSquare size={13} />
               Community
             </a>
             <a
-              href="#"
-              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white"
-            >
+              href="https://github.com/Genesis-360/Orka"
+              className="flex items-center gap-2.5 text-[12px] font-medium text-white/50 transition-colors hover:text-white">
               <GitBranch size={13} />
               GitHub
             </a>

@@ -269,103 +269,106 @@ export default function DocsPage() {
           aria-hidden="true"
         />
         {/* Soft color washes */}
-        <div className="pointer-events-none absolute -right-24 -top-24 size-96 rounded-full bg-[#9474ff]/25 blur-3xl" aria-hidden="true" />
-        <div className="pointer-events-none absolute -bottom-32 -left-24 size-80 rounded-full bg-[#22bd93]/15 blur-3xl" aria-hidden="true" />
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 size-96 rounded-full bg-[#9474ff]/25 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -bottom-32 -left-24 size-80 rounded-full bg-[#22bd93]/15 blur-3xl"
+          aria-hidden="true"
+        />
         <div className="relative mx-auto max-w-5xl">
           <div className="mb-6 flex items-center justify-between lg:hidden">
             <DocsNavToggle />
           </div>
           <div className="flex items-start justify-between gap-12">
-          <div className="max-w-2xl">
-          <Link
-            href="/docs/resources/changelog"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] font-bold text-white/80 backdrop-blur transition-colors hover:border-[#9474ff]/50 hover:text-white"
-          >
-            <Sparkles size={13} className="text-[#9474ff]" />
-            What&apos;s new in ORKA
-            <ArrowRight size={12} className="text-white/50" />
-          </Link>
-          <h1 className="mt-4 text-[2.5rem] font-black leading-[1.08] tracking-tight text-white sm:text-[3rem] md:text-[3.5rem]">
-            Everything you need to
-            <br />
-            run your service business
-            <br />
-            with Orka.
-          </h1>
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/60">
-            Step-by-step guides, best practices and resources to help you
-            win clients, deliver great work and get paid — faster.
-          </p>
+            <div className="max-w-2xl">
+              <Link
+                href="/docs/resources/changelog"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] font-bold text-white/80 backdrop-blur transition-colors hover:border-[#9474ff]/50 hover:text-white">
+                <Sparkles size={13} className="text-[#9474ff]" />
+                What&apos;s new in ORKA
+                <ArrowRight size={12} className="text-white/50" />
+              </Link>
+              <h1 className="mt-4 text-[2.5rem] font-black leading-[1.08] tracking-tight text-white sm:text-[3rem] md:text-[3.5rem]">
+                Everything you need to
+                <br />
+                run your service business
+                <br />
+                with Orka.
+              </h1>
+              <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/60">
+                Step-by-step guides, best practices and resources to help you
+                win clients, deliver great work and get paid — faster.
+              </p>
 
-          {/* Search Bar */}
-          <div className="mt-8 max-w-lg">
-            <DocsSearch variant="dark" />
-          </div>
+              {/* Search Bar */}
+              <div className="mt-8 max-w-lg">
+                <DocsSearch variant="dark" />
+              </div>
 
-          {/* CTAs */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/docs/start-here/create-workspace"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#9474ff] px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:bg-[#9474ff]/90 hover:shadow-lg hover:shadow-[#9474ff]/30"
-            >
-              Start Learning
-              <ArrowRight size={14} />
-            </Link>
-            <Link
-              href="/docs/developers/sdk"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:border-white/30 hover:bg-white/5"
-            >
-              <Code size={14} />
-              API &amp; SDK Docs
-            </Link>
-          </div>
-          </div>
+              {/* CTAs */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/docs/start-here/create-workspace"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#9474ff] px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:bg-[#9474ff]/90 hover:shadow-lg hover:shadow-[#9474ff]/30">
+                  Start Learning
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  href="/docs/developers/sdk"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:border-white/30 hover:bg-white/5">
+                  <Code size={14} />
+                  API &amp; SDK Docs
+                </Link>
+              </div>
+            </div>
 
-        {/* Dashboard Preview (decorative) */}
+            {/* Dashboard Preview (decorative) */}
             <div className="pointer-events-none hidden shrink-0 lg:block">
               <div className="w-[260px] space-y-3">
-            <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-white/50">
-                  Total Paid
-                </span>
-                <TrendingUp size={14} className="text-[#22bd93]" />
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Total Paid
+                    </span>
+                    <TrendingUp size={14} className="text-[#22bd93]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">
+                    $125,430
+                  </p>
+                  <p className="text-[11px] font-medium text-[#22bd93]">
+                    +12% this month
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Projects in Progress
+                    </span>
+                    <BarChart3 size={14} className="text-[#9474ff]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">8</p>
+                  <p className="text-[11px] font-medium text-[#22bd93]">
+                    +2 this week
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Recent Payment
+                    </span>
+                    <Star size={14} className="text-[#ff8a22]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">
+                    $4,250
+                  </p>
+                  <p className="text-[11px] font-medium text-white/50">
+                    From Acme Inc.
+                  </p>
+                </div>
               </div>
-              <p className="mt-1 text-[22px] font-black text-white">
-                $125,430
-              </p>
-              <p className="text-[11px] font-medium text-[#22bd93]">
-                +12% this month
-              </p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-white/50">
-                  Projects in Progress
-                </span>
-                <BarChart3 size={14} className="text-[#9474ff]" />
-              </div>
-              <p className="mt-1 text-[22px] font-black text-white">8</p>
-              <p className="text-[11px] font-medium text-[#22bd93]">
-                +2 this week
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-white/50">
-                  Recent Payment
-                </span>
-                <Star size={14} className="text-[#ff8a22]" />
-              </div>
-              <p className="mt-1 text-[22px] font-black text-white">
-                $4,250
-              </p>
-              <p className="text-[11px] font-medium text-white/50">
-                From Acme Inc.
-              </p>
-            </div>
-          </div>
-          </div>
           </div>
         </div>
       </section>
@@ -376,9 +379,7 @@ export default function DocsPage() {
       {/* Quick Start */}
       <section className="px-8 py-14 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-[22px] font-black text-[#082033]">
-            Quick Start
-          </h2>
+          <h2 className="text-[22px] font-black text-[#082033]">Quick Start</h2>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {quickStartItems.map((item) => {
               const Icon = item.icon;
@@ -386,18 +387,15 @@ export default function DocsPage() {
                 <Link
                   key={item.step}
                   href={item.href}
-                  className="group relative rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  className="group relative rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="absolute -top-2 -left-2 flex size-5 items-center justify-center rounded-full text-[10px] font-bold text-white"
-                    style={{ backgroundColor: item.color }}
-                  >
+                    style={{ backgroundColor: item.color }}>
                     {item.step}
                   </span>
                   <span
                     className="grid size-9 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${item.color}12` }}
-                  >
+                    style={{ backgroundColor: `${item.color}12` }}>
                     <Icon size={16} style={{ color: item.color }} />
                   </span>
                   <p className="mt-2.5 text-[12px] font-bold text-[#082033]">
@@ -422,8 +420,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all paths
               <ArrowRight size={12} />
             </Link>
@@ -432,23 +429,21 @@ export default function DocsPage() {
             {learningPaths.map((path) => {
               const Icon = path.icon;
               const flow = learningPathFlows.find(
-                (f) => f.title.toLowerCase() === path.title.toLowerCase()
+                (f) => f.title.toLowerCase() === path.title.toLowerCase(),
               );
               const firstStepSlug = flow?.steps[0]?.slug;
               return (
                 <div
                   key={path.title}
                   className={`flex flex-col rounded-xl border border-black/[0.06] bg-white p-5 shadow-sm transition-all ${
-                    path.disabled
-                      ? "opacity-60"
-                      : "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/[0.04]"
-                  }`}
-                >
+                    path.disabled ? "opacity-60" : (
+                      "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/[0.04]"
+                    )
+                  }`}>
                   <div className="flex items-center gap-2.5">
                     <span
                       className="grid size-8 place-items-center rounded-lg"
-                      style={{ backgroundColor: `${path.color}12` }}
-                    >
+                      style={{ backgroundColor: `${path.color}12` }}>
                       <Icon size={15} style={{ color: path.color }} />
                     </span>
                     <div>
@@ -470,8 +465,7 @@ export default function DocsPage() {
                       {path.steps.map((step) => (
                         <div
                           key={step}
-                          className="flex items-center gap-2 text-[11px] text-[#5f6b86]"
-                        >
+                          className="flex items-center gap-2 text-[11px] text-[#5f6b86]">
                           <Check size={11} className="text-[#22bd93]" />
                           {step}
                         </div>
@@ -479,19 +473,17 @@ export default function DocsPage() {
                     </div>
                   )}
                   <div className="mt-4 border-t border-black/[0.06] pt-3">
-                    {firstStepSlug && !path.disabled ? (
+                    {firstStepSlug && !path.disabled ?
                       <Link
                         href={`/docs/${firstStepSlug}`}
-                        className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-                      >
+                        className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
                         Start Path
                         <ArrowRight size={12} />
                       </Link>
-                    ) : (
-                      <span className="text-[10px] font-semibold text-[#5f6b86]">
+                    : <span className="text-[10px] font-semibold text-[#5f6b86]">
                         {path.totalSteps}
                       </span>
-                    )}
+                    }
                   </div>
                 </div>
               );
@@ -509,8 +501,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all guides
               <ArrowRight size={12} />
             </Link>
@@ -522,12 +513,10 @@ export default function DocsPage() {
                 <Link
                   key={guide.title}
                   href={guide.href}
-                  className="group flex items-start gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  className="group flex items-start gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="grid size-9 shrink-0 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${guide.color}12` }}
-                  >
+                    style={{ backgroundColor: `${guide.color}12` }}>
                     <Icon size={16} style={{ color: guide.color }} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -561,8 +550,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               Explore all categories
               <ArrowRight size={12} />
             </Link>
@@ -586,12 +574,10 @@ export default function DocsPage() {
                 <Link
                   key={section.slug}
                   href={`/docs/${section.slug}/${section.items[0].slug}`}
-                  className="group flex items-center gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  className="group flex items-center gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="grid size-9 shrink-0 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${section.color}12` }}
-                  >
+                    style={{ backgroundColor: `${section.color}12` }}>
                     <Icon size={16} style={{ color: section.color }} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -622,8 +608,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="/docs/resources/changelog"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all updates
               <ArrowRight size={12} />
             </Link>
@@ -632,8 +617,7 @@ export default function DocsPage() {
             {whatsNew.map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-3 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm"
-              >
+                className="flex items-start gap-3 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <p className="text-[13px] font-bold text-[#082033]">
@@ -644,8 +628,7 @@ export default function DocsPage() {
                       style={{
                         backgroundColor: `${item.tagColor}12`,
                         color: item.tagColor,
-                      }}
-                    >
+                      }}>
                       {item.tag}
                     </span>
                   </div>
@@ -669,23 +652,29 @@ export default function DocsPage() {
             <div className="flex flex-wrap items-center gap-6">
               <a
                 href="/contact"
-                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white"
-              >
-                <Headphones size={14} className="transition-transform group-hover:scale-110" />
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <Headphones
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 Support
               </a>
               <a
-                href="#"
-                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white"
-              >
-                <MessageSquare size={14} className="transition-transform group-hover:scale-110" />
+                href="https://discord.gg/KbW5pPCDyY"
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <MessageSquare
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 Community
               </a>
               <a
-                href="#"
-                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white"
-              >
-                <GitBranch size={14} className="transition-transform group-hover:scale-110" />
+                href="https://github.com/Genesis-360/Orka"
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <GitBranch
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 GitHub
               </a>
             </div>
