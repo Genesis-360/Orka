@@ -88,6 +88,25 @@ export default function Hero() {
           </Link>
         </div>
 
+        <div className="mt-7 flex justify-center">
+          <a
+            href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-90"
+            aria-label="As seen on Launch Llama Newsletter"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://tools.launchllama.co/featured-badge.png?v=2"
+              alt="As seen on Launch Llama Newsletter"
+              width={200}
+              height={50}
+              style={{ display: "block", border: 0 }}
+            />
+          </a>
+        </div>
+
         <div className="mt-12 flex items-center justify-center gap-8">
           <div className="origin-center">
             <AvatarCircles
