@@ -338,7 +338,7 @@ export default function TermsPage() {
           </aside>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-            <nav aria-label="Terms contents" className="lg:border-b-0 lg:pb-0">
+            <nav aria-label="Terms contents" className="min-w-0 lg:border-b-0 lg:pb-0">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">On this page</p>
               <ol className="mt-4 flex gap-x-5 gap-y-2 overflow-x-auto pb-4 lg:block lg:space-y-1">
                 {sections.map((section, index) => (
@@ -355,7 +355,7 @@ export default function TermsPage() {
               </ol>
             </nav>
 
-            <article className="max-w-[70ch]">
+            <article className="max-w-[70ch] min-w-0">
               {sections.map((section, index) => (
                 <section
                   id={section.id}
