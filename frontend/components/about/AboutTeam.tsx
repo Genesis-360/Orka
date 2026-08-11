@@ -1,24 +1,23 @@
 import { RiLinkedinFill, RiTwitterXFill, RiGithubFill } from "react-icons/ri";
 import { Mail } from "lucide-react";
+import Image from "next/image";
 
 const founders = [
   {
-    initial: "J",
+    image: "/janvi.png",
     name: "Janvi",
     role: "Co-founder & Builder",
     bio: "Full stack engineer and Web3 builder. Loves turning complex problems into simple products.",
-    avatar: "bg-violet/10 text-violet",
     tweeter: "https://x.com/janvibuilds",
     linkedin: "https://www.linkedin.com/in/janvibuilds/",
     email: "janvisinghal10@gmail.com",
     github: "https://github.com/janvibuilds",
   },
   {
-    initial: "S",
+    image: "/siddhartha.jpg",
     name: "Siddharth",
     role: "Co-founder & Strategist",
     bio: "Product thinker and growth hacker. Focused on building systems that scale and last.",
-    avatar: "bg-teal/10 text-teal",
     tweeter: "https://x.com/x0lg0n",
     linkedin: "https://www.linkedin.com/in/siddhartha-kunwar/",
     github: "https://github.com/x0lg0n",
@@ -43,15 +42,19 @@ export default function AboutTeam() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {founders.map(({ initial, name, role, bio, avatar, tweeter, linkedin, email, github }) => (
+          {founders.map(({ image, name, role, bio, tweeter, linkedin, email, github }) => (
             <div
               key={name}
               className="group flex items-start gap-6 rounded-[28px] border border-border/50 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div
-                className={`flex size-20 shrink-0 items-center justify-center rounded-full ${avatar} transition-transform duration-300 group-hover:scale-105`}
-              >
-                <span className="display text-3xl leading-none">{initial}</span>
+              <div className="relative size-20 shrink-0 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src={image}
+                  alt={name}
+                  width={80}
+                  height={80}
+                  className="size-full object-cover"
+                />
               </div>
               <div className="flex flex-1 flex-col">
                 <h3 className="text-xl font-bold text-foreground">{name}</h3>

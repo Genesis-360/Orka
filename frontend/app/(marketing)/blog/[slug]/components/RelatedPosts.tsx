@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, FileText } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blogs/types";
+import AuthorAvatar from "../../components/AuthorAvatar";
 
 export default function RelatedPosts({ posts }: { posts: BlogPostMeta[] }) {
   if (posts.length === 0) return null;
@@ -43,9 +44,12 @@ export default function RelatedPosts({ posts }: { posts: BlogPostMeta[] }) {
                 {post.title}
               </h3>
               <div className="mt-3 flex items-center gap-2">
-                <span className="grid size-6 place-items-center rounded-full bg-night/10 text-2xs font-black text-night/60">
-                  {post.author.initials}
-                </span>
+                <AuthorAvatar
+                  name={post.author.name}
+                  initials={post.author.initials}
+                  sizeClass="size-6"
+                  sizePx={24}
+                />
                 <p className="text-xs font-bold text-night/40">
                   {post.readingTime}
                 </p>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, FileText } from "lucide-react";
 import type { BlogPost } from "./types";
+import AuthorAvatar from "./AuthorAvatar";
 
 const CAT_COLORS: Record<string, string> = {
   AI: "bg-violet-500",
@@ -54,9 +55,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           {post.excerpt}
         </p>
         <div className="mt-4 flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-full bg-night/10 text-xs font-black text-night/60">
-            {post.author.initials}
-          </span>
+          <AuthorAvatar
+            name={post.author.name}
+            initials={post.author.initials}
+            sizeClass="size-8"
+            sizePx={32}
+          />
           <div className="min-w-0 flex-1">
             <p className="text-sm font-bold text-night truncate">{post.author.name}</p>
             <div className="mt-0.5 flex items-center gap-2 text-xs font-bold text-night/40">

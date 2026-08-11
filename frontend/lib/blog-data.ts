@@ -25,6 +25,15 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
+export const authorImages: Record<string, string> = {
+  "Janvi Singhal": "/janvi.png",
+  "ORKA Team": "/Logo/logo.svg",
+};
+
+export function authorImageFor(name: string): string {
+  return authorImages[name] ?? "";
+}
+
 export const blogPosts: BlogPost[] = [
   {
     id: "1",

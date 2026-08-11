@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FileText } from "lucide-react";
 import type { BlogArticle } from "@/lib/blogs/types";
 import ShareButtons from "./ShareButtons";
+import AuthorAvatar from "../../components/AuthorAvatar";
 
 export default function ArticleHeader({ post }: { post: BlogArticle }) {
   return (
@@ -40,9 +41,12 @@ export default function ArticleHeader({ post }: { post: BlogArticle }) {
       {/* Author + metadata */}
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-3">
-          <span className="grid size-9 place-items-center rounded-full bg-night/10 text-xs font-black text-night/60">
-            {post.author.initials}
-          </span>
+          <AuthorAvatar
+            name={post.author.name}
+            initials={post.author.initials}
+            sizeClass="size-9"
+            sizePx={36}
+          />
           <div>
             <p className="text-base font-bold text-night">{post.author.name}</p>
             <p className="text-xs font-bold text-night/40">
