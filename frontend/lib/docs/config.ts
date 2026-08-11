@@ -15,6 +15,7 @@ export interface DocItem {
   tags?: string[];
   businessTip?: string;
   children?: DocItem[];
+  related?: string[];
 }
 
 export interface DocMeta {
@@ -28,6 +29,9 @@ export interface DocMeta {
   lastUpdated?: string;
   featured?: boolean;
   draft?: boolean;
+  difficulty?: "Beginner" | "Intermediate" | "Advanced";
+  readingTime?: string;
+  estimatedSetup?: string;
 }
 
 export const docsNavigation: DocSection[] = [
@@ -68,6 +72,108 @@ export const docsNavigation: DocSection[] = [
         title: "Your First Project",
         slug: "your-first-project",
         description: "Create and deliver your first project end-to-end.",
+      },
+    ],
+  },
+  {
+    title: "Guides",
+    slug: "guides",
+    icon: "map",
+    color: "#ff8a22",
+    description: "Step-by-step workflows to get things done.",
+    items: [
+      {
+        title: "Send First Invoice",
+        slug: "send-first-invoice",
+        description: "Create and send your first invoice in minutes.",
+        related: ["payments/generate-invoice", "payments/escrow"],
+      },
+      {
+        title: "Create First Proposal",
+        slug: "create-first-proposal",
+        description: "Draft and send a winning proposal to a client.",
+        related: ["ai/generate-proposal", "projects/create-project"],
+      },
+      {
+        title: "Milestone Payments",
+        slug: "milestone-payments",
+        description: "Set up milestone-based payments and escrow.",
+        related: ["projects/milestones", "payments/escrow"],
+      },
+      {
+        title: "Manage Clients",
+        slug: "manage-clients",
+        description: "Build and maintain strong client relationships.",
+        related: ["clients/add-client", "clients/client-profiles"],
+      },
+      {
+        title: "International Payments",
+        slug: "international-payments",
+        description: "Send and receive payments across borders.",
+        related: ["payments/cross-border-payments", "payments/escrow"],
+      },
+      {
+        title: "Team Collaboration",
+        slug: "team-collaboration",
+        description: "Work together with your team seamlessly.",
+        related: ["team/invite-members", "team/roles"],
+      },
+      {
+        title: "Agency Workflow",
+        slug: "agency-workflow",
+        description: "Run your agency end-to-end with Orka.",
+        related: ["start-here/your-first-project", "team/approvals"],
+      },
+    ],
+  },
+  {
+    title: "Concepts",
+    slug: "concepts",
+    icon: "lightbulb",
+    color: "#3b82f6",
+    description: "Understand the ideas behind Orka's features.",
+    items: [
+      {
+        title: "Workspaces",
+        slug: "workspaces",
+        description: "What workspaces are and how they organize your business.",
+        related: ["start-here/create-workspace", "workspace/branding"],
+      },
+      {
+        title: "Clients",
+        slug: "clients",
+        description: "How client relationships work in Orka.",
+        related: ["clients/add-client", "clients/client-portal"],
+      },
+      {
+        title: "Projects",
+        slug: "projects",
+        description: "How projects structure your work and deliverables.",
+        related: ["projects/create-project", "projects/milestones"],
+      },
+      {
+        title: "Milestones",
+        slug: "milestones",
+        description: "Breaking work into trackable, payable units.",
+        related: ["projects/milestones", "payments/escrow"],
+      },
+      {
+        title: "Escrow",
+        slug: "escrow",
+        description: "How Stellar-powered escrow protects both parties.",
+        related: ["payments/escrow", "payments/release-payments"],
+      },
+      {
+        title: "Wallets",
+        slug: "wallets",
+        description: "Connecting and managing Stellar wallets in Orka.",
+        related: ["start-here/connect-wallet", "payments/cross-border-payments"],
+      },
+      {
+        title: "Permissions",
+        slug: "permissions",
+        description: "Role-based access control for teams and clients.",
+        related: ["team/permissions", "team/roles"],
       },
     ],
   },
@@ -368,6 +474,64 @@ export const docsNavigation: DocSection[] = [
   },
 ];
 
+export const sequentialOnboarding = [
+  { slug: "start-here/create-workspace", title: "Create Workspace" },
+  { slug: "start-here/connect-wallet", title: "Connect Wallet" },
+  { slug: "start-here/invite-team", title: "Invite Team" },
+  { slug: "clients/add-client", title: "Add Client" },
+  { slug: "projects/create-project", title: "Create Project" },
+  { slug: "payments/generate-invoice", title: "Get Paid" },
+];
+
+export interface LearningPathFlow {
+  id: string;
+  title: string;
+  description: string;
+  steps: { slug: string; title: string }[];
+}
+
+export const learningPathFlows: LearningPathFlow[] = [
+  {
+    id: "freelancer",
+    title: "Freelancer",
+    description: "Perfect for solo founders and independent professionals.",
+    steps: [
+      { slug: "start-here/create-workspace", title: "Create Workspace" },
+      { slug: "start-here/connect-wallet", title: "Connect Wallet" },
+      { slug: "clients/add-client", title: "Add Client" },
+      { slug: "ai/generate-proposal", title: "Generate Proposal" },
+      { slug: "projects/create-project", title: "Create Project" },
+      { slug: "payments/generate-invoice", title: "Invoice Client" },
+      { slug: "payments/release-payments", title: "Receive Payment" },
+    ],
+  },
+  {
+    id: "agency",
+    title: "Agency",
+    description: "Manage your agency, team and multiple clients efficiently.",
+    steps: [
+      { slug: "start-here/create-workspace", title: "Create Workspace" },
+      { slug: "start-here/invite-team", title: "Invite Team" },
+      { slug: "clients/add-client", title: "Add Clients" },
+      { slug: "projects/create-project", title: "Create Projects" },
+      { slug: "projects/milestones", title: "Milestones" },
+      { slug: "payments/escrow", title: "Escrow" },
+    ],
+  },
+  {
+    id: "developer",
+    title: "Developer",
+    description: "Integrate Orka into your product or workflow using our API.",
+    steps: [
+      { slug: "developers/authentication", title: "Authentication" },
+      { slug: "developers/sdk", title: "SDK" },
+      { slug: "developers/api", title: "API" },
+      { slug: "developers/webhooks", title: "Webhooks" },
+      { slug: "developers/examples", title: "Examples" },
+    ],
+  },
+];
+
 export function getAllDocSlugs(): string[] {
   const slugs: string[] = [];
   for (const section of docsNavigation) {
@@ -444,14 +608,27 @@ export function getSectionForDoc(slug: string): DocSection | undefined {
 export function getRelatedArticles(slug: string, limit = 4): DocItem[] {
   const parts = slug.split("/");
   const sectionSlug = parts[0];
-  const section = docsNavigation.find((s) => s.slug === sectionSlug);
-  if (!section) return [];
+  const itemSlug = parts[1];
 
+  const section = docsNavigation.find((s) => s.slug === sectionSlug);
+  const currentItem = section?.items.find((i) => i.slug === itemSlug);
+
+  if (currentItem?.related) {
+    const relatedItems: DocItem[] = [];
+    for (const relSlug of currentItem.related) {
+      const [sSlug, iSlug] = relSlug.split("/");
+      const s = docsNavigation.find((sec) => sec.slug === sSlug);
+      const item = s?.items.find((i) => i.slug === iSlug);
+      if (item) {
+        relatedItems.push({ ...item, slug: relSlug });
+      }
+    }
+    return relatedItems.slice(0, limit);
+  }
+
+  if (!section) return [];
   return section.items
-    .filter((item) => {
-      const itemPath = `${section.slug}/${item.slug}`;
-      return itemPath !== slug;
-    })
+    .filter((item) => `${section.slug}/${item.slug}` !== slug)
     .slice(0, limit);
 }
 
@@ -466,12 +643,20 @@ export function getBreadcrumbPath(slug: string): { label: string; href: string }
   ];
 
   if (section) {
-    path.push({ label: section.title, href: `/docs/${section.slug}` });
+    // Section links resolve to its first article (no section landing pages exist yet)
+    const firstItemHref =
+      section.items.length > 0
+        ? `/docs/${section.slug}/${section.items[0].slug}`
+        : `/docs/${section.slug}`;
+    path.push({ label: section.title, href: firstItemHref });
 
     if (itemSlug) {
       const item = section.items.find((i) => i.slug === itemSlug);
       if (item) {
-        path.push({ label: item.title, href: `/docs/${section.slug}/${item.slug}` });
+        path.push({
+          label: item.title,
+          href: `/docs/${section.slug}/${item.slug}`,
+        });
       }
     }
   }

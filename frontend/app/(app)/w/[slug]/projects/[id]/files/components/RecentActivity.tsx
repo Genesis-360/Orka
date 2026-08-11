@@ -4,7 +4,6 @@ import {
   Download,
   FolderPlus,
   FileText,
-  ExternalLink,
 } from "lucide-react";
 
 type ActivityItem = {

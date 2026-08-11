@@ -2,9 +2,6 @@ import Link from "next/link";
 import { Check, ExternalLink, Plus } from "lucide-react";
 import { acceptProposal } from "@/app/actions";
 import {
-  AlertBanner,
-  EmptyState,
-  GlassPanel,
   PageHeader,
   StatusPill,
 } from "@/components/dashboard/DashboardUI";

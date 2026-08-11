@@ -9,7 +9,6 @@ import { saveProposal } from "../../actions";
 import { ProposalTags } from "./ProposalTags";
 
 export function ProposalEditor({
-  slug,
   projectId,
   initialTitle,
   initialBlocks,

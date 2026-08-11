@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, ShieldCheck, Workflow, Globe, Eye, Heart, Cpu, Leaf, Quote } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck, Workflow, Globe, Eye, Heart, Cpu, Leaf } from "lucide-react";
 import { RiLinkedinFill, RiTwitterXFill, RiGithubFill } from "react-icons/ri";
 import { Safari } from "@/components/ui/safari";
 import { AvatarCircles } from "@/components/ui/avatar-circles";

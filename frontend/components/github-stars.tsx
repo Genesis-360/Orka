@@ -280,7 +280,7 @@ function useCountUp(target: number, active: boolean, duration = 1200) {
 
   React.useEffect(() => {
     if (!active) {
-      setValue(0);
+      requestAnimationFrame(() => setValue(0));
       return;
     }
 

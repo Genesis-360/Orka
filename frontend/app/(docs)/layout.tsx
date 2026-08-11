@@ -1,9 +1,14 @@
 import DocsShell from "@/components/docs/DocsShell";
+import { DocsProgressProvider } from "@/lib/docs/progress";
 
 export default function DocsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <DocsShell>{children}</DocsShell>;
+  return (
+    <DocsProgressProvider>
+      <DocsShell>{children}</DocsShell>
+    </DocsProgressProvider>
+  );
 }

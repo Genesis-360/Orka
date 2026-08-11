@@ -1,9 +1,5 @@
 import Hero from "../components/Hero";
 import { LogoCloud } from "../components/ui/logo-cloud-2";
-import ProblemCards from "../components/ProblemCards";
-import Engines from "../components/Engines";
-import WhyChooseUs from "../components/WhyChooseUs";
-import HowItWorks from "../components/HowItWorks";
 import FeatureBento from "../components/FeatureBento";
 import DashboardFeatures from "../components/DashboardFeatures";
 import Faq from "../components/Faq";

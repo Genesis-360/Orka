@@ -2,37 +2,25 @@
 
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
-import { docsNavigation } from "@/lib/docs/config";
+import { getRelatedArticles } from "@/lib/docs/config";
 
 interface RelatedArticlesProps {
   slug: string;
 }
 
 export default function RelatedArticles({ slug }: RelatedArticlesProps) {
-  // Find related articles from the same section
-  const parts = slug.split("/");
-  const sectionSlug = parts[0];
-  const section = docsNavigation.find((s) => s.slug === sectionSlug);
-
-  if (!section) return null;
-
-  const related = section.items
-    .filter((item) => {
-      const itemPath = `${section.slug}/${item.slug}`;
-      return itemPath !== slug;
-    })
-    .slice(0, 3);
+  const related = getRelatedArticles(slug, 3);
 
   if (related.length === 0) return null;
 
   return (
     <div className="mt-10 border-t border-black/[0.06] pt-8">
-      <h3 className="text-[14px] font-bold text-[#082033]">Continue Reading</h3>
+      <h3 className="text-[14px] font-bold text-[#082033]">Related Articles</h3>
       <div className="mt-4 space-y-2">
         {related.map((item) => (
           <Link
             key={item.slug}
-            href={`/docs/${section.slug}/${item.slug}`}
+            href={`/docs/${item.slug}`}
             className="group flex items-center justify-between rounded-xl border border-black/[0.06] p-3.5 transition-all hover:border-[#9474ff]/20 hover:shadow-md"
           >
             <div className="flex items-center gap-3">
