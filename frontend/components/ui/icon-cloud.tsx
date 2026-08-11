@@ -55,7 +55,7 @@ export function IconCloud({
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
     if (mediaQuery.matches) {
-      setIsPaused(true)
+      requestAnimationFrame(() => setIsPaused(true))
     }
 
     const handleChange = (e: MediaQueryListEvent) => {
@@ -138,7 +138,7 @@ export function IconCloud({
         id: i,
       })
     }
-    setIconPositions(newIcons)
+    requestAnimationFrame(() => setIconPositions(newIcons))
   }, [icons, images])
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
