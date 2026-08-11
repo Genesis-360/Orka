@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Check, BookOpen } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { learningPathFlows } from "@/lib/docs/config";
 
 interface LearningPathNavProps {

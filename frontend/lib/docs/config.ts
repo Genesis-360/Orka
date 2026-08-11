@@ -643,12 +643,20 @@ export function getBreadcrumbPath(slug: string): { label: string; href: string }
   ];
 
   if (section) {
-    path.push({ label: section.title, href: `/docs/${section.slug}` });
+    // Section links resolve to its first article (no section landing pages exist yet)
+    const firstItemHref =
+      section.items.length > 0
+        ? `/docs/${section.slug}/${section.items[0].slug}`
+        : `/docs/${section.slug}`;
+    path.push({ label: section.title, href: firstItemHref });
 
     if (itemSlug) {
       const item = section.items.find((i) => i.slug === itemSlug);
       if (item) {
-        path.push({ label: item.title, href: `/docs/${section.slug}/${item.slug}` });
+        path.push({
+          label: item.title,
+          href: `/docs/${section.slug}/${item.slug}`,
+        });
       }
     }
   }

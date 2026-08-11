@@ -21,13 +21,11 @@ import {
   Palette,
   Code,
   Eye,
-  LinkIcon,
   Info as InfoIcon,
   AlertTriangle,
   Lightbulb,
   CheckCircle2,
   HelpCircle,
-  ChevronRight,
   ListOrdered,
 } from "lucide-react";
 
@@ -64,11 +62,9 @@ export function Hero({
 /* ─── OnboardingProgress ─── */
 export function OnboardingProgress({
   currentStep,
-  totalSteps,
   steps,
 }: {
   currentStep: number;
-  totalSteps: number;
   steps: string[];
 }) {
   return (
@@ -382,11 +378,6 @@ export function NextStepCard({
       <ArrowRight size={16} className="shrink-0 text-[#9474ff]" />
     </Link>
   );
-}
-
-/* ─── DocsPagination ─── */
-export function DocsPagination({ next }: { next?: string; prev?: string }) {
-  return null; // Handled by PrevNextNav component
 }
 
 /* ─── Quote ─── */

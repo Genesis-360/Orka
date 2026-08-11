@@ -1,4 +1,5 @@
 import React from "react";
+import CodeBlock from "@/components/docs/CodeBlock";
 import {
   Hero,
   OnboardingProgress,
@@ -17,7 +18,6 @@ import {
   AccordionItem,
   RelatedGuides,
   NextStepCard,
-  DocsPagination,
   FounderNote,
   Quote,
   ComparisonTable,
@@ -303,14 +303,6 @@ function parseTableRow(line: string): string[] {
   return cleaned.split("|").map((cell) => cell.trim());
 }
 
-function tableToId(headerCells: string[]): string {
-  return headerCells
-    .join(" ")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
 const headingClasses: Record<string, string> = {
   h1: "mb-4 text-[2rem] font-black leading-tight tracking-tight text-[#082033] sm:text-[2.5rem]",
   h2: "mb-4 mt-12 text-[1.5rem] font-black leading-tight text-[#082033] first:mt-0",
@@ -392,9 +384,7 @@ export function renderMDX(source: string): React.ReactNode {
             break;
           case "code":
             elements.push(
-              <pre key={key} className="my-6 overflow-x-auto rounded-xl bg-[#082033] p-5 text-[13px] leading-6 text-white/90 [&_code]:bg-transparent [&_code]:p-0">
-                <code>{block.lines.join("\n")}</code>
-              </pre>
+              <CodeBlock key={key} code={block.lines.join("\n")} />
             );
             break;
           case "blockquote":
@@ -547,13 +537,6 @@ function parseComponents(source: string): Segment[] {
   return segments;
 }
 
-function parseChildItems(children: string): string[] {
-  return children
-    .split("\n")
-    .map((l) => l.replace(/^[-*]\s*/, "").replace(/^- \[x\]\s*/, "").trim())
-    .filter(Boolean);
-}
-
 function parseAccordionItems(children: string): { title: string; content: string }[] {
   const items: { title: string; content: string }[] = [];
   const lines = children.split("\n");
@@ -598,7 +581,6 @@ function renderComponentBlock(
         <OnboardingProgress
           key={key}
           currentStep={parseInt(props.currentStep || "1", 10)}
-          totalSteps={parseInt(props.totalSteps || "6", 10)}
           steps={props.steps ? props.steps.split(",") : []}
         />
       );
@@ -654,8 +636,6 @@ function renderComponentBlock(
       return <RelatedGuides key={key}>{children}</RelatedGuides>;
     case "NextStepCard":
       return <NextStepCard key={key} title={props.title || ""} description={props.description} href={props.href || "#"} />;
-    case "DocsPagination":
-      return <DocsPagination key={key} next={props.next} prev={props.prev} />;
     case "FounderNote":
       return <FounderNote key={key}>{renderMarkdownContent(children)}</FounderNote>;
     case "Quote":

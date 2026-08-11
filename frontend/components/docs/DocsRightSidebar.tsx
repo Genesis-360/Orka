@@ -8,7 +8,7 @@ interface DocsRightSidebarProps {
   slug: string;
 }
 
-export default function DocsRightSidebar({ headings, slug }: DocsRightSidebarProps) {
+export default function DocsRightSidebar({ headings }: DocsRightSidebarProps) {
   const [helpful, setHelpful] = useState<"yes" | "no" | null>(null);
 
   return (

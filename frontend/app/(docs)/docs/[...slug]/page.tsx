@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import Link from "next/link";
 import {
   getAllDocSlugs,
   getDocBySlug,
   getParentSlug,
   getBreadcrumbPath,
+  getSectionForDoc,
 } from "@/lib/docs/config";
 import { renderMDX } from "@/lib/docs/mdx";
 import DocsTopbar from "@/components/docs/DocsTopbar";
@@ -86,11 +86,19 @@ export default async function DocPage({ params }: Props) {
   const source = content || "";
   const headings = extractHeadings(source);
   const breadcrumbs = getBreadcrumbPath(slugPath);
+  const section = getSectionForDoc(slugPath);
 
-  const readingTime = (data as any).readingTime || calculateReadingTime(source);
-  const difficulty = (data as any).difficulty;
-  const estimatedSetup = (data as any).estimatedSetup;
-  const title = (data as any).title;
+  const meta = {
+    readingTime: data.readingTime as string | undefined,
+    difficulty: data.difficulty as string | undefined,
+    estimatedSetup: data.estimatedSetup as string | undefined,
+    title: data.title as string | undefined,
+  };
+
+  const readingTime = meta.readingTime || calculateReadingTime(source);
+  const difficulty = meta.difficulty;
+  const estimatedSetup = meta.estimatedSetup;
+  const title = meta.title;
 
   const renderedContent = renderMDX(source);
 
@@ -98,7 +106,7 @@ export default async function DocPage({ params }: Props) {
 
   return (
     <div className="flex flex-col">
-      <DocsTopbar breadcrumbs={breadcrumbs} />
+      <DocsTopbar breadcrumbs={breadcrumbs} accent={section?.color} />
 
       <div className="flex flex-1">
         <div className="flex-1 min-w-0 bg-[#fffaf2]">

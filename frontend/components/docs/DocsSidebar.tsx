@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Rocket,
@@ -16,14 +17,14 @@ import {
   Headphones,
   MessageSquare,
   GitBranch,
-  Zap,
   Map,
   Lightbulb,
   Check,
 } from "lucide-react";
 import { docsNavigation, DocSection } from "@/lib/docs/config";
 import { useDocsProgress } from "@/lib/docs/progress";
-import SidebarSearch from "./SidebarSearch";
+import { useDocsNav } from "./docs-nav";
+import { X } from "lucide-react";
 
 const iconMap: Record<string, typeof Rocket> = {
   rocket: Rocket,
@@ -39,11 +40,10 @@ const iconMap: Record<string, typeof Rocket> = {
   lightbulb: Lightbulb,
 };
 
-interface DocsSidebarProps {}
-
-export default function DocsSidebar({}: DocsSidebarProps) {
+export default function DocsSidebar() {
   const pathname = usePathname();
   const { isCompleted, getSectionProgress, isLoaded } = useDocsProgress();
+  const { open, setOpen } = useDocsNav();
   const [expandedSection, setExpandedSection] = useState<string | null>(() => {
     const parts = pathname.split("/").filter(Boolean);
     if (parts[0] === "docs" && parts[1]) {
@@ -57,23 +57,116 @@ export default function DocsSidebar({}: DocsSidebarProps) {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[260px] flex-col border-r border-white/10 bg-[#071426]">
-      {/* Logo — fixed at top */}
-      <div className="flex h-14 shrink-0 items-center px-5">
-        <Link href="/docs" className="flex items-center gap-2">
-          <img src="/Logo/orka-logo.png" alt="Orka" className="size-7 rounded-lg object-contain" />
+    <>
+      {/* Desktop sidebar */}
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[260px] flex-col border-r border-white/10 bg-[#071426] lg:flex">
+        <DocsNavContent
+          pathname={pathname}
+          expandedSection={expandedSection}
+          toggleSection={toggleSection}
+          isCompleted={isCompleted}
+          getSectionProgress={getSectionProgress}
+          isLoaded={isLoaded}
+        />
+      </aside>
+
+      {/* Mobile drawer */}
+      <div
+        className={`fixed inset-0 z-[90] bg-[#071426]/50 backdrop-blur-sm transition-opacity lg:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+      <aside
+        className={`fixed left-0 top-0 z-[95] flex h-screen w-[280px] flex-col border-r border-white/10 bg-[#071426] transition-transform duration-300 ease-out lg:hidden ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+        aria-hidden={!open}
+      >
+<div className="flex h-14 shrink-0 items-center justify-between px-5">
+          <Link href="/" className="flex items-center gap-2" aria-label="ORKA home" onClick={() => setOpen(false)}>
+            <Image
+              src="/Logo/logo.svg"
+              alt="ORKA"
+              width={28}
+              height={28}
+              className="size-7 object-contain"
+              priority
+            />
+            <span className="font-display text-lg font-black uppercase tracking-tight text-white">
+              orka
+            </span>
+            <span className="ml-0.5 rounded-md bg-[#9474ff]/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#9474ff]">
+              Docs
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close documentation navigation"
+            className="grid size-8 shrink-0 place-items-center rounded-lg text-white/50 transition-colors hover:bg-white/5 hover:text-white"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-3 pb-6">
+          <DocsNavContent
+            pathname={pathname}
+            expandedSection={expandedSection}
+            toggleSection={toggleSection}
+            isCompleted={isCompleted}
+            getSectionProgress={getSectionProgress}
+            isLoaded={isLoaded}
+            onNavigate={() => setOpen(false)}
+          />
+        </div>
+      </aside>
+    </>
+  );
+}
+
+function DocsNavContent({
+  pathname,
+  expandedSection,
+  toggleSection,
+  isCompleted,
+  getSectionProgress,
+  isLoaded,
+  onNavigate,
+}: {
+  pathname: string;
+  expandedSection: string | null;
+  toggleSection: (slug: string) => void;
+  isCompleted: (slug: string) => boolean;
+  getSectionProgress: (sectionSlug: string) => { completed: number; total: number; percent: number };
+  isLoaded: boolean;
+  onNavigate?: () => void;
+}) {
+  return (
+    <>
+      {/* Logo — desktop only (mobile drawer has its own header) */}
+      <div className="hidden h-14 shrink-0 items-center px-5 lg:flex">
+        <Link href="/" className="flex items-center gap-2" aria-label="ORKA home">
+          <Image
+            src="/Logo/logo.svg"
+            alt="ORKA"
+            width={28}
+            height={28}
+            className="size-7 object-contain"
+            priority
+          />
           <span className="font-display text-lg font-black uppercase tracking-tight text-white">
             orka
+          </span>
+          <span className="ml-0.5 rounded-md bg-[#9474ff]/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#9474ff]">
+            Docs
           </span>
         </Link>
       </div>
 
-      {/* Search */}
-      <div className="shrink-0 px-3 pb-4">
-        <SidebarSearch variant="dark" />
-      </div>
-
-      {/* Everything below scrolls as one unit */}
+      {/* Navigation */}
       <div className="flex-1 overflow-y-auto px-3 pb-6">
         {/* Navigation categories */}
         <div className="space-y-1">
@@ -87,6 +180,7 @@ export default function DocsSidebar({}: DocsSidebarProps) {
               isCompleted={isCompleted}
               getSectionProgress={getSectionProgress}
               isLoaded={isLoaded}
+              onNavigate={onNavigate}
             />
           ))}
         </div>
@@ -109,6 +203,7 @@ export default function DocsSidebar({}: DocsSidebarProps) {
             </div>
             <Link
               href="/docs/ai"
+              onClick={onNavigate}
               className="mt-3 flex items-center gap-1 text-[11px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
             >
               Learn more
@@ -147,7 +242,7 @@ export default function DocsSidebar({}: DocsSidebarProps) {
           </div>
         </div>
       </div>
-    </aside>
+    </>
   );
 }
 
@@ -159,6 +254,7 @@ function SidebarSection({
   isCompleted,
   getSectionProgress,
   isLoaded,
+  onNavigate,
 }: {
   section: DocSection;
   isExpanded: boolean;
@@ -167,6 +263,7 @@ function SidebarSection({
   isCompleted: (slug: string) => boolean;
   getSectionProgress: (sectionSlug: string) => { completed: number; total: number; percent: number };
   isLoaded: boolean;
+  onNavigate?: () => void;
 }) {
   const Icon = iconMap[section.icon] || Rocket;
   const progress = getSectionProgress(section.slug);
@@ -234,6 +331,7 @@ function SidebarSection({
               <Link
                 key={item.slug}
                 href={itemPath}
+                onClick={onNavigate}
                 className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-[12px] font-medium transition-colors ${
                   isItemActive
                     ? "bg-white/10 font-semibold text-[#9474ff]"

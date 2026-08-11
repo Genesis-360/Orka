@@ -17,7 +17,8 @@ export default function CompletionSection({ slug }: CompletionSectionProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   const completed = mounted && isCompleted(slug);

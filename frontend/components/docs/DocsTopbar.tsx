@@ -2,50 +2,65 @@
 
 import Link from "next/link";
 import { Sparkles, ChevronRight } from "lucide-react";
-import SearchBar from "./SearchBar";
+import DocsSearch from "./DocsSearch";
+import { DocsNavToggle } from "./docs-nav";
 
 interface DocsTopbarProps {
   breadcrumbs: { label: string; href?: string }[];
+  accent?: string;
 }
 
-export default function DocsTopbar({ breadcrumbs }: DocsTopbarProps) {
+export default function DocsTopbar({ breadcrumbs, accent }: DocsTopbarProps) {
   return (
-    <div className="sticky top-0 z-30 flex h-12 items-center border-b border-black/[0.06] bg-[#fffaf2]/80 px-6 backdrop-blur-md">
+    <div className="sticky top-0 z-30 flex h-12 items-center gap-3 border-b border-black/[0.06] bg-[#fffaf2]/80 px-4 backdrop-blur-md sm:px-6">
+      {/* Mobile menu toggle */}
+      <DocsNavToggle />
+
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-1.5 text-[12px] font-medium text-[#5f6b86]">
+      <nav className="hidden min-w-0 flex-1 items-center gap-1.5 text-[12px] font-medium text-[#5f6b86] sm:flex">
         <Link
           href="/docs"
-          className="transition-colors hover:text-[#082033]"
+          className="shrink-0 transition-colors hover:text-[#082033]"
         >
           Home
         </Link>
         {breadcrumbs.map((crumb, i) => (
-          <span key={i} className="flex items-center gap-1.5">
-            <ChevronRight size={10} className="text-[#5f6b86]/40" />
-            {crumb.href ? (
+          <span key={i} className="flex min-w-0 items-center gap-1.5">
+            <ChevronRight size={10} className="shrink-0 text-[#5f6b86]/40" />
+            {crumb.href && i < breadcrumbs.length - 1 ? (
               <Link
                 href={crumb.href}
-                className="transition-colors hover:text-[#082033]"
+                className="truncate transition-colors hover:text-[#082033]"
               >
                 {crumb.label}
               </Link>
             ) : (
-              <span className="text-[#082033]">{crumb.label}</span>
+              <span
+                className="truncate font-bold"
+                style={accent ? { color: accent } : undefined}
+              >
+                {crumb.label}
+              </span>
             )}
           </span>
         ))}
       </nav>
 
-      <div className="flex-1" />
+      <div className="flex-1 sm:hidden" />
 
       {/* Search + Ask AI */}
-      <div className="flex items-center gap-2">
-        <SearchBar />
+      <div className="flex shrink-0 items-center gap-2">
+        <div className="w-44 sm:w-52">
+          <DocsSearch variant="light" compact />
+        </div>
 
-        <button className="flex items-center gap-1.5 rounded-lg bg-[#9474ff] px-3 py-1.5 text-[12px] font-bold text-white transition-colors hover:bg-[#9474ff]/90">
+        <Link
+          href="/docs/ai/generate-proposal"
+          className="flex items-center gap-1.5 rounded-lg bg-gradient-to-br from-[#9474ff] to-[#7c5cff] px-3 py-1.5 text-[12px] font-bold text-white shadow-sm shadow-[#9474ff]/30 transition-all hover:from-[#8a66ff] hover:to-[#6f4eff] hover:shadow-md hover:shadow-[#9474ff]/40"
+        >
           <Sparkles size={12} />
-          Ask AI
-        </button>
+          <span className="hidden sm:inline">Ask AI</span>
+        </Link>
       </div>
     </div>
   );
