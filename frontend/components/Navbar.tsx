@@ -202,7 +202,7 @@ export default function Navbar() {
 
         <div className="ml-auto hidden items-center gap-2 lg:flex">
           <GithubStars
-            repoUrl="hhttps://github.com/Genesis-360/Orka"
+            repoUrl="https://github.com/Genesis-360/Orka"
             repoName="Genesis-360/Orka"
             starCount="3"
             display="stars"

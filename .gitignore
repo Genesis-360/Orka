@@ -11,6 +11,8 @@ package-lock.json
 .env
 .env.*
 !.env.example
+.planning
+
 
 # Build outputs
 .next/
@@ -40,6 +42,7 @@ Thumbs.db
 # Agent / tooling (local only)
 .qwen
 .planning
+./planning/agent
 .planning/codebase
 .qodo
 .superpowers
