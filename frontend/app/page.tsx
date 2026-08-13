@@ -9,6 +9,7 @@ import OpenSource from "../components/OpenSource";
 import LaunchCta from "../components/LaunchCta";
 import Footer from "../components/Footer";
 import ClickSpark from "../components/ClickSpark";
+import Reveal from "../components/motion/Reveal";
 import { faqs } from "../lib/content";
 
 export default function Home() {
@@ -20,22 +21,38 @@ export default function Home() {
       sparkCount={10}
       duration={500}>
       <main className="overflow-hidden bg-paper">
-        <Hero />
+        <Reveal y={18}>
+          <Hero />
+        </Reveal>
         <FaqJsonLd faqs={faqs} />
-        <section className="relative mx-auto grid max-w-3xl px-4 py-14">
-          <h2 className="mb-8 text-center text-balance font-medium text-lg tracking-tight text-muted-foreground md:text-2xl">
-            Companies we{" "}
-            <span className="font-semibold text-primary">collaborate</span>{" "}
-            with.
-          </h2>
-          <LogoCloud />
-        </section>
-        <FeatureBento />
-        <DashboardFeatures />
-        <Testimonials />
-        <OpenSource />
-        <Faq />
-        <LaunchCta />
+        <Reveal delay={0.05}>
+          <section className="relative mx-auto grid max-w-3xl px-4 py-14">
+            <h2 className="mb-8 text-center text-balance font-medium text-lg tracking-tight text-muted-foreground md:text-2xl">
+              Companies we{" "}
+              <span className="font-semibold text-primary">collaborate</span>{" "}
+              with.
+            </h2>
+            <LogoCloud />
+          </section>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <FeatureBento />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <DashboardFeatures />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Testimonials />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <OpenSource />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Faq />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <LaunchCta />
+        </Reveal>
         <Footer />
       </main>
     </ClickSpark>

@@ -1,41 +1,41 @@
-import { Eye, Heart, Zap, Sparkles, Shield } from "lucide-react";
+import Reveal from "../motion/Reveal";
 
 export default function AboutPrinciples() {
   const principles = [
     {
       num: "01",
-      icon: Eye,
       title: "Transparency",
       desc: "Open systems build real trust.",
-      color: "text-violet",
+      color: "bg-violet",
+      dot: "bg-violet",
     },
     {
       num: "02",
-      icon: Heart,
       title: "Trust",
       desc: "Escrow, milestones and on-chain truth.",
-      color: "text-teal",
+      color: "bg-teal",
+      dot: "bg-teal",
     },
     {
       num: "03",
-      icon: Zap,
       title: "Automation",
       desc: "Remove friction. Empower people.",
-      color: "text-orange",
+      color: "bg-orange",
+      dot: "bg-orange",
     },
     {
       num: "04",
-      icon: Sparkles,
       title: "Simplicity",
       desc: "Powerful systems that are simple to use.",
-      color: "text-lime",
+      color: "bg-lime",
+      dot: "bg-lime",
     },
     {
       num: "05",
-      icon: Shield,
       title: "Ownership",
       desc: "We build with long-term vision, not quick wins.",
-      color: "text-violet",
+      color: "bg-info",
+      dot: "bg-info",
     },
   ];
 
@@ -51,20 +51,27 @@ export default function AboutPrinciples() {
         </h2>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {principles.map(({ num, icon: Icon, title, desc, color }) => (
-            <div
-              key={num}
-              className="rounded-2xl border border-border/50 bg-white p-6 transition-all hover:-translate-y-0.5 hover:shadow-sm"
-            >
-              <span className="font-mono text-[11px] text-night/30">
-                {num}
-              </span>
-              <Icon size={20} className={`mt-3 ${color}`} />
-              <h3 className="mt-4 font-semibold text-night">{title}</h3>
-              <p className="mt-1.5 text-sm leading-5 text-night/55">
-                {desc}
-              </p>
-            </div>
+          {principles.map(({ num, title, desc, color, dot }, index) => (
+            <Reveal key={num} delay={index * 0.07}>
+              <div
+                className="group relative overflow-hidden rounded-2xl border border-border/50 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border hover:shadow-[0_14px_40px_-14px_rgba(8,32,51,0.18)]"
+              >
+                <span
+                  className={`pointer-events-none absolute inset-x-0 top-0 h-1 ${color} transition-all duration-500 group-hover:h-1.5`}
+                  aria-hidden="true"
+                />
+                <div className="display text-6xl leading-none text-night/8 transition-colors duration-300 group-hover:text-night/15">
+                  {num}
+                </div>
+                <div className="mt-5 flex items-center gap-2">
+                  <span className={`size-1.5 rounded-full ${dot}`} aria-hidden="true" />
+                  <h3 className="font-semibold text-night">{title}</h3>
+                </div>
+                <p className="mt-1.5 text-sm leading-5 text-night/55">
+                  {desc}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

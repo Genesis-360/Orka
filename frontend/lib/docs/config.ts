@@ -303,22 +303,22 @@ export const docsNavigation: DocSection[] = [
       {
         title: "Generate Proposal",
         slug: "generate-proposal",
-        description: "Create winning proposals with AI in seconds.",
+        description: "Create winning proposals with AI in seconds. Coming soon.",
       },
       {
         title: "AI Contracts",
         slug: "ai-contracts",
-        description: "Generate legally-sound contracts automatically.",
+        description: "Generate legally-sound contracts automatically. Coming soon.",
       },
       {
         title: "Smart Suggestions",
         slug: "smart-suggestions",
-        description: "AI-powered recommendations across Orka.",
+        description: "AI-powered recommendations across Orka. Coming soon.",
       },
       {
         title: "AI Invoice Assistant",
         slug: "ai-invoice-assistant",
-        description: "Let AI draft and send invoices for you.",
+        description: "Let AI draft and send invoices for you. Coming soon.",
       },
       {
         title: "Coming Soon",
@@ -629,6 +629,7 @@ export function getRelatedArticles(slug: string, limit = 4): DocItem[] {
   if (!section) return [];
   return section.items
     .filter((item) => `${section.slug}/${item.slug}` !== slug)
+    .map((item) => ({ ...item, slug: `${section.slug}/${item.slug}` }))
     .slice(0, limit);
 }
 

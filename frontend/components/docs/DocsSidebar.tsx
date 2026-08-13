@@ -203,7 +203,7 @@ function DocsNavContent({
               </div>
             </div>
             <Link
-              href="/docs/ai"
+              href="/docs/ai/coming-soon"
               onClick={onNavigate}
               className="mt-3 flex items-center gap-1 text-[11px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               Learn more

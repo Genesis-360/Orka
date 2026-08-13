@@ -10,7 +10,7 @@ import {
 
 export const ClientTweetCard = ({
   id,
-  apiUrl,
+  apiUrl = `/api/tweet/${id}`,
   fallback = <TweetSkeleton />,
   components,
   fetchOptions,

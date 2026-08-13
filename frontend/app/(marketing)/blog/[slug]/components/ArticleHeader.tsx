@@ -59,7 +59,7 @@ export default function ArticleHeader({ post }: { post: BlogArticle }) {
 
       {/* Cover image */}
       <div
-        className={`mt-8 aspect-[16/9] w-full rounded-2xl bg-gradient-to-br ${post.coverGradient} p-8 relative overflow-hidden`}
+        className={`mt-8 aspect-[3/2] w-full rounded-2xl bg-gradient-to-br ${post.coverGradient} p-8 relative overflow-hidden`}
       >
         {post.image ? (
           <Image

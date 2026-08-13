@@ -9,6 +9,7 @@ import AboutTeam from "@/components/about/AboutTeam";
 import AboutFaq from "@/components/about/AboutFaq";
 import AboutCTA from "@/components/about/AboutCTA";
 import FaqJsonLd from "@/components/FaqJsonLd";
+import Reveal from "@/components/motion/Reveal";
 import { aboutFaqs } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -21,15 +22,33 @@ export default function AboutPage() {
   return (
     <div className="bg-paper">
       <FaqJsonLd faqs={aboutFaqs} />
-      <AboutHero />
-      <AboutStats />
-      <AboutMission />
-      <AboutJourney />
-      <AboutPrinciples />
-      <AboutTechnology />
-      <AboutTeam />
-      <AboutFaq />
-      <AboutCTA />
+      <Reveal>
+        <AboutHero />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutStats />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutMission />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutJourney />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutPrinciples />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutTechnology />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutTeam />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutFaq />
+      </Reveal>
+      <Reveal delay={0.05}>
+        <AboutCTA />
+      </Reveal>
     </div>
   );
 }

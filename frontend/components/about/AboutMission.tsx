@@ -1,34 +1,34 @@
-import { Eye, Zap, Shield, Heart } from "lucide-react";
+import Reveal from "../motion/Reveal";
 
 export default function AboutMission() {
-  const principles = [
+  const values = [
     {
-      icon: Eye,
+      num: "01",
       title: "Transparent",
       desc: "Clear flows and open systems. No hidden fees, ever.",
-      color: "text-violet",
-      bg: "bg-violet/10",
+      accent: "text-violet",
+      bar: "bg-violet",
     },
     {
-      icon: Zap,
+      num: "02",
       title: "Automated",
       desc: "We automate the boring, so you can focus on growth.",
-      color: "text-orange",
-      bg: "bg-orange/10",
+      accent: "text-orange",
+      bar: "bg-orange",
     },
     {
-      icon: Shield,
+      num: "03",
       title: "Secure",
       desc: "On-chain security with enterprise-grade infrastructure.",
-      color: "text-teal",
-      bg: "bg-teal/10",
+      accent: "text-teal",
+      bar: "bg-teal",
     },
     {
-      icon: Heart,
+      num: "04",
       title: "Fair",
       desc: "Fair escrows. Fair releases. Fair for everyone.",
-      color: "text-lime",
-      bg: "bg-lime/15",
+      accent: "text-lime",
+      bar: "bg-lime",
     },
   ];
 
@@ -62,22 +62,26 @@ export default function AboutMission() {
               </p>
             </div>
 
-            {/* Right — Principles grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {principles.map(({ icon: Icon, title, desc, color, bg }) => (
-                <div key={title} className="flex gap-3">
-                  <span
-                    className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${bg}`}
+            {/* Right — Values grid */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {values.map(({ num, title, desc, accent, bar }, index) => (
+                <Reveal key={num} delay={index * 0.08}>
+                  <div
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
                   >
-                    <Icon size={18} className={color} />
-                  </span>
-                  <div>
-                    <h3 className="font-semibold text-white">{title}</h3>
+                    <span
+                      className={`pointer-events-none absolute inset-y-0 left-0 w-1 ${bar} transition-all duration-500 group-hover:w-1.5`}
+                      aria-hidden="true"
+                    />
+                    <div className={`display text-4xl leading-none ${accent} opacity-60`}>
+                      {num}
+                    </div>
+                    <h3 className="mt-4 font-semibold text-white">{title}</h3>
                     <p className="mt-1 text-sm leading-5 text-white/50">
                       {desc}
                     </p>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>

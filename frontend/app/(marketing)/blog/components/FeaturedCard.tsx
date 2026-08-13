@@ -28,7 +28,7 @@ export default function FeaturedCard({ post }: { post: BlogPost }) {
       <div className="grid gap-0 md:grid-cols-[1.2fr_1fr]">
         {/* Image */}
         <div
-          className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-8 transition-transform duration-500 group-hover:scale-[1.02] md:aspect-auto relative overflow-hidden`}
+          className={`aspect-[3/2] bg-gradient-to-br ${post.coverGradient} p-8 transition-transform duration-500 group-hover:scale-[1.02] relative overflow-hidden`}
         >
           {post.image ? (
             <Image

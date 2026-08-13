@@ -17,6 +17,7 @@ import CompletionSection from "@/components/docs/CompletionSection";
 import RelatedArticles from "@/components/docs/RelatedArticles";
 import SequentialNav from "@/components/docs/SequentialNav";
 import LearningPathNav from "@/components/docs/LearningPathNav";
+import ComingSoon from "@/components/docs/ComingSoon";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -29,6 +30,15 @@ export async function generateStaticParams() {
 function calculateReadingTime(content: string): number {
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));
+}
+
+function extractComingSoonFeatures(source: string): string[] {
+  const features: string[] = [];
+  for (const line of source.split("\n")) {
+    const match = line.match(/^\s*[-*]\s+(.+)$/);
+    if (match) features.push(match[1].trim());
+  }
+  return features;
 }
 
 function extractHeadings(source: string): { id: string; text: string; level: number }[] {
@@ -93,12 +103,15 @@ export default async function DocPage({ params }: Props) {
     difficulty: data.difficulty as string | undefined,
     estimatedSetup: data.estimatedSetup as string | undefined,
     title: data.title as string | undefined,
+    comingSoon: data.comingSoon === true,
   };
 
   const readingTime = meta.readingTime || calculateReadingTime(source);
   const difficulty = meta.difficulty;
   const estimatedSetup = meta.estimatedSetup;
   const title = meta.title;
+  const comingSoon = meta.comingSoon;
+  const comingSoonFeatures = comingSoon ? extractComingSoonFeatures(source) : [];
 
   const renderedContent = renderMDX(source);
 
@@ -129,14 +142,20 @@ export default async function DocPage({ params }: Props) {
               </h1>
             )}
 
-            <article className="docs-content">
-              {renderedContent}
-            </article>
+            {comingSoon ? (
+              <ComingSoon features={comingSoonFeatures} />
+            ) : (
+              <>
+                <article className="docs-content">
+                  {renderedContent}
+                </article>
 
-            <CompletionSection slug={slugPath} />
+                <CompletionSection slug={slugPath} />
 
-            <SequentialNav slug={slugPath} />
-            <LearningPathNav slug={slugPath} />
+                <SequentialNav slug={slugPath} />
+                <LearningPathNav slug={slugPath} />
+              </>
+            )}
 
             <div className="mt-10 border-t border-black/[0.06] pt-6">
               <PrevNextNav slug={slugPath} />

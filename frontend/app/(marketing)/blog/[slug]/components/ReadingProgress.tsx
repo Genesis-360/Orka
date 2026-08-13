@@ -31,7 +31,7 @@ export default function ReadingProgress() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-50 border-b border-night/8 bg-paper/90 backdrop-blur-md">
+    <div className="sticky top-0 z-40 border-b border-night/8 bg-paper/90 backdrop-blur-md">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 py-2">
           <span className="hidden text-2xs font-black uppercase tracking-wider text-night/40 sm:inline">
