@@ -4,14 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useFormStatus } from "react-dom";
 import { updateClientAction } from "@/app/actions";
-import type { ClientDetail, ClientStatus } from "@/lib/orka";
+import type { ClientDetail } from "@/lib/orka";
 import {
   ArrowLeft,
   UploadCloud,
   ChevronDown,
   Check,
   User,
-  Briefcase,
   MapPin,
   Info,
   Sparkles,
@@ -490,7 +489,7 @@ export function EditClientForm({
                 { icon: User, label: "Client Information", done: true },
                 { icon: MapPin, label: "Billing & Address", done: Boolean(open.billing) },
                 { icon: Info, label: "Additional Details", done: Boolean(open.additional) },
-              ].map(({ icon: Icon, label, done }, i) => (
+              ].map(({ label, done }, i) => (
                 <li key={label} className="flex items-center gap-3">
                   <span
                     className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold ${

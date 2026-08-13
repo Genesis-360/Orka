@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Every freelancer and agency eventually works with a difficult client. Learn how to manage unrealistic expectations, scope creep, delayed feedback, and payment issues while maintaining professionalism.",
   description: "Learn practical strategies to deal with difficult clients, manage expectations, avoid scope creep, and maintain healthy professional relationships.",
   category: "Client Management",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "8 min read",
   publishedAt: "2026-03-12",
   coverGradient: "from-coral/12 via-orange/8 to-coral/5",

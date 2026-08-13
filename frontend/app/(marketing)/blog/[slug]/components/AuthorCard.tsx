@@ -1,4 +1,5 @@
 import type { BlogAuthor } from "@/lib/blogs/types";
+import AuthorAvatar from "../../components/AuthorAvatar";
 
 export default function AuthorCard({ author }: { author: BlogAuthor }) {
   return (
@@ -7,9 +8,12 @@ export default function AuthorCard({ author }: { author: BlogAuthor }) {
         Written By
       </p>
       <div className="mt-3 flex items-center gap-3">
-        <span className="grid size-10 place-items-center rounded-full bg-night/10 text-base font-black text-night/60">
-          {author.initials}
-        </span>
+        <AuthorAvatar
+          name={author.name}
+          initials={author.initials}
+          sizeClass="size-10"
+          sizePx={40}
+        />
         <div>
           <p className="text-base font-bold text-night">{author.name}</p>
           <p className="text-sm font-bold text-night/50">{author.role}</p>

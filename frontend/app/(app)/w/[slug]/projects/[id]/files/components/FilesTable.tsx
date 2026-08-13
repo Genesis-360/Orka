@@ -94,14 +94,6 @@ function formatDate(dateStr: string) {
   });
 }
 
-function formatTime(dateStr: string) {
-  return new Date(dateStr).toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-}
-
 function timeAgo(dateStr: string) {
   const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
@@ -171,38 +163,6 @@ function ActionsDropdown({ onPreview }: { onPreview: () => void }) {
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-function FileGridCard({
-  file,
-  onPreview,
-}: {
-  file: FileRow;
-  onPreview: () => void;
-}) {
-  const { icon: Icon, color, bg } = fileIcon(file.name);
-
-  return (
-    <div className="group relative cursor-pointer rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition hover:border-gray-200 hover:shadow-md">
-      <div className="flex items-start justify-between">
-        <div
-          className={`flex h-12 w-12 items-center justify-center rounded-xl ${bg}`}
-        >
-          <Icon className={`h-6 w-6 ${color}`} />
-        </div>
-        <ActionsDropdown onPreview={onPreview} />
-      </div>
-      <p className="mt-2 truncate text-sm font-medium text-gray-900">
-        {file.name}
-      </p>
-      <p className="text-xs text-gray-400">{fileTypeLabel(file.name)}</p>
-      <div className="mt-1.5 flex items-center gap-2 text-[11px] text-gray-400">
-        <span>{formatSize(file.size)}</span>
-        <span>&middot;</span>
-        <span>{timeAgo(file.created_at)}</span>
-      </div>
     </div>
   );
 }

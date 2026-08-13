@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Late payments aren't just frustrating — they hurt your cash flow and slow your business growth. Learn practical strategies to get paid faster, reduce overdue invoices, and build a more reliable payment process.",
   description: "Learn proven strategies to reduce payment delays, improve cash flow, and create a payment process that works for both freelancers and clients.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "6 min read",
   publishedAt: "2026-04-15",
   coverGradient: "from-teal/15 via-info/8 to-violet/5",

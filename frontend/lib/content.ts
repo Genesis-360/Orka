@@ -168,14 +168,24 @@ export const steps: MethodStep[] = [
 ];
 
 export const faqs: Faq[] = [
-  ["Is ORKA a marketplace?", "No. ORKA starts after the sale, helping agencies and freelancers operate projects, escrow, verification, payouts, and finance — not find clients."],
-  ["Do users need crypto wallets?", "No. ORKA is designed as a Web2 product experience, using Stellar and Soroban under the hood. You never touch a blockchain directly."],
-  ["Who is it for first?", "Mid-sized digital agencies, global freelancers, remote startups, and niche service marketplaces looking to automate back-office finance."],
-  ["Is the product live?", "This landing page is for the early waitlist and design partners while the hackathon/pre-seed foundation is built. Sign up to get early access."],
+  ["Is ORKA officially live?", "Yes. ORKA is officially launched and production-ready for agencies and freelancers. Proposals, escrow, milestone verification, and payouts run on Stellar with open-source smart contracts — sign up and take your first engagement fully on-chain today."],
+  ["Is ORKA a marketplace?", "No. ORKA starts after the sale, helping agencies and freelancers operate projects, escrow, verification, payouts, and finance — not find clients. It replaces the back-office glue that invoicing tools and spreadsheets can't: proposal, escrow, verification, payout, and ledger in one connected loop."],
+  ["Do users need crypto wallets?", "No. ORKA is designed as a Web2 product experience, using Stellar and Soroban under the hood. You never touch a blockchain directly — funds move as USDC on Stellar in the background, so you pay and get paid in familiar terms."],
+  ["Who is it for first?", "Digital agencies, global freelancers, and remote teams running milestone-based engagements — anyone tired of chasing payments across currencies and tools. 50+ agencies and freelancers already run escrow and payouts on ORKA."],
   ["How is ORKA different from invoicing tools?", "Invoicing tools send a bill and hope. ORKA handles the full loop: proposal → escrow → milestone verification → payout → invoice → ledger. Everything is automatic, cross-currency, and audit-ready."],
-  ["How does milestone verification work?", "You define milestones in a proposal. When work is submitted, the client reviews and approves. ORKA automatically releases escrowed funds to your account. No chasing payments."],
-  ["What about fees and pricing?", "Pricing details are being finalized. We are designing for transparent, predictable fees — significantly lower than payment processors and cross-border wire fees."],
-  ["Is my data secure?", "Yes. Data is encrypted at rest and in transit. We use Supabase for storage and Stellar for escrow. Smart contract logic is open-source and auditable."],
+  ["How does milestone verification work?", "You define milestones in a proposal. When work is submitted, the client reviews it in a secure portal link and approves in one tap. ORKA automatically releases the escrowed funds to your account — no chasing payments."],
+  ["What about fees and pricing?", "ORKA charges no platform fees on escrow, proposals, or invoices. Starter is free forever (1 workspace, up to 3 projects, on-chain USDC escrow). Studio is $29/month, or $290/year (2 months free). Enterprise is custom. The only costs are nominal Stellar network fees — fractions of a cent."],
+  ["Is my data secure?", "Yes. Data is encrypted at rest and in transit and stored on Supabase, while escrow runs on open-source Stellar/Soroban smart contracts that anyone can audit. No one but you and your client can release or re-route funds."],
+];
+
+export const aboutFaqs: Faq[] = [
+  ["Why did ORKA start?", "ORKA started from a simple frustration: managing projects and getting paid shouldn't require spreadsheets, scattered tools, and constant follow-ups. We wanted to make the financial side of service work feel as seamless as the work itself — and every release is tested with agencies running real engagements."],
+  ["What does ORKA believe the future of service work looks like?", "We believe financial operations should become invisible — automated, transparent, and built directly into the way service businesses work. Today that means escrow, verification, and payouts in one loop."],
+  ["Why is ORKA building on Stellar?", "Stellar gives us the infrastructure to build fast, low-cost, and borderless financial workflows that can work across markets — settlement in seconds, network fees in fractions of a cent, and USDC moving across 180+ countries."],
+  ["What does \u201cfinancial operating system\u201d mean to ORKA?", "It means bringing the financial workflows around a project — from agreements and milestones to payments and settlement — into one connected system, with an open audit trail instead of a patchwork of tools."],
+  ["What are you building toward with ORKA?", "A product that lets service businesses run their entire financial side automatically — milestones, escrow, payouts, invoices — no matter where their clients are."],
+  ["What have you learned while building ORKA?", "That financial infrastructure has to be simple for the people using it. Powerful technology only matters when it removes complexity rather than adding to it — so every feature ships with feedback from agencies running real engagements on ORKA."],
+  ["What's next for ORKA?", "Expanding milestone-escrow automation and verification, adding more automations, and opening onboarding to every agency and freelancer — starting with the free Starter plan."],
 ];
 
 export const productLinks = [

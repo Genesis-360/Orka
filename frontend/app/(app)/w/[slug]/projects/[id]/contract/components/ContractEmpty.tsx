@@ -4,7 +4,6 @@ import { FileSignature, Sparkles } from "lucide-react";
 import { generateContract } from "../../actions";
 
 export function ContractEmpty({
-  slug,
   projectId,
   orgId,
 }: {

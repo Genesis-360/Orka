@@ -9,7 +9,7 @@ import {
   FolderKanban,
   ShieldCheck,
 } from "lucide-react";
-import type { MetricKey, MetricData } from "@/types/dashboard";
+import type { MetricKey } from "@/types/dashboard";
 
 type Tone = "cyan" | "violet" | "teal" | "orange" | "lime" | "coral";
 
@@ -52,8 +52,6 @@ export function MetricCard({
   title,
   value,
   subtitle,
-  icon: Icon,
-  iconBg,
   metricKey,
   href,
   trend,

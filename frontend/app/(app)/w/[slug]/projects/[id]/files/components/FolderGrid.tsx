@@ -1,10 +1,5 @@
 import {
   Folder,
-  FileText,
-  FileSignature,
-  FileImage,
-  FileSpreadsheet,
-  Archive,
   MoreHorizontal,
 } from "lucide-react";
 

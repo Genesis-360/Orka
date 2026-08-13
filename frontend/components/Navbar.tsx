@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { blogPosts } from "../lib/blog-data";
+import { GithubStars } from "./github-stars";
 
 type MenuLink = {
   label: string;
@@ -39,10 +40,10 @@ const menuGroups: MenuGroup[] = [
     eyebrow: "The operating system",
     heading: "Keep client work and payment records in one flow.",
     links: [
-      { label: "Proposals & agreements", description: "Turn an approved scope into a shared source of truth.", href: "/proposals", icon: FileText },
-      { label: "Milestone workflow", description: "Coordinate delivery, evidence, reviews, and approvals.", href: "/milestones", icon: BookOpen },
-      { label: "Payment records", description: "See every funded, pending, and settled milestone clearly.", href: "/payments", icon: FileText },
-      { label: "ORKA AI", description: "Get help drafting, summarising, and moving work forward.", href: "/ai", icon: FileText },
+      { label: "Proposals & agreements", description: "Turn an approved scope into a shared source of truth.", href: "/#", icon: FileText },
+      { label: "Milestone workflow", description: "Coordinate delivery, evidence, reviews, and approvals.", href: "/#", icon: BookOpen },
+      { label: "Payment records", description: "See every funded, pending, and settled milestone clearly.", href: "/#", icon: FileText },
+      { label: "ORKA AI", description: "Get help drafting, summarising, and moving work forward.", href: "/#", icon: FileText },
     ],
     featured: { label: "See the product", title: "Work is easier to trust when everyone sees the same next step.", copy: "Explore what ORKA brings together for global client teams.", href: "/signup" },
   },
@@ -52,15 +53,15 @@ const menuGroups: MenuGroup[] = [
     eyebrow: "Built around real roles",
     heading: "A cleaner handoff for everyone involved in a project.",
     links: [
-      { label: "Agencies & studios", description: "Run client work with a more dependable operating rhythm.", href: "/agencies", icon: FileText },
-      { label: "Independent experts", description: "Make scope, approvals, and payment status easier to follow.", href: "/independents", icon: FileText },
-      { label: "Clients", description: "Review a project through one clear, shared client portal.", href: "/clients", icon: FileText },
+      { label: "Agencies & studios", description: "Run client work with a more dependable operating rhythm.", href: "/#", icon: FileText },
+      { label: "Independent experts", description: "Make scope, approvals, and payment status easier to follow.", href: "/#", icon: FileText },
+      { label: "Clients", description: "Review a project through one clear, shared client portal.", href: "/#", icon: FileText },
     ],
     featured: { label: "Start with ORKA", title: "Bring order to the project before delivery begins.", copy: "Create your ORKA workspace and get started.", href: "/signup" },
   },
   {
-    id: "resources",
-    label: "Resources",
+    id: "explore",
+    label: "Explore",
     eyebrow: "Learn and decide",
     heading: "Everything you need to understand the ORKA approach.",
     links: [
@@ -76,6 +77,9 @@ const menuGroups: MenuGroup[] = [
 ];
 
 const recentPosts = blogPosts.slice(1, 4);
+
+const navItemClass =
+  "inline-flex h-9 cursor-pointer items-center rounded-md px-3 text-[16px] font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -174,8 +178,8 @@ export default function Navbar() {
                   aria-expanded={isOpen}
                   aria-controls={`${menuId}-${group.id}`}
                   onClick={() => setOpenMenu(isOpen ? null : group.id)}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-md px-3 text-sm font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
-                  {group.label}
+                  className={`${navItemClass} gap-1.5`}>
+                  <span className="font-medium">{group.label}</span>
                   <ChevronDown
                     size={15}
                     className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
@@ -186,32 +190,26 @@ export default function Navbar() {
           })}
           <Link
             href="/pricing"
-            className="inline-flex h-9 items-center rounded-md px-3 text-sm font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
+            className={navItemClass}>
             Pricing
           </Link>
           <Link
             href="/blog"
-            className="inline-flex h-9 items-center rounded-md px-3 text-sm font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
+            className={navItemClass}>
             Blog
           </Link>
         </div>
 
         <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <a
-            href="https://github.com/x0lg0n/Orka"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md border border-white/18 px-3 py-2 text-sm font-medium text-white/78 transition-colors hover:text-white hover:bg-white/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-            Star
-          </a>
+          <GithubStars
+            repoUrl="hhttps://github.com/Genesis-360/Orka"
+            repoName="Genesis-360/Orka"
+            starCount="3"
+            display="stars"
+            icon="default"
+            variant="outline"
+            className="!border-white/18 !bg-white/6 !text-white hover:!bg-white/8 hover:!text-white"
+          />
           <Link
             href="/signin"
             className="rounded-md px-3 py-2 text-sm font-medium text-white/78 transition-colors border hover:text-white hover:border-white/18 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet">

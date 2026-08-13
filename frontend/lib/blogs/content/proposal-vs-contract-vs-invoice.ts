@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Proposal, contract, and invoice are often confused — but each serves a different purpose. Learn when to use each document and how they work together in a modern client workflow.",
   description: "Understand the difference between proposals, contracts, and invoices — and learn how using the right document at the right time helps you win clients, avoid disputes, and get paid faster.",
   category: "Guides",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "4 min read",
   publishedAt: "2026-05-03",
   coverGradient: "from-violet/10 via-coral/8 to-orange/5",

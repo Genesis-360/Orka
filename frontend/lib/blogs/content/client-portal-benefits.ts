@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Still managing clients through scattered emails and spreadsheets? Discover how a client portal improves communication, builds trust, and helps agencies deliver a more professional experience.",
   description: "Learn how a client portal helps agencies and freelancers centralize communication, manage projects, improve transparency, and deliver a premium client experience.",
   category: "Client Management",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "6 min read",
   publishedAt: "2026-04-18",
   coverGradient: "from-info/12 via-violet/8 to-teal/5",

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { X, Save, Plus } from "lucide-react";
+import { X, Save } from "lucide-react";
 import { createProject } from "@/app/actions";
 import { AICopilotCard } from "./AICopilotCard";
 import { PreviewCard } from "./PreviewCard";

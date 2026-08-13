@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "AI is no longer optional for modern agencies. Discover the best AI tools that help automate proposals, streamline project management, improve client communication, and save hours every week.",
   description: "Explore the best AI tools agencies use to automate repetitive work, improve client management, write better proposals, and scale faster.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-28",
   coverGradient: "from-violet/15 via-info/10 to-violet/5",

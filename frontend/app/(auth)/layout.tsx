@@ -14,7 +14,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             <p className="-mt-2 text-center text-xs leading-5 text-muted-foreground">
               By continuing, you agree to our{" "}
               <a href="/terms" className="auth-text-link">
-                Terms
+                Terms & Conditions
               </a>{" "}
               and{" "}
               <a href="/privacy" className="auth-text-link">

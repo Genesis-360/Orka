@@ -1,0 +1,43 @@
+---
+title: "API"
+description: "Orka's REST API reference."
+category: "developers"
+order: 1
+---
+
+Build on top of Orka's API to integrate with your own tools and workflows.
+
+## Base URL
+
+```
+https://api.orka.app/v1
+```
+
+## Authentication
+
+All API requests require authentication via Bearer token:
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+Get your API key from Workspace Settings > API.
+
+## Key endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/projects` | GET | List all projects |
+| `/projects/:id` | GET | Get project details |
+| `/clients` | GET | List all clients |
+| `/invoices` | GET | List all invoices |
+| `/invoices` | POST | Create an invoice |
+| `/milestones` | GET | List milestones |
+
+## Rate limits
+
+- Free tier: 100 requests per minute
+- Pro tier: 1,000 requests per minute
+- Enterprise: Custom limits
+
+> Business Tip: Use webhooks instead of polling for real-time updates. It's more efficient and reduces API usage.

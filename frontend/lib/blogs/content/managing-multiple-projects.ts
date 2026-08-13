@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Juggling multiple clients doesn't have to mean missed deadlines and constant stress. Learn the systems successful agencies and freelancers use to manage projects efficiently.",
   description: "Discover practical systems that help agencies and freelancers manage multiple client projects without burnout, missed deadlines, or endless context switching.",
   category: "Productivity",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "8 min read",
   publishedAt: "2026-05-05",
   coverGradient: "from-info/12 via-info/6 to-violet/5",

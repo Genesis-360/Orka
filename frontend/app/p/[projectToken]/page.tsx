@@ -6,15 +6,6 @@ import { PortalMilestoneActions } from "./components/PortalMilestoneActions";
 import { PortalProposalView } from "./components/PortalProposalView";
 import { PortalWalletConnect } from "./components/PortalWalletConnect";
 
-function fmtDate(iso: string | null | undefined): string {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 function fmtAmount(amount: number | null, currency = "USD") {
   if (amount === null || amount === undefined) return "—";
   try {

@@ -20,7 +20,6 @@ type Props = {
 };
 
 export function ContractEditor({
-  slug,
   projectId,
   orgId,
   initialBlocks,

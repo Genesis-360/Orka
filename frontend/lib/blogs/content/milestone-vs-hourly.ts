@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Should you charge by the hour or by project milestones? Compare the pros, cons, and real-world use cases to choose the right pricing model for your service business.",
   description: "Compare milestone payments and hourly billing to understand which pricing model helps freelancers and agencies improve cash flow, build trust, and scale sustainably.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-04-08",
   coverGradient: "from-teal/10 via-violet/8 to-teal/5",

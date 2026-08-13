@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Most agencies don't have a talent problem — they have an admin problem. Discover how AI eliminates repetitive work, saves over 10 hours every week, and helps agencies focus on growth.",
   description: "Learn how agencies use AI to automate proposals, meetings, project planning, documentation, and client communication — saving more than 10 hours every week.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-25",
   coverGradient: "from-violet/12 via-info/8 to-violet/5",

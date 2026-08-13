@@ -1,6 +1,6 @@
 "use client";
 
-import { Crown, ArrowRight } from "lucide-react";
+import { Crown, ArrowRight, Check } from "lucide-react";
 
 export default function WorkspacePlanCard() {
   const features = [
@@ -27,9 +27,7 @@ export default function WorkspacePlanCard() {
         {features.map((feature) => (
           <div key={feature} className="flex items-center gap-2">
             <div className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100">
-              <svg className="h-2.5 w-2.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
+              <Check size={12} className="text-emerald-600" />
             </div>
             <span className="text-xs text-gray-600">{feature}</span>
           </div>

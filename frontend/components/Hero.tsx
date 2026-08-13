@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Safari } from "@/components/ui/safari";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
 
 export default function Hero() {
   return (
@@ -52,7 +54,10 @@ export default function Hero() {
       {/* Hero content */}
       <div className="relative z-10 mx-auto max-w-7xl pt-16 pb-8">
         <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <span className="rounded-full border border-white/20 bg-white/8 px-4 py-1.5 text-center text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[14px]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet/25 bg-violet/8 px-3 py-1.5 text-center text-[13px] font-medium text-white/80 transition-all duration-300 hover:border-violet/40 hover:text-white sm:text-[14px]">
+            <span className="rounded-full bg-violet px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+              New
+            </span>
             Launch — start building today
           </span>
         </div>
@@ -82,9 +87,69 @@ export default function Hero() {
             See pricing
           </Link>
         </div>
+
+        <div className="mt-7 flex justify-center">
+          <a
+            href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-90"
+            aria-label="As seen on Launch Llama Newsletter"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://tools.launchllama.co/featured-badge.png?v=2"
+              alt="As seen on Launch Llama Newsletter"
+              width={200}
+              height={50}
+              style={{ display: "block", border: 0 }}
+            />
+          </a>
+        </div>
+
+        <div className="mt-12 flex items-center justify-center gap-8">
+          <div className="origin-center">
+            <AvatarCircles
+              numPeople={50}
+              avatarUrls={[
+                {
+                  imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80",
+                  profileUrl: "#",
+                },
+                {
+                  imageUrl: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=160&q=80",
+                  profileUrl: "#",
+                },
+                {
+                  imageUrl: "https://images.unsplash.com/photo-1500649297466-74794c70acfc?w=160&q=80",
+                  profileUrl: "#",
+                },
+              ]}
+            />
+          </div>
+          <div className="text-left">
+            <p className="text-lg font-bold text-white">50+ agencies building on ORKA</p>
+            <p className="text-base text-white/50">From freelancers to enterprise</p>
+          </div>
+        </div>
       </div>
+      {/* Dashboard mockup */}
+      <div
+        className="mx-auto mt-12 max-w-7xl px-4 animate-in fade-in duration-700 dark"
+        style={{
+          maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+        }}
+      >
+        <Safari
+          url="orka.app / dashboard"
+          imageSrc="/dashboard.png"
+          mode="default"
+        />
+      </div>
+
       {/* Stats + tag cloud row */}
-      <div className="relative z-10 mx-auto mt-12 flex max-w-7xl flex-col items-center gap-8 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
+      <div className="mx-auto mt-[-10px] flex max-w-7xl flex-col items-center gap-8 px-6 text-center lg:flex-row lg:justify-between lg:items-end lg:text-left relative z-10">
         {/* Tag cloud */}
         <div className="flex max-w-md flex-wrap justify-center gap-2 lg:justify-start">
           {[
@@ -115,16 +180,16 @@ export default function Hero() {
         </div>
 
         {/* Stat cards */}
-        <div className="flex max-w-md flex-wrap justify-center gap-4 lg:justify-start">
+        <div className="flex max-w-md flex-wrap justify-center gap-4 lg:justify-end">
           <div className="cut-corner group rounded-[14px] bg-teal p-5 text-night shadow-hard transition-transform duration-300 hover:-translate-y-1 min-w-[160px]">
             <div className="flex items-end justify-between">
               <p className="display text-[40px]">50+</p>
               <ArrowUpRight size={40} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </div>
             <p className="mt-2 text-[14px] font-bold leading-6">
-              Design partners & early
+              Agencies & freelancers
               <br />
-              adopters on the waitlist
+              running on ORKA
             </p>
           </div>
           <div className="cut-corner group rounded-[14px] bg-lime p-5 text-night shadow-hard transition-transform duration-300 hover:-translate-y-1 min-w-[160px]">
@@ -139,7 +204,7 @@ export default function Hero() {
             </p>
           </div>
           <p className="text-[14px] font-medium text-white/80">
-              50+ design partners and early adopters already using ORKA.
+            50+ agencies and freelancers already run escrow and payouts on ORKA.
           </p>
         </div>
       </div>

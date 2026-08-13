@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Working with international clients is exciting — until it's time to get paid. Learn how to accept cross-border payments efficiently, reduce fees, avoid delays, and build trust with global clients.",
   description: "Learn how freelancers can receive international payments faster, reduce transaction fees, and build trust with global clients.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-04-02",
   coverGradient: "from-info/12 via-teal/8 to-info/5",

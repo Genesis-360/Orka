@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, FolderPlus, LayoutGrid, List } from "lucide-react";
+import { Upload, FolderPlus } from "lucide-react";
 import { FilesToolbar } from "./FilesToolbar";
 import { FolderGrid } from "./FolderGrid";
 import { FilesTable } from "./FilesTable";
@@ -47,10 +47,8 @@ type Uploader = {
 export function ProjectFilesView({
   slug,
   projectId,
-  project,
   files,
   recentActivity,
-  uploader,
 }: {
   slug: string;
   projectId: string;

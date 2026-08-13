@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import HeroBanner from "./components/HeroBanner";
 import QuickActions from "./components/QuickActions";
@@ -9,12 +9,7 @@ import AskOrka from "./components/AskOrka";
 import AIInsights from "./components/AIInsights";
 import PopularPrompts from "./components/PopularPrompts";
 
-export default function AiPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug: _slug } = use(params);
+export default function AiPage() {
   const [userName] = useState("Siddhartha");
 
   return (

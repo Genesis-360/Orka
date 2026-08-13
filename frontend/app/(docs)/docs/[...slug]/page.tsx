@@ -2,13 +2,22 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { getAllDocSlugs, getDocBySlug, getParentSlug } from "@/lib/docs/config";
+import {
+  getAllDocSlugs,
+  getDocBySlug,
+  getParentSlug,
+  getBreadcrumbPath,
+  getSectionForDoc,
+} from "@/lib/docs/config";
 import { renderMDX } from "@/lib/docs/mdx";
-import DocsBreadcrumbs from "@/components/docs/DocsBreadcrumbs";
+import DocsTopbar from "@/components/docs/DocsTopbar";
 import DocsRightSidebar from "@/components/docs/DocsRightSidebar";
 import PrevNextNav from "@/components/docs/PrevNextNav";
-import Feedback from "@/components/docs/Feedback";
+import CompletionSection from "@/components/docs/CompletionSection";
 import RelatedArticles from "@/components/docs/RelatedArticles";
+import SequentialNav from "@/components/docs/SequentialNav";
+import LearningPathNav from "@/components/docs/LearningPathNav";
+import ComingSoon from "@/components/docs/ComingSoon";
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -16,6 +25,20 @@ interface Props {
 
 export async function generateStaticParams() {
   return getAllDocSlugs().map((slug) => ({ slug: slug.split("/") }));
+}
+
+function calculateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+function extractComingSoonFeatures(source: string): string[] {
+  const features: string[] = [];
+  for (const line of source.split("\n")) {
+    const match = line.match(/^\s*[-*]\s+(.+)$/);
+    if (match) features.push(match[1].trim());
+  }
+  return features;
 }
 
 function extractHeadings(source: string): { id: string; text: string; level: number }[] {
@@ -29,6 +52,20 @@ function extractHeadings(source: string): { id: string; text: string; level: num
     headings.push({ id, text, level });
   }
   return headings;
+}
+
+function DifficultyBadge({ level }: { level: string }) {
+  const colors: Record<string, string> = {
+    Beginner: "bg-[#22bd93]/10 text-[#22bd93]",
+    Intermediate: "bg-[#3b82f6]/10 text-[#3b82f6]",
+    Advanced: "bg-[#ff8a22]/10 text-[#ff8a22]",
+    Mixed: "bg-[#9474ff]/10 text-[#9474ff]",
+  };
+  return (
+    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${colors[level] || colors.Beginner}`}>
+      {level}
+    </span>
+  );
 }
 
 export default async function DocPage({ params }: Props) {
@@ -48,10 +85,6 @@ export default async function DocPage({ params }: Props) {
   if (!fs.existsSync(filePath) && parentSlug) {
     filePath = path.join(docsDir, `${slugPath}/overview.mdx`);
   }
-  
-  if (!fs.existsSync(filePath)) {
-    filePath = path.join(docsDir, `${parentSlug || slugPath}.mdx`);
-  }
 
   if (!fs.existsSync(filePath)) {
     notFound();
@@ -59,33 +92,80 @@ export default async function DocPage({ params }: Props) {
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { content, data } = matter(raw);
-  const headings = extractHeadings(content);
-  const mdxContent = await renderMDX(content);
+
+  const source = content || "";
+  const headings = extractHeadings(source);
+  const breadcrumbs = getBreadcrumbPath(slugPath);
+  const section = getSectionForDoc(slugPath);
+
+  const meta = {
+    readingTime: data.readingTime as string | undefined,
+    difficulty: data.difficulty as string | undefined,
+    estimatedSetup: data.estimatedSetup as string | undefined,
+    title: data.title as string | undefined,
+    comingSoon: data.comingSoon === true,
+  };
+
+  const readingTime = meta.readingTime || calculateReadingTime(source);
+  const difficulty = meta.difficulty;
+  const estimatedSetup = meta.estimatedSetup;
+  const title = meta.title;
+  const comingSoon = meta.comingSoon;
+  const comingSoonFeatures = comingSoon ? extractComingSoonFeatures(source) : [];
+
+  const renderedContent = renderMDX(source);
+
+  const titleId = title ? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "";
 
   return (
-    <div className="mx-auto max-w-7xl overflow-x-hidden px-4 py-8 md:px-8 lg:px-12">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <article className="min-w-0">
-          <DocsBreadcrumbs slug={slugPath} />
+    <div className="flex flex-col">
+      <DocsTopbar breadcrumbs={breadcrumbs} accent={section?.color} />
 
-          <h1 className="display text-4xl uppercase sm:text-5xl text-night">
-            {data.title || doc.title}
-          </h1>
+      <div className="flex flex-1">
+        <div className="flex-1 min-w-0 bg-[#fffaf2]">
+          <div className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
+            <div className="mb-6 flex items-center gap-3">
+              {difficulty && <DifficultyBadge level={difficulty} />}
+              <span className="text-[12px] font-medium text-[#5f6b86]">
+                {readingTime} min read
+              </span>
+              {estimatedSetup && (
+                <span className="text-[12px] text-[#5f6b86]/60">
+                  · Setup: {estimatedSetup}
+                </span>
+              )}
+            </div>
 
-          {data.description && (
-            <p className="mt-3 text-base font-normal leading-7 text-night/60 sm:text-[18px]">
-              {data.description}
-            </p>
-          )}
+            {title && (
+              <h1 id={titleId} className="mb-8 text-[2rem] font-black leading-tight tracking-tight text-[#082033] sm:text-[2.5rem]">
+                {title}
+              </h1>
+            )}
 
-          <div className="mt-8">{mdxContent}</div>
+            {comingSoon ? (
+              <ComingSoon features={comingSoonFeatures} />
+            ) : (
+              <>
+                <article className="docs-content">
+                  {renderedContent}
+                </article>
 
-          <PrevNextNav slug={slugPath} />
-          <Feedback slug={slugPath} />
-          <RelatedArticles slug={slugPath} />
-        </article>
+                <CompletionSection slug={slugPath} />
 
-        <DocsRightSidebar headings={headings} />
+                <SequentialNav slug={slugPath} />
+                <LearningPathNav slug={slugPath} />
+              </>
+            )}
+
+            <div className="mt-10 border-t border-black/[0.06] pt-6">
+              <PrevNextNav slug={slugPath} />
+            </div>
+
+            <RelatedArticles slug={slugPath} />
+          </div>
+        </div>
+
+        <DocsRightSidebar headings={headings} slug={slugPath} />
       </div>
     </div>
   );

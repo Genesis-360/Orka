@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Pricing isn't about being the cheapest — it's about communicating value. Learn proven pricing strategies that help agencies increase profits, attract better clients, and close deals with confidence.",
   description: "Discover practical pricing strategies that help agencies win profitable clients without competing on price alone.",
   category: "Agency",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-04-22",
   coverGradient: "from-lime/10 via-orange/8 to-violet/5",

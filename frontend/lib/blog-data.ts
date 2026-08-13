@@ -25,6 +25,14 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
+export const authorImages: Record<string, string> = {
+  "ORKA Team": "/Logo/logo.svg",
+};
+
+export function authorImageFor(name: string): string {
+  return authorImages[name] ?? "";
+}
+
 export const blogPosts: BlogPost[] = [
   {
     id: "1",
@@ -34,7 +42,7 @@ export const blogPosts: BlogPost[] = [
     coverGradient: "from-violet/15 via-info/10 to-violet/5",
     image: "/BlogImages/AI-writes-better-proposals.png",
     category: "AI",
-    author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+    author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
     readingTime: "8 min read",
     publishedAt: "2026-03-04",
     featured: false,

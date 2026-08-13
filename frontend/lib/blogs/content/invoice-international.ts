@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Sending invoices to international clients isn't just about requesting payment — it's about making the process clear, professional, and hassle-free. Learn how to create invoices that help you get paid faster across borders.",
   description: "Learn how to create professional invoices for international clients, reduce payment delays, and simplify cross-border payments.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "6 min read",
   publishedAt: "2026-03-30",
   coverGradient: "from-violet/10 via-info/8 to-violet/5",

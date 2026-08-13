@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Growing an agency isn't about working harder — it's about building systems that let you serve more clients without burning out. Learn the proven strategies agencies use to scale from 5 clients to 50.",
   description: "Learn how agencies scale from 5 to 50 clients by building systems, automating operations, improving client management, and creating repeatable processes.",
   category: "Agency",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "8 min read",
   publishedAt: "2026-03-18",
   coverGradient: "from-lime/12 via-orange/8 to-teal/5",

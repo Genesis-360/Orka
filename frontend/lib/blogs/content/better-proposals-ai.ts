@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Winning more clients isn't about sending more proposals — it's about sending better ones. Learn how AI helps freelancers and agencies create personalized, persuasive project proposals in minutes.",
   description: "Learn how AI helps agencies and freelancers write winning project proposals faster, personalize every pitch, and increase client conversion rates.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-22",
   coverGradient: "from-violet/10 via-info/10 to-violet/5",

@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Should agencies still write proposals manually, or is AI the better option? Compare both approaches to understand which one helps you close more clients while saving valuable time.",
   description: "Compare AI and manual proposal writing to discover which approach helps agencies and freelancers write better proposals, save time, and win more clients.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-06",
   coverGradient: "from-violet/12 via-coral/8 to-violet/5",

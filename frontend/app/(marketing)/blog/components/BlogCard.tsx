@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, FileText } from "lucide-react";
 import type { BlogPost } from "./types";
+import AuthorAvatar from "./AuthorAvatar";
 
 const CAT_COLORS: Record<string, string> = {
   AI: "bg-violet-500",
@@ -25,7 +26,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
       className="group block overflow-hidden rounded-[18px] border-2 border-night bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.12)]"
     >
       <div
-        className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03] relative overflow-hidden`}
+        className={`aspect-[3/2] bg-gradient-to-br ${post.coverGradient} p-5 transition-transform duration-500 group-hover:scale-[1.03] relative overflow-hidden`}
       >
           {post.image ? (
             <Image
@@ -37,12 +38,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             />
         ) : (
           <div className="flex size-10 items-center justify-center rounded-xl bg-white/80 shadow-sm">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
+            <FileText size={20} className="text-violet" />
           </div>
         )}
       </div>
@@ -59,11 +55,15 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           {post.excerpt}
         </p>
         <div className="mt-4 flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-full bg-night/10 text-xs font-black text-night/60">
-            {post.author.initials}
-          </span>
+          <AuthorAvatar
+            name={post.author.name}
+            initials={post.author.initials}
+            sizeClass="size-8"
+            sizePx={32}
+          />
           <div className="min-w-0 flex-1">
             <p className="text-sm font-bold text-night truncate">{post.author.name}</p>
+            <p className="text-xs font-semibold text-night/40 truncate">{post.author.role}</p>
             <div className="mt-0.5 flex items-center gap-2 text-xs font-bold text-night/40">
               <span className="flex items-center gap-1">
                 <Calendar className="h-3 w-3" />

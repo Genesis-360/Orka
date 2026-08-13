@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import LegalToc from "@/components/LegalToc";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · ORKA",
@@ -23,6 +25,13 @@ const sections = [
           We also collect information automatically, such as browser type, device
           information, IP address, pages visited, and how you interact with the
           service. This helps us improve ORKA and keep it secure.
+        </p>
+        <p>
+          When you use AI-assisted features, prompts and context data you submit
+          may be collected and transmitted to third-party model providers. We
+          minimise data shared to what is necessary for the specific request and
+          do not use your workspace data to train or improve third-party models
+          unless you explicitly opt in.
         </p>
       </>
     ),
@@ -56,12 +65,20 @@ const sections = [
         <ul className="list-disc space-y-2 pl-5 marker:text-teal">
           <li>Service providers who help us operate ORKA (hosting, payments, email, analytics).</li>
           <li>Workspace collaborators and clients you invite, as necessary for project operations.</li>
+          <li>Third-party AI model providers, only for the purpose of generating responses to your explicit requests.</li>
           <li>Legal or regulatory authorities when required by applicable law or to protect rights.</li>
         </ul>
         <p>
           ORKA may connect with third-party services including payment providers,
           AI tools, and blockchain networks. Those services have their own privacy
           practices that you should review separately.
+        </p>
+        <p>
+          Transactions on the Stellar network are public and recorded on a
+          decentralised ledger. Information such as wallet addresses, transaction
+          amounts, and memo data may be visible to anyone who inspects the
+          network. ORKA does not control the Stellar network or any other
+          blockchain you choose to use.
         </p>
       </>
     ),
@@ -117,12 +134,21 @@ const sections = [
       <>
         <p>
           ORKA uses cookies and similar technologies to authenticate sessions,
-          remember preferences, and understand how the service is used. You can
-          control cookie settings through your browser preferences.
+          remember preferences, and understand how the service is used. We use
+          both session cookies (which expire when you close your browser) and
+          persistent cookies (which remain for a set period or until deleted).
         </p>
         <p>
-          Blocking certain cookies may affect the functionality of the service,
-          particularly authentication and workspace features.
+          We also use analytics cookies to understand aggregate usage patterns
+          and improve the product. These are set by our analytics provider and
+          do not identify you individually.
+        </p>
+        <p>
+          You can control cookie settings through your browser preferences.
+          Most browsers allow you to block or delete all cookies, or to receive
+          a warning before a cookie is stored. Blocking certain cookies may
+          affect the functionality of the service, particularly authentication
+          and workspace features.
         </p>
       </>
     ),
@@ -160,10 +186,58 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <div>
-      <section className="bg-night px-4 pb-12 pt-12 text-white md:px-8 md:pb-16 md:pt-16 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal">Legal</p>
+    <div className="bg-paper">
+      <section className="relative overflow-hidden rounded-b-[42px] bg-night px-4 pb-12 pt-12 text-white md:rounded-b-[72px] md:px-8 md:pb-16 md:pt-16 lg:px-12">
+        <div className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-violet/10 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-32 -left-32 size-60 rounded-full bg-orange/8 blur-3xl" aria-hidden="true" />
+
+        <Image
+          src="/Elements/star-violet.svg"
+          alt=""
+          aria-hidden
+          width={40}
+          height={40}
+          className="pointer-events-none absolute right-[12%] top-[22%] hidden w-8 object-contain opacity-60 md:block lg:w-10 float-1"
+        />
+        <Image
+          src="/Elements/plus-teal.svg"
+          alt=""
+          aria-hidden
+          width={36}
+          height={36}
+          className="pointer-events-none absolute left-[10%] top-[30%] hidden w-7 object-contain opacity-50 md:block lg:w-9 float-2"
+        />
+        <Image
+          src="/Elements/asterisk-orange.svg"
+          alt=""
+          aria-hidden
+          width={30}
+          height={30}
+          className="pointer-events-none absolute right-[18%] top-[50%] hidden w-6 object-contain opacity-50 lg:block float-5"
+        />
+        <Image
+          src="/Elements/plus-lime.svg"
+          alt=""
+          aria-hidden
+          width={32}
+          height={32}
+          className="pointer-events-none absolute left-[6%] bottom-[28%] hidden w-7 object-contain opacity-40 sm:block float-4"
+        />
+        <Image
+          src="/Elements/star-blue.svg"
+          alt=""
+          aria-hidden
+          width={28}
+          height={28}
+          className="pointer-events-none absolute right-[8%] bottom-[22%] hidden w-6 object-contain opacity-40 sm:block float-3"
+        />
+
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="flex items-center gap-4 text-sm text-white/40">
+            <span className="h-px w-12 bg-white/10" />
+            <span className="text-xs font-semibold uppercase tracking-widest">Legal</span>
+            <span className="h-px w-12 bg-white/10" />
+          </div>
           <h1 className="display mt-5 text-5xl uppercase sm:text-6xl md:text-7xl">Privacy policy</h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
             How ORKA collects, uses, and protects your personal information.
@@ -178,34 +252,19 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-6xl">
           <aside className="border-l-4 border-orange bg-bone px-5 py-4 text-sm leading-6 text-night/80" aria-label="Important legal notice">
             <span className="font-bold text-night">Important:</span> This is a clear
-            product privacy template and should be reviewed by qualified legal counsel
-            before ORKA&apos;s production launch. It is not jurisdiction-specific legal advice.
+            product privacy policy and should be reviewed by qualified legal counsel.
+            It is not jurisdiction-specific legal advice.
           </aside>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
-            <nav aria-label="Privacy policy contents" className="border-b border-night/15 pb-6 lg:border-b-0 lg:pb-0">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">On this page</p>
-              <ol className="mt-4 grid gap-x-5 gap-y-2 sm:grid-cols-2 lg:block lg:space-y-1">
-                {sections.map((section, index) => (
-                  <li key={section.id}>
-                    <a
-                      href={`#${section.id}`}
-                      className="group flex items-baseline gap-2 py-1 text-sm leading-5 text-night/70 transition-colors hover:text-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet"
-                    >
-                      <span className="font-mono text-xs text-violet">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="group-hover:underline group-hover:decoration-orange group-hover:decoration-2 group-hover:underline-offset-4">{section.title}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <LegalToc sections={sections} label="Privacy policy" />
 
-            <article className="max-w-[70ch]">
+            <article className="max-w-[70ch] min-w-0">
               {sections.map((section, index) => (
                 <section
                   id={section.id}
                   key={section.id}
-                  className="scroll-mt-8 border-b border-night/15 py-9 first:pt-0 last:border-b-0"
+                  className="scroll-mt-24 border-b border-night/15 py-9 first:pt-0 last:border-b-0 lg:scroll-mt-8"
                 >
                   <div className="flex items-baseline gap-4">
                     <span className="font-mono text-sm font-bold text-violet">{String(index + 1).padStart(2, "0")}</span>

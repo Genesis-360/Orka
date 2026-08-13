@@ -1,0 +1,40 @@
+---
+title: "SDK"
+description: "Use Orka's SDK in your application."
+category: "developers"
+order: 3
+---
+
+Build on top of Orka with our official SDK.
+
+## Installation
+
+```bash
+npm install @orka/sdk
+```
+
+## Quick start
+
+```javascript
+import { Orka } from "@orka/sdk";
+
+const orka = new Orka({ apiKey: "your-key" });
+
+// Get all projects
+const projects = await orka.projects.list();
+
+// Create an invoice
+const invoice = await orka.invoices.create({
+  clientId: "client-123",
+  amount: 5000,
+});
+```
+
+## Available modules
+
+- projects — CRUD operations on projects
+- clients — Manage client records
+- invoices — Create and send invoices
+- milestones — Track project milestones
+
+> Business Tip: Use the SDK for complex integrations. For simple use cases, the REST API might be enough.
