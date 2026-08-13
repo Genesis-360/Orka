@@ -16,8 +16,6 @@ type EscrowDeploymentFlowProps = {
 };
 
 export function EscrowDeploymentFlow({
-  projectSlug,
-  projectId,
   projectToken,
   deployedAt,
   contractAddress,

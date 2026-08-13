@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Winning more clients isn't about sending more proposals — it's about sending better ones, responding faster, and automating repetitive work. Discover how AI is changing the way modern agencies grow.",
   description: "Learn how agencies use AI to generate proposals, automate client communication, reduce admin work, and close more deals faster.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "5 min read",
   publishedAt: "2026-04-25",
   coverGradient: "from-violet/15 via-violet/10 to-info/5",

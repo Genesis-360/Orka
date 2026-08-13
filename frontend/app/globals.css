@@ -232,6 +232,58 @@ input {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ── Branded webkit scrollbar ──
+   Slim, rounded violet thumb on a transparent track. The .scrollbar-hide
+   helper above keeps higher specificity, so opt-out elements stay clean. */
+html {
+  scrollbar-color: rgba(148, 116, 255, 0.55) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 116, 255, 0.55);
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9474ff;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark surfaces (root .dark and nested dark panels) get a brighter thumb */
+html.dark::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 116, 255, 0.5);
+}
+html.dark::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #a78cff;
+}
+html.dark {
+  scrollbar-color: rgba(148, 116, 255, 0.5) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}
 @keyframes dropdown-in {
   from {
     opacity: 0;
@@ -370,6 +422,35 @@ input {
   .icon-pulse,
   .star-wiggle:hover {
     animation: none !important;
+  }
+}
+
+/* ── Gradient border utility ── */
+.border-gradient {
+  position: relative;
+}
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(148,116,255,0.3), rgba(255,107,53,0.2), rgba(45,212,191,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Fade + slide in animation ── */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

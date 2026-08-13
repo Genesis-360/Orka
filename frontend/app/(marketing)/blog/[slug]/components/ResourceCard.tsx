@@ -29,10 +29,10 @@ export default function ResourceCard() {
         ))}
       </div>
       <Link
-        href="/resources"
+        href="/docs"
         className="mt-3 block text-center text-xs font-black text-violet hover:underline"
       >
-        View all resources →
+        Browse the docs →
       </Link>
     </div>
   );

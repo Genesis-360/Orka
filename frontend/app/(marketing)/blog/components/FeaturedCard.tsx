@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, FileText } from "lucide-react";
 import type { BlogPost } from "@/app/(marketing)/blog/components/types";
+import AuthorAvatar from "./AuthorAvatar";
 
 const CAT_COLORS: Record<string, string> = {
   AI: "bg-violet-500",
@@ -27,7 +28,7 @@ export default function FeaturedCard({ post }: { post: BlogPost }) {
       <div className="grid gap-0 md:grid-cols-[1.2fr_1fr]">
         {/* Image */}
         <div
-          className={`aspect-[16/10] bg-gradient-to-br ${post.coverGradient} p-8 transition-transform duration-500 group-hover:scale-[1.02] md:aspect-auto relative overflow-hidden`}
+          className={`aspect-[3/2] bg-gradient-to-br ${post.coverGradient} p-8 transition-transform duration-500 group-hover:scale-[1.02] relative overflow-hidden`}
         >
           {post.image ? (
             <Image
@@ -57,12 +58,18 @@ export default function FeaturedCard({ post }: { post: BlogPost }) {
             {post.excerpt}
           </p>
           <div className="mt-4 flex items-center gap-3">
-            <span className="grid size-8 place-items-center rounded-full bg-night/10 text-xs font-black text-night/60">
-              {post.author.initials}
-            </span>
+            <AuthorAvatar
+              name={post.author.name}
+              initials={post.author.initials}
+              sizeClass="size-8"
+              sizePx={32}
+            />
             <div>
               <p className="text-base font-bold text-night">
                 {post.author.name}
+              </p>
+              <p className="text-sm font-semibold text-night/40">
+                {post.author.role}
               </p>
               <div className="mt-0.5 flex items-center gap-2 text-xs font-bold text-night/40">
                 <span className="flex items-center gap-1">

@@ -5,7 +5,7 @@ Compact guidance for OpenCode sessions in the ORKA repo.
 ## Repo shape
 
 - **pnpm monorepo** (no `pnpm-workspace.yaml` — each package is managed independently). Packages:
-  - `frontend/` — Next.js 16 (App Router) app: landing page + dashboard UI, Supabase + Resend waitlist, Stellar/Soroban integration via `@orka/stellar-sdk`. Uses `frontend/pnpm-lock.yaml`. Route architecture: `(app)/w/[slug]/...` is the authenticated workspace area (slug = `organizations.slug`, the URL source of truth), `p/[token]` is the public client portal, `(auth)`/`(marketing)` are public route groups, and `/workspaces` is the pre-auth chooser. Legacy `app/dashboard/**` was removed.
+  - `frontend/` — Next.js 16 (App Router) app: landing page + dashboard UI, Supabase + Resend contact/newsletter, Stellar/Soroban integration via `@orka/stellar-sdk`. Uses `frontend/pnpm-lock.yaml`. Route architecture: `(app)/w/[slug]/...` is the authenticated workspace area (slug = `organizations.slug`, the URL source of truth), `p/[token]` is the public client portal, `(auth)`/`(marketing)` are public route groups, and `/workspaces` is the pre-auth chooser. Legacy `app/dashboard/**` was removed.
   - `contracts/` — Soroban smart contracts (Rust). Tested via `cargo test` (snapshots under `test_snapshots/`).
   - `services/` — Rust / Axum backend (`services/src`).
   - `packages/stellar-sdk/` — TypeScript SDK (`vitest` tests under `src/`). Has its own `pnpm-lock.yaml`.
@@ -40,9 +40,9 @@ Compact guidance for OpenCode sessions in the ORKA repo.
 - **Never run `npm install` at the repo root.** It created a spurious `package-lock.json` that made Next.js 16 mis-infer the workspace root and crash with `adapterFn is not a function`. Use `pnpm` everywhere.
 - `.gitignore` ignores `node_modules/`, `.env*`, `target/`, build outputs, and `package-lock.json`.
 
-## Waitlist / backend prerequisites
+## Contact / newsletter backend prerequisites
 
-- The waitlist API (`app/api/waitlist/route.ts`) requires the `waitlist` table in Supabase. Create it by running `frontend/supabase/waitlist.sql` in the Supabase SQL editor first.
+- The contact API (`app/api/contact/route.ts`) requires the `contact` table in Supabase. Create it by running `frontend/supabase/contact.sql` in the Supabase SQL editor first. It serves both "contact us" messages and newsletter signups (`newsletter: true`, used by the footer and blog widgets).
 - Env: copy `frontend/.env.example` to `frontend/.env.local`. No env vars are needed for the static landing page itself, but the API route throws at runtime without Supabase/Resend values.
 
 ## Env var gotcha (non-standard names)

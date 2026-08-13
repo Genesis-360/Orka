@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "A freelancer contract isn't just legal paperwork—it's the foundation of trust. Learn the essential contract clauses every freelancer, agency, and service business should include to prevent disputes, scope creep, and payment delays.",
   description: "Discover the contract clauses every freelancer and agency should use to protect projects, avoid misunderstandings, and build long-term client trust.",
   category: "Contracts",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "5 min read",
   publishedAt: "2026-05-08",
   coverGradient: "from-orange/12 via-orange/6 to-coral/5",

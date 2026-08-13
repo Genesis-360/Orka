@@ -27,10 +27,10 @@ export default function LeadCaptureCard() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, newsletter: true }),
       });
       if (!res.ok) throw new Error("Failed to submit");
       setSubmitted(true);
@@ -112,7 +112,7 @@ export default function LeadCaptureCard() {
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet py-2.5 text-base font-black text-white transition-colors hover:bg-violet/90 disabled:opacity-60"
         >
           {loading && <Loader2 size={14} className="animate-spin" />}
-          {loading ? "Sending..." : "Get Early Access"}
+          {loading ? "Sending..." : "Get Launch Updates"}
           {!loading && <ArrowRight size={14} />}
         </button>
       </form>

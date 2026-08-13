@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FileText } from "lucide-react";
 import type { BlogArticle } from "@/lib/blogs/types";
 import ShareButtons from "./ShareButtons";
+import AuthorAvatar from "../../components/AuthorAvatar";
 
 export default function ArticleHeader({ post }: { post: BlogArticle }) {
   return (
@@ -40,9 +41,12 @@ export default function ArticleHeader({ post }: { post: BlogArticle }) {
       {/* Author + metadata */}
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-3">
-          <span className="grid size-9 place-items-center rounded-full bg-night/10 text-xs font-black text-night/60">
-            {post.author.initials}
-          </span>
+          <AuthorAvatar
+            name={post.author.name}
+            initials={post.author.initials}
+            sizeClass="size-9"
+            sizePx={36}
+          />
           <div>
             <p className="text-base font-bold text-night">{post.author.name}</p>
             <p className="text-xs font-bold text-night/40">
@@ -55,7 +59,7 @@ export default function ArticleHeader({ post }: { post: BlogArticle }) {
 
       {/* Cover image */}
       <div
-        className={`mt-8 aspect-[16/9] w-full rounded-2xl bg-gradient-to-br ${post.coverGradient} p-8 relative overflow-hidden`}
+        className={`mt-8 aspect-[3/2] w-full rounded-2xl bg-gradient-to-br ${post.coverGradient} p-8 relative overflow-hidden`}
       >
         {post.image ? (
           <Image

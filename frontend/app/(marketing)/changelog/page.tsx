@@ -142,7 +142,7 @@ export default function ChangelogPage() {
 
       {/* Timeline */}
       <div className="mx-auto max-w-5xl px-6 pt-10 lg:px-10">
-        {releases.map((r, i) => (
+        {releases.map((r) => (
           <div key={r.date} className="flex flex-col gap-y-6 md:flex-row">
             {/* Left column — date + version */}
             <div className="shrink-0 md:w-48">

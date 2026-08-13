@@ -95,7 +95,6 @@ export function ProjectOverviewView({
   owner,
   files,
   activity,
-  memberCount,
   stats,
   projectStage,
 }: {

@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Clients don't hesitate because of the price — they hesitate because of the risk. Learn how milestone-based payments build trust, improve cash flow, and create smoother client relationships.",
   description: "Discover why milestone-based payments are replacing traditional invoicing and how they help agencies and freelancers build stronger client relationships.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "6 min read",
   publishedAt: "2026-05-01",
   coverGradient: "from-teal/12 via-violet/8 to-teal/5",

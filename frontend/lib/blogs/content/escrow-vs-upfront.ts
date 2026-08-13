@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Should you ask for full payment upfront or use milestone-based escrow? Compare both payment models to understand which builds more trust, reduces risk, and creates a better client experience.",
   description: "Compare escrow and upfront payments to understand which payment model offers better trust, security, and cash flow for freelancers and agencies.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-04-05",
   coverGradient: "from-teal/12 via-lime/8 to-teal/5",

@@ -62,7 +62,6 @@ export function ContractSigningPanel({
   orgId,
   agencySig,
   clientSig,
-  status,
   onSigned,
 }: Props) {
   const [busy, setBusy] = useState(false);

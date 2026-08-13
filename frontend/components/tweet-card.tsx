@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import Image from "next/image"
-import { enrichTweet, type EnrichedTweet, type TweetProps } from "react-tweet"
+import { Heart, MessageCircle } from "lucide-react"
+import { enrichTweet, type EnrichedTweet, type TweetProps, formatNumber } from "react-tweet"
 import { getTweet, type Tweet } from "react-tweet/api"
 
 import { cn } from "@/lib/utils"
@@ -69,6 +70,66 @@ export const TweetNotFound = ({
     {...props}
   >
     <h3>Tweet not found</h3>
+  </div>
+)
+
+export const TweetFallback = ({ handle }: { handle?: string }) => (
+  <div className="flex h-fit w-full flex-col items-center justify-center gap-3 rounded-xl border border-night/10 bg-white p-6 text-center">
+    <Twitter className="size-6 text-night/40" />
+    <p className="text-sm font-medium text-night/60">
+      This post is no longer available.
+    </p>
+    <a
+      href={handle ? `https://x.com/${handle.replace(/^@/, "")}` : "https://x.com/get_orka"}
+      target="_blank"
+      rel="noreferrer"
+      className="text-sm font-semibold text-violet transition-colors hover:text-[#a78cff]"
+    >
+      {handle ? `View ${handle} on X` : "Follow ORKA on X"}
+    </a>
+  </div>
+)
+
+export const TweetEngagement = ({ tweet }: { tweet: EnrichedTweet }) => (
+  <div className="mt-2 flex items-center justify-between text-night/50">
+    <div className="flex items-center gap-5">
+      <a
+        href={tweet.reply_url}
+        target="_blank"
+        rel="noreferrer"
+        title="Replies"
+        className="inline-flex items-center gap-1.5 text-sm transition-colors hover:text-night"
+      >
+        <MessageCircle
+          size={16}
+          className="transition-transform duration-200 group-hover:scale-110"
+        />
+        <span className="tabular-nums">{formatNumber(tweet.conversation_count)}</span>
+      </a>
+      <a
+        href={tweet.like_url}
+        target="_blank"
+        rel="noreferrer"
+        title="Likes"
+        className="group/like inline-flex items-center gap-1.5 text-sm transition-colors hover:text-[#f91880]"
+      >
+        <Heart
+          size={16}
+          className="transition-transform duration-200 group-hover/like:scale-110 group-hover/like:text-[#f91880]"
+        />
+        <span className="tabular-nums">{formatNumber(tweet.favorite_count)}</span>
+      </a>
+    </div>
+    <a
+      href={tweet.url}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="View this post on X"
+      title="View on X"
+      className="text-night/40 transition-all hover:scale-105 hover:text-night"
+    >
+      <Twitter className="size-4" />
+    </a>
   </div>
 )
 
@@ -250,7 +311,7 @@ export const MagicTweet = ({
   return (
     <div
       className={cn(
-        "relative flex h-fit w-full flex-col gap-4 overflow-hidden rounded-xl border border-night/10 bg-white p-5",
+        "group relative flex h-fit w-full flex-col gap-4 overflow-hidden rounded-xl border border-night/10 bg-white p-5",
         className
       )}
       {...props}
@@ -258,6 +319,7 @@ export const MagicTweet = ({
       <TweetHeader tweet={enrichedTweet} hideTwitterIcon={hideTwitterIcon} />
       <TweetBody tweet={enrichedTweet} />
       <TweetMedia tweet={enrichedTweet} />
+      <TweetEngagement tweet={enrichedTweet} />
     </div>
   )
 }

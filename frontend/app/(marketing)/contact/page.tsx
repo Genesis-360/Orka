@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, Calendar, Mail, MessageSquare } from "lucide-react"
 import { RiDiscordFill, RiTwitterXFill, RiGithubFill } from "react-icons/ri"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import ContactForm from "./ContactForm"
 
 export const metadata: Metadata = {
   title: "Contact · ORKA",
@@ -104,7 +103,7 @@ export default function ContactPage() {
             </a>
             <span className="h-6 w-px bg-white/10" />
             <a
-              href="https://discord.gg/orka"
+              href="https://discord.gg/KbW5pPCDyY"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 transition-all duration-200 hover:scale-110 hover:bg-white/5 hover:text-white"
@@ -114,7 +113,7 @@ export default function ContactPage() {
             </a>
             <span className="h-6 w-px bg-white/10" />
             <a
-              href="https://github.com/orka"
+              href="https://github.com/Genesis-360/Orka"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 transition-all duration-200 hover:scale-110 hover:bg-white/5 hover:text-white"
@@ -161,40 +160,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <form className="mt-6 space-y-4">
-                  <div>
-                    <Label htmlFor="name" className="text-xs font-semibold text-muted-foreground">
-                      Your name <span className="text-border">*</span>
-                    </Label>
-                    <Input id="name" placeholder="Jane Doe" required className="mt-1 focus-visible:!ring-0 focus-visible:!border-border" />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-xs font-semibold text-muted-foreground">
-                      Email <span className="text-border">*</span>
-                    </Label>
-                    <div className="relative mt-1">
-                      <Mail size={16} className="text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                      <Input id="email" type="email" placeholder="you@example.com" required className="pl-9 focus-visible:!ring-0 focus-visible:!border-border" />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="message" className="text-xs font-semibold text-muted-foreground">
-                      Message
-                    </Label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      placeholder="Tell us what you're building."
-                      className="mt-1 w-full resize-y rounded-xl border border-border bg-input/30 px-3 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:!ring-0 focus-visible:!border-border"
-                    />
-                  </div>
-                  <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-semibold">
-                    Send message <ArrowRight size={16} />
-                  </Button>
-                  <p className="text-[11px] font-semibold text-muted-foreground/50">
-                    By submitting, you agree to our Terms and Privacy Policy.
-                  </p>
-                </form>
+                <ContactForm />
               </div>
             </div>
 
@@ -246,7 +212,7 @@ export default function ContactPage() {
                           <RiTwitterXFill size={14} /> X
                         </a>
                         <a
-                          href="https://discord.gg/orka"
+                          href="https://discord.gg/KbW5pPCDyY"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex size-10 items-center justify-center rounded-full bg-white text-night transition-colors duration-200 hover:bg-white/90"
@@ -255,7 +221,7 @@ export default function ContactPage() {
                           <RiDiscordFill size={18} />
                         </a>
                         <a
-                          href="https://github.com/orka"
+                          href="https://github.com/Genesis-360/Orka"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex size-10 items-center justify-center rounded-full bg-white text-night transition-colors duration-200 hover:bg-white/90"
@@ -273,10 +239,10 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wide text-white/40">Explore</p>
                       <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                        <a href="/" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Home</a>
-                        <a href="/pricing" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Pricing</a>
-                        <a href="/about" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">About</a>
-                        <a href="/blog" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Blog</a>
+                        <Link href="/" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Home</Link>
+                        <Link href="/pricing" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Pricing</Link>
+                        <Link href="/about" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">About</Link>
+                        <Link href="/blog" className="font-medium tracking-tight text-white/70 transition-colors hover:text-white">Blog</Link>
                       </div>
                     </div>
                     <div>

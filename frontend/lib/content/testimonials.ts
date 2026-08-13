@@ -10,6 +10,8 @@ export type QuoteTestimonial = {
   name: string
   role: string
   avatarColor?: string
+  /** Where the quote came from — rendered as a chip on the card. */
+  source: "Discord" | "X" | "GitHub"
 }
 
 export type Testimonial = TweetTestimonial | QuoteTestimonial

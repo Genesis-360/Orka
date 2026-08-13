@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Winning proposals aren't about writing more—they're about writing smarter. Learn how AI helps agencies and freelancers create personalized, persuasive proposals that clients are more likely to accept.",
   description: "Discover how AI helps agencies and freelancers write personalized, professional proposals faster, improve client confidence, and increase proposal acceptance rates.",
   category: "AI",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "8 min read",
   publishedAt: "2026-03-04",
   coverGradient: "from-violet/15 via-info/10 to-violet/5",

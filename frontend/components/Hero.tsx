@@ -88,6 +88,25 @@ export default function Hero() {
           </Link>
         </div>
 
+        <div className="mt-7 flex justify-center">
+          <a
+            href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-90"
+            aria-label="As seen on Launch Llama Newsletter"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://tools.launchllama.co/featured-badge.png?v=2"
+              alt="As seen on Launch Llama Newsletter"
+              width={200}
+              height={50}
+              style={{ display: "block", border: 0 }}
+            />
+          </a>
+        </div>
+
         <div className="mt-12 flex items-center justify-center gap-8">
           <div className="origin-center">
             <AvatarCircles
@@ -168,9 +187,9 @@ export default function Hero() {
               <ArrowUpRight size={40} className="shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </div>
             <p className="mt-2 text-[14px] font-bold leading-6">
-              Design partners & early
+              Agencies & freelancers
               <br />
-              adopters on the waitlist
+              running on ORKA
             </p>
           </div>
           <div className="cut-corner group rounded-[14px] bg-lime p-5 text-night shadow-hard transition-transform duration-300 hover:-translate-y-1 min-w-[160px]">
@@ -185,7 +204,7 @@ export default function Hero() {
             </p>
           </div>
           <p className="text-[14px] font-medium text-white/80">
-            50+ design partners and early adopters already using ORKA.
+            50+ agencies and freelancers already run escrow and payouts on ORKA.
           </p>
         </div>
       </div>

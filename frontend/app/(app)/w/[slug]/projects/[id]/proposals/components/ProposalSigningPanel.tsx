@@ -53,7 +53,6 @@ export function ProposalSigningPanel({
   orgId,
   agencySig,
   clientSig,
-  status,
   onSigned,
 }: Props) {
   const [busy, setBusy] = useState(false);

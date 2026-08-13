@@ -8,13 +8,6 @@ import { ProjectsTabs, type Tab } from "./ProjectsTabs";
 import { fetchProjectsPage } from "../actions";
 import type { ProjectStatus } from "@/lib/orka";
 
-const EMPTY_COUNTS: Record<ProjectStatus, number> = {
-  draft: 0,
-  active: 0,
-  completed: 0,
-  archived: 0,
-};
-
 export function ProjectsList({
   slug,
   initialItems,

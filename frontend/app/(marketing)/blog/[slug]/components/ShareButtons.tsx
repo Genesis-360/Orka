@@ -1,14 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Link2, Bookmark, Share2, Check } from "lucide-react";
+import { Link2, Share2, Check } from "lucide-react";
 
 export default function ShareButtons() {
   const [copied, setCopied] = useState(false);
-  const [saved, setSaved] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem(`saved-article-${window.location.pathname}`) === "true";
-  });
 
   async function handleCopyLink() {
     try {
@@ -23,13 +19,6 @@ export default function ShareButtons() {
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  }
-
-  function handleSave() {
-    const key = `saved-article-${window.location.pathname}`;
-    const next = !saved;
-    setSaved(next);
-    localStorage.setItem(key, String(next));
   }
 
   async function handleShare() {
@@ -54,18 +43,6 @@ export default function ShareButtons() {
       >
         {copied ? <Check size={12} className="text-teal" /> : <Link2 size={12} />}
         {copied ? "Copied!" : "Copy Link"}
-      </button>
-      <button
-        onClick={handleSave}
-        aria-label={saved ? "Remove from saved" : "Save article"}
-        className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors hover:bg-night/5 hover:text-night ${
-          saved
-            ? "border-violet/30 bg-violet/5 text-violet"
-            : "border-night/10 text-night/60"
-        }`}
-      >
-        <Bookmark size={12} />
-        {saved ? "Saved" : "Save"}
       </button>
       <button
         onClick={handleShare}

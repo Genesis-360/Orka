@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Great communication is what separates average agencies from exceptional ones. Learn proven client communication strategies that build trust, reduce misunderstandings, and increase client retention.",
   description: "Learn how agencies and freelancers can improve client communication with clear expectations, regular updates, transparency, and structured workflows.",
   category: "Client Management",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-10",
   coverGradient: "from-violet/10 via-info/8 to-violet/5",

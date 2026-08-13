@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
 import {
   Rocket,
   Wallet,
@@ -22,13 +20,14 @@ import {
   GitBranch,
   Settings,
   Zap,
-  Search,
-  Clock,
   TrendingUp,
   Star,
-  ArrowUpRight,
 } from "lucide-react";
 import { docsNavigation } from "@/lib/docs/config";
+import { learningPathFlows } from "@/lib/docs/config";
+import { useDocsProgress } from "@/lib/docs/progress";
+import DocsSearch from "@/components/docs/DocsSearch";
+import { DocsNavToggle } from "@/components/docs/docs-nav";
 
 const quickStartItems = [
   {
@@ -203,147 +202,184 @@ const whatsNew = [
   },
 ];
 
-export default function DocsPage() {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
+function ContinueLearningProgress() {
+  const { getSectionProgress, isLoaded } = useDocsProgress();
 
-  const handleSearch = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      if (searchQuery.trim()) {
-        // Trigger the Cmd+K search modal instead
-        document.dispatchEvent(
-          new KeyboardEvent("keydown", {
-            key: "k",
-            metaKey: true,
-          })
-        );
-      }
-    },
-    [searchQuery]
+  if (!isLoaded) return null;
+
+  const sections = ["start-here", "guides", "concepts", "clients", "projects", "payments", "ai", "team", "workspace", "developers", "resources"];
+  let totalCompleted = 0;
+  let totalItems = 0;
+
+  for (const sectionSlug of sections) {
+    const progress = getSectionProgress(sectionSlug);
+    totalCompleted += progress.completed;
+    totalItems += progress.total;
+  }
+
+  if (totalItems === 0) return null;
+
+  const percent = Math.round((totalCompleted / totalItems) * 100);
+  const isComplete = totalCompleted === totalItems;
+
+  return (
+    <section className="border-b border-black/[0.06] bg-[#fffaf2] px-8 py-8 lg:px-12">
+      <div className="mx-auto max-w-5xl">
+        <div className="flex items-center gap-6 rounded-xl border border-black/[0.06] bg-white p-5 shadow-sm">
+          <div className="flex-1">
+            <p className="text-[14px] font-bold text-[#082033]">
+              {isComplete ? "🎉 Documentation Complete" : "Continue Learning"}
+            </p>
+            <p className="mt-1 text-[13px] text-[#5f6b86]">
+              {totalCompleted} / {totalItems} pages completed
+            </p>
+            <div className="mt-3 h-[6px] overflow-hidden rounded-full bg-black/[0.06]">
+              <div
+                className="h-full rounded-full bg-[#22bd93] transition-all duration-500 ease-out"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+            <p className="mt-2 text-[12px] font-bold text-[#22bd93]">
+              {percent}%{!isComplete && " — Keep going!"}
+            </p>
+          </div>
+          {isComplete && (
+            <div className="text-[2rem]">🎉</div>
+          )}
+        </div>
+      </div>
+    </section>
   );
+}
+
+export default function DocsPage() {
 
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-black/[0.06] bg-[#f5f3ff] px-8 py-16 lg:px-12">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative overflow-hidden border-b border-white/10 bg-[#071426] px-8 py-16 lg:px-12">
+        {/* Grid texture */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+          aria-hidden="true"
+        />
+        {/* Soft color washes */}
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 size-96 rounded-full bg-[#9474ff]/25 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -bottom-32 -left-24 size-80 rounded-full bg-[#22bd93]/15 blur-3xl"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-5xl">
+          <div className="mb-6 flex items-center justify-between lg:hidden">
+            <DocsNavToggle />
+          </div>
           <div className="flex items-start justify-between gap-12">
-          <div className="max-w-2xl">
-          <h1 className="text-[2.5rem] font-black leading-[1.08] tracking-tight text-[#082033] sm:text-[3rem] md:text-[3.5rem]">
-            Everything you need to
-            <br />
-            run your service business
-            <br />
-            with Orka.
-          </h1>
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[#5f6b86]">
-            Step-by-step guides, best practices and resources to help you
-            win clients, deliver great work and get paid — faster.
-          </p>
+            <div className="max-w-2xl">
+              <Link
+                href="/docs/resources/changelog"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] font-bold text-white/80 backdrop-blur transition-colors hover:border-[#9474ff]/50 hover:text-white">
+                <Sparkles size={13} className="text-[#9474ff]" />
+                What&apos;s new in ORKA
+                <ArrowRight size={12} className="text-white/50" />
+              </Link>
+              <h1 className="mt-4 text-[2.5rem] font-black leading-[1.08] tracking-tight text-white sm:text-[3rem] md:text-[3.5rem]">
+                Everything you need to
+                <br />
+                run your service business
+                <br />
+                with Orka.
+              </h1>
+              <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/60">
+                Step-by-step guides, best practices and resources to help you
+                win clients, deliver great work and get paid — faster.
+              </p>
 
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mt-8 max-w-lg">
-            <div className="relative">
-              <Search
-                size={18}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5f6b86]/50"
-              />
-              <input
-                type="text"
-                placeholder="Search documentation..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() =>
-                  document.dispatchEvent(
-                    new KeyboardEvent("keydown", {
-                      key: "k",
-                      metaKey: true,
-                    })
-                  )
-                }
-                className="w-full rounded-xl border border-black/[0.08] bg-[#f7f8fc] py-3.5 pl-11 pr-20 text-[14px] text-[#082033] outline-none transition-colors placeholder:text-[#5f6b86]/50 focus:border-[#9474ff]/40 focus:ring-2 focus:ring-[#9474ff]/10"
-              />
-              <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg border border-black/[0.06] bg-white px-2 py-1 text-[11px] font-semibold text-[#5f6b86]">
-                ⌘ K
-              </kbd>
+              {/* Search Bar */}
+              <div className="mt-8 max-w-lg">
+                <DocsSearch variant="dark" />
+              </div>
+
+              {/* CTAs */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/docs/start-here/create-workspace"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#9474ff] px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:bg-[#9474ff]/90 hover:shadow-lg hover:shadow-[#9474ff]/30">
+                  Start Learning
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  href="/docs/developers/sdk"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:border-white/30 hover:bg-white/5">
+                  <Code size={14} />
+                  API &amp; SDK Docs
+                </Link>
+              </div>
             </div>
-          </form>
 
-          {/* CTAs */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/docs/start-here/welcome-to-orka"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#9474ff] px-5 py-2.5 text-[13px] font-bold text-white transition-all hover:bg-[#9474ff]/90 hover:shadow-lg hover:shadow-[#9474ff]/20"
-            >
-              Start Learning
-              <ArrowRight size={14} />
-            </Link>
-            <Link
-              href="/docs/developers"
-              className="inline-flex items-center gap-2 rounded-xl border border-[#082033]/10 px-5 py-2.5 text-[13px] font-bold text-[#082033] transition-all hover:border-[#082033]/20 hover:bg-black/[0.02]"
-            >
-              <Code size={14} />
-              API &amp; SDK Docs
-            </Link>
-          </div>
-          </div>
-
-        {/* Dashboard Preview (decorative) */}
+            {/* Dashboard Preview (decorative) */}
             <div className="pointer-events-none hidden shrink-0 lg:block">
               <div className="w-[260px] space-y-3">
-            <div className="rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-[#5f6b86]">
-                  Total Paid
-                </span>
-                <TrendingUp size={14} className="text-[#22bd93]" />
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Total Paid
+                    </span>
+                    <TrendingUp size={14} className="text-[#22bd93]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">
+                    $125,430
+                  </p>
+                  <p className="text-[11px] font-medium text-[#22bd93]">
+                    +12% this month
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Projects in Progress
+                    </span>
+                    <BarChart3 size={14} className="text-[#9474ff]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">8</p>
+                  <p className="text-[11px] font-medium text-[#22bd93]">
+                    +2 this week
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-white/50">
+                      Recent Payment
+                    </span>
+                    <Star size={14} className="text-[#ff8a22]" />
+                  </div>
+                  <p className="mt-1 text-[22px] font-black text-white">
+                    $4,250
+                  </p>
+                  <p className="text-[11px] font-medium text-white/50">
+                    From Acme Inc.
+                  </p>
+                </div>
               </div>
-              <p className="mt-1 text-[22px] font-black text-[#082033]">
-                $125,430
-              </p>
-              <p className="text-[11px] font-medium text-[#22bd93]">
-                +12% this month
-              </p>
             </div>
-            <div className="rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-[#5f6b86]">
-                  Projects in Progress
-                </span>
-                <BarChart3 size={14} className="text-[#9474ff]" />
-              </div>
-              <p className="mt-1 text-[22px] font-black text-[#082033]">8</p>
-              <p className="text-[11px] font-medium text-[#22bd93]">
-                +2 this week
-              </p>
-            </div>
-            <div className="rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-medium text-[#5f6b86]">
-                  Recent Payment
-                </span>
-                <Star size={14} className="text-[#ff8a22]" />
-              </div>
-              <p className="mt-1 text-[22px] font-black text-[#082033]">
-                $4,250
-              </p>
-              <p className="text-[11px] font-medium text-[#5f6b86]">
-                From Acme Inc.
-              </p>
-            </div>
-          </div>
-          </div>
           </div>
         </div>
       </section>
 
+      {/* Continue Learning Progress */}
+      <ContinueLearningProgress />
+
       {/* Quick Start */}
       <section className="px-8 py-14 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-[22px] font-black text-[#082033]">
-            Quick Start
-          </h2>
+          <h2 className="text-[22px] font-black text-[#082033]">Quick Start</h2>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {quickStartItems.map((item) => {
               const Icon = item.icon;
@@ -351,18 +387,15 @@ export default function DocsPage() {
                 <Link
                   key={item.step}
                   href={item.href}
-                  className="group relative rounded-xl border border-black/[0.06] bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  className="group relative rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="absolute -top-2 -left-2 flex size-5 items-center justify-center rounded-full text-[10px] font-bold text-white"
-                    style={{ backgroundColor: item.color }}
-                  >
+                    style={{ backgroundColor: item.color }}>
                     {item.step}
                   </span>
                   <span
                     className="grid size-9 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${item.color}12` }}
-                  >
+                    style={{ backgroundColor: `${item.color}12` }}>
                     <Icon size={16} style={{ color: item.color }} />
                   </span>
                   <p className="mt-2.5 text-[12px] font-bold text-[#082033]">
@@ -379,7 +412,7 @@ export default function DocsPage() {
       </section>
 
       {/* Learning Paths */}
-      <section className="border-t border-black/[0.06] bg-white px-8 py-14 lg:px-12">
+      <section className="border-t border-black/[0.06] bg-[#fffaf2] px-8 py-14 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <div className="flex items-center justify-between">
             <h2 className="text-[22px] font-black text-[#082033]">
@@ -387,8 +420,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all paths
               <ArrowRight size={12} />
             </Link>
@@ -396,20 +428,22 @@ export default function DocsPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {learningPaths.map((path) => {
               const Icon = path.icon;
+              const flow = learningPathFlows.find(
+                (f) => f.title.toLowerCase() === path.title.toLowerCase(),
+              );
+              const firstStepSlug = flow?.steps[0]?.slug;
               return (
                 <div
                   key={path.title}
-                  className={`flex flex-col rounded-xl border border-black/[0.06] bg-[#fffaf2] p-5 transition-all ${
-                    path.disabled
-                      ? "opacity-60"
-                      : "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/[0.04]"
-                  }`}
-                >
+                  className={`flex flex-col rounded-xl border border-black/[0.06] bg-white p-5 shadow-sm transition-all ${
+                    path.disabled ? "opacity-60" : (
+                      "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/[0.04]"
+                    )
+                  }`}>
                   <div className="flex items-center gap-2.5">
                     <span
                       className="grid size-8 place-items-center rounded-lg"
-                      style={{ backgroundColor: `${path.color}12` }}
-                    >
+                      style={{ backgroundColor: `${path.color}12` }}>
                       <Icon size={15} style={{ color: path.color }} />
                     </span>
                     <div>
@@ -431,23 +465,25 @@ export default function DocsPage() {
                       {path.steps.map((step) => (
                         <div
                           key={step}
-                          className="flex items-center gap-2 text-[11px] text-[#5f6b86]"
-                        >
+                          className="flex items-center gap-2 text-[11px] text-[#5f6b86]">
                           <Check size={11} className="text-[#22bd93]" />
                           {step}
                         </div>
                       ))}
                     </div>
                   )}
-                  <div className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-3">
-                    <span className="text-[10px] font-semibold text-[#5f6b86]">
-                      {path.progress}
-                    </span>
-                    {path.totalSteps && (
-                      <span className="text-[10px] font-semibold text-[#5f6b86]">
+                  <div className="mt-4 border-t border-black/[0.06] pt-3">
+                    {firstStepSlug && !path.disabled ?
+                      <Link
+                        href={`/docs/${firstStepSlug}`}
+                        className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
+                        Start Path
+                        <ArrowRight size={12} />
+                      </Link>
+                    : <span className="text-[10px] font-semibold text-[#5f6b86]">
                         {path.totalSteps}
                       </span>
-                    )}
+                    }
                   </div>
                 </div>
               );
@@ -465,8 +501,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all guides
               <ArrowRight size={12} />
             </Link>
@@ -478,12 +513,10 @@ export default function DocsPage() {
                 <Link
                   key={guide.title}
                   href={guide.href}
-                  className="group flex items-start gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  className="group flex items-start gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="grid size-9 shrink-0 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${guide.color}12` }}
-                  >
+                    style={{ backgroundColor: `${guide.color}12` }}>
                     <Icon size={16} style={{ color: guide.color }} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -509,7 +542,7 @@ export default function DocsPage() {
       </section>
 
       {/* Browse Documentation */}
-      <section className="border-t border-black/[0.06] bg-white px-8 py-14 lg:px-12">
+      <section className="border-t border-black/[0.06] bg-[#fffaf2] px-8 py-14 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <div className="flex items-center justify-between">
             <h2 className="text-[22px] font-black text-[#082033]">
@@ -517,8 +550,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="#"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               Explore all categories
               <ArrowRight size={12} />
             </Link>
@@ -541,13 +573,11 @@ export default function DocsPage() {
               return (
                 <Link
                   key={section.slug}
-                  href={`/docs/${section.slug}`}
-                  className="group flex items-center gap-3.5 rounded-xl border border-black/[0.06] bg-[#fffaf2] p-4 transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]"
-                >
+                  href={`/docs/${section.slug}/${section.items[0].slug}`}
+                  className="group flex items-center gap-3.5 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#9474ff]/20 hover:shadow-lg hover:shadow-[#9474ff]/[0.06]">
                   <span
                     className="grid size-9 shrink-0 place-items-center rounded-lg"
-                    style={{ backgroundColor: `${section.color}12` }}
-                  >
+                    style={{ backgroundColor: `${section.color}12` }}>
                     <Icon size={16} style={{ color: section.color }} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -578,8 +608,7 @@ export default function DocsPage() {
             </h2>
             <Link
               href="/docs/resources/changelog"
-              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80"
-            >
+              className="flex items-center gap-1 text-[12px] font-bold text-[#9474ff] transition-colors hover:text-[#9474ff]/80">
               View all updates
               <ArrowRight size={12} />
             </Link>
@@ -588,8 +617,7 @@ export default function DocsPage() {
             {whatsNew.map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-3 rounded-xl border border-black/[0.06] bg-white p-4"
-              >
+                className="flex items-start gap-3 rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <p className="text-[13px] font-bold text-[#082033]">
@@ -600,8 +628,7 @@ export default function DocsPage() {
                       style={{
                         backgroundColor: `${item.tagColor}12`,
                         color: item.tagColor,
-                      }}
-                    >
+                      }}>
                       {item.tag}
                     </span>
                   </div>
@@ -616,30 +643,38 @@ export default function DocsPage() {
       </section>
 
       {/* Need Help */}
-      <section className="border-t border-black/[0.06] bg-[#f5f3ff] px-8 py-8 lg:px-12">
+      <section className="border-t border-black/[0.06] bg-[#9474ff] px-8 py-8 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[16px] font-bold text-[#082033]">Need help?</h2>
-            <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <h2 className="text-[16px] font-bold text-white">
+              Need help? We&apos;re here.
+            </h2>
+            <div className="flex flex-wrap items-center gap-6">
               <a
                 href="/contact"
-                className="flex items-center gap-2 text-[13px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
-              >
-                <Headphones size={14} />
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <Headphones
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 Support
               </a>
               <a
-                href="#"
-                className="flex items-center gap-2 text-[13px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
-              >
-                <MessageSquare size={14} />
+                href="https://discord.gg/KbW5pPCDyY"
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <MessageSquare
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 Community
               </a>
               <a
-                href="#"
-                className="flex items-center gap-2 text-[13px] font-medium text-[#5f6b86] transition-colors hover:text-[#082033]"
-              >
-                <GitBranch size={14} />
+                href="https://github.com/Genesis-360/Orka"
+                className="group flex items-center gap-2 text-[13px] font-medium text-white/85 transition-colors hover:text-white">
+                <GitBranch
+                  size={14}
+                  className="transition-transform group-hover:scale-110"
+                />
                 GitHub
               </a>
             </div>

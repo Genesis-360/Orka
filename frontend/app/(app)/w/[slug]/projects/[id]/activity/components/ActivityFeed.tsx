@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { ActivityCard } from "./ActivityCard";
 import { ActivityFilters } from "./ActivityFilters";
 import { ActivityEmptyState } from "./ActivityEmptyState";
-import type { ActivityGroup, ActivityItem } from "./types";
+import type { ActivityGroup } from "./types";
 
 function TimelineIcon() {
   return (
