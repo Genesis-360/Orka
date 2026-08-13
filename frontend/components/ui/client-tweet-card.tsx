@@ -4,26 +4,23 @@ import { TweetProps, useTweet } from "react-tweet"
 
 import {
   MagicTweet,
-  TweetNotFound,
+  TweetFallback,
   TweetSkeleton,
 } from "@/components/tweet-card"
 
 export const ClientTweetCard = ({
   id,
+  handle,
   apiUrl = `/api/tweet/${id}`,
   fallback = <TweetSkeleton />,
-  components,
   fetchOptions,
-  onError,
   ...props
-}: TweetProps & { className?: string; hideTwitterIcon?: boolean }) => {
+}: TweetProps & { className?: string; hideTwitterIcon?: boolean; handle?: string }) => {
   const { data, error, isLoading } = useTweet(id, apiUrl, fetchOptions)
 
   if (isLoading) return fallback
   if (error || !data) {
-    if (onError) return null
-    const NotFound = components?.TweetNotFound ?? TweetNotFound
-    return <NotFound error={error} />
+    return <TweetFallback handle={handle} />
   }
 
   return <MagicTweet tweet={data} {...props} />

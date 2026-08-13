@@ -83,6 +83,7 @@ export default function Testimonials() {
                 >
                   <ClientTweetCard
                     id={item.id}
+                    handle={item.handle}
                     className="rounded-2xl border-2 border-night/8 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet/40 hover:shadow-lg"
                   />
                 </motion.div>

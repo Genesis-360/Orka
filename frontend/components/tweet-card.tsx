@@ -73,6 +73,23 @@ export const TweetNotFound = ({
   </div>
 )
 
+export const TweetFallback = ({ handle }: { handle?: string }) => (
+  <div className="flex h-fit w-full flex-col items-center justify-center gap-3 rounded-xl border border-night/10 bg-white p-6 text-center">
+    <Twitter className="size-6 text-night/40" />
+    <p className="text-sm font-medium text-night/60">
+      This post is no longer available.
+    </p>
+    <a
+      href={handle ? `https://x.com/${handle.replace(/^@/, "")}` : "https://x.com/get_orka"}
+      target="_blank"
+      rel="noreferrer"
+      className="text-sm font-semibold text-violet transition-colors hover:text-[#a78cff]"
+    >
+      {handle ? `View ${handle} on X` : "Follow ORKA on X"}
+    </a>
+  </div>
+)
+
 export const TweetEngagement = ({ tweet }: { tweet: EnrichedTweet }) => (
   <div className="mt-2 flex items-center justify-between text-night/50">
     <div className="flex items-center gap-5">
