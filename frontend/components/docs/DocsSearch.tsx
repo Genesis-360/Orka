@@ -22,15 +22,18 @@ interface SearchData {
 }
 
 let dataPromise: Promise<SearchData | null> | null = null;
+let dataCache: SearchData | null = null;
 
 function loadIndex(): Promise<SearchData | null> {
+  if (dataCache) return Promise.resolve(dataCache);
   if (!dataPromise) {
-    dataPromise = fetch("/search-index.json")
+    dataPromise = fetch("/search-index.json", { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error(`Search index unavailable (${res.status})`);
         return res.json() as Promise<SearchEntry[]>;
       })
       .then((entries) => {
+        if (!Array.isArray(entries) || entries.length === 0) return null;
         const ms = new MiniSearch({
           fields: ["title", "tags", "description", "content"],
           storeFields: ["title", "category", "description", "url"],
@@ -38,11 +41,12 @@ function loadIndex(): Promise<SearchData | null> {
             boost: { title: 4, tags: 3, description: 2, content: 1 },
             prefix: true,
             fuzzy: 0.2,
-            combineWith: "AND",
+            combineWith: "OR",
           },
         });
         ms.addAll(entries);
-        return { ms, entries };
+        dataCache = { ms, entries };
+        return dataCache;
       })
       .catch((e) => {
         console.error("Failed to load search index:", e);
