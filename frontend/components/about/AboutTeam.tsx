@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const founders = [
   {
-    image: "/janvi.png",
+    image: "/janvi.jpeg",
     name: "Janvi",
     role: "Co-founder & Builder",
     bio: "Full stack engineer and Web3 builder. Loves turning complex problems into simple products.",
