@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import MiniSearch from "minisearch";
 import { Search, FileText, ArrowRight, Loader2 } from "lucide-react";
@@ -127,6 +128,11 @@ export default function DocsSearch({
   const [results, setResults] = useState<Array<SearchEntry & { snippet: string }>>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [indexReady, setIndexReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -274,7 +280,7 @@ export default function DocsSearch({
         </kbd>
       </button>
 
-      {open && (
+      {mounted && open && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 pt-[12vh]"
           role="dialog"
@@ -438,7 +444,8 @@ export default function DocsSearch({
               </span>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
