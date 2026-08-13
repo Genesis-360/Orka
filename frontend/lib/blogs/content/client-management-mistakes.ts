@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Poor client management silently drains agency profits through delayed payments, scope creep, and lost referrals. Discover the seven most expensive mistakes agencies make — and how to avoid them.",
   description: "Learn the biggest client management mistakes agencies make and discover practical systems to improve client relationships, reduce payment delays, and grow profitably.",
   category: "Agency",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "8 min read",
   publishedAt: "2026-05-15",
   coverGradient: "from-coral/12 via-orange/8 to-violet/5",

@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "The best agencies don't just deliver projects — they build relationships that lead to repeat business and referrals. Learn practical strategies to earn client trust, improve communication, and create long-term partnerships.",
   description: "Learn how freelancers and agencies can build stronger client relationships through communication, transparency, trust, and better project management.",
   category: "Client Management",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-15",
   coverGradient: "from-info/12 via-violet/8 to-info/5",

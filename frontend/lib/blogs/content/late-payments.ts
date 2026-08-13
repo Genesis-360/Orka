@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Late payments can disrupt your cash flow and slow your business growth. Learn why clients delay payments, the mistakes that make it worse, and practical strategies to get paid on time.",
   description: "Discover the real reasons clients delay payments and learn practical systems that help freelancers and agencies get paid faster.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-04-12",
   coverGradient: "from-coral/12 via-orange/8 to-coral/5",

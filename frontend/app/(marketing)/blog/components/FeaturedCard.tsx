@@ -68,6 +68,9 @@ export default function FeaturedCard({ post }: { post: BlogPost }) {
               <p className="text-base font-bold text-night">
                 {post.author.name}
               </p>
+              <p className="text-sm font-semibold text-night/40">
+                {post.author.role}
+              </p>
               <div className="mt-0.5 flex items-center gap-2 text-xs font-bold text-night/40">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" />

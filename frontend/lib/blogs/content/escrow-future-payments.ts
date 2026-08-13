@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Discover how milestone-based escrow builds trust, reduces payment disputes, and helps agencies and freelancers get paid on time.",
   description: "Learn how escrow payments eliminate payment disputes, improve client trust, and create predictable cash flow for modern service businesses.",
   category: "Escrow",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-05-09",
   coverGradient: "from-teal/15 via-teal/8 to-lime/5",

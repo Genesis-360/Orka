@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Making the leap from freelancer to agency owner isn't about working more — it's about building systems. Learn how to scale your service business, hire your first team, and create a business that grows without depending entirely on you.",
   description: "Learn how to transition from freelancer to agency owner with proven systems, hiring strategies, pricing models, and operational workflows.",
   category: "Agency",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "9 min read",
   publishedAt: "2026-04-28",
   coverGradient: "from-orange/10 via-lime/8 to-teal/5",

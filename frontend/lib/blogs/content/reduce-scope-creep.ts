@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "Scope creep quietly eats into agency profits, delays projects, and frustrates teams. Learn practical strategies to prevent endless revisions, manage client expectations, and keep projects profitable.",
   description: "Learn how agencies and freelancers can prevent scope creep with better proposals, contracts, milestones, and client communication.",
   category: "Client Management",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-03-08",
   coverGradient: "from-orange/12 via-lime/8 to-orange/5",

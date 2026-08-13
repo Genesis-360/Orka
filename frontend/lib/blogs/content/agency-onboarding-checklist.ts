@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "The first week after signing a client sets the tone for the entire relationship. Use this complete onboarding checklist to impress clients, reduce delays, and deliver projects more efficiently.",
   description: "Discover a proven onboarding process used by successful agencies. Includes a free client onboarding checklist to improve communication, reduce delays, and create a better client experience.",
   category: "Agency",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "7 min read",
   publishedAt: "2026-05-06",
   coverGradient: "from-lime/12 via-lime/6 to-teal/5",

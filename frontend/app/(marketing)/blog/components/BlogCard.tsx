@@ -63,6 +63,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           />
           <div className="min-w-0 flex-1">
             <p className="text-sm font-bold text-night truncate">{post.author.name}</p>
+            <p className="text-xs font-semibold text-night/40 truncate">{post.author.role}</p>
             <div className="mt-0.5 flex items-center gap-2 text-xs font-bold text-night/40">
               <span className="flex items-center gap-1">
                 <Calendar className="h-3 w-3" />

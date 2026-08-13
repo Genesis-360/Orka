@@ -5,7 +5,7 @@ export const article: BlogArticle = {
   excerpt: "An invoice isn't just a payment request — it's part of your client experience. Learn the invoicing best practices that help agencies get paid faster, improve cash flow, and look more professional.",
   description: "Discover invoicing best practices that help agencies reduce payment delays, improve cash flow, and create a smoother client experience.",
   category: "Payments",
-  author: { name: "Janvi Singhal", initials: "JS", role: "Founder, ORKA" },
+  author: { name: "ORKA Team", initials: "OT", role: "ORKA Team" },
   readingTime: "6 min read",
   publishedAt: "2026-04-10",
   coverGradient: "from-violet/12 via-teal/8 to-violet/5",
