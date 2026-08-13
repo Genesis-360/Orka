@@ -50,7 +50,7 @@ export default function DocsTopbar({ breadcrumbs, accent }: DocsTopbarProps) {
 
       {/* Search + Ask AI */}
       <div className="flex shrink-0 items-center gap-2">
-        <div className="w-44 sm:w-52">
+        <div className="w-48 sm:w-72">
           <DocsSearch variant="light" compact />
         </div>
 
