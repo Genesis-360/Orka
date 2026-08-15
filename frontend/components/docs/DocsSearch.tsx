@@ -128,11 +128,6 @@ export default function DocsSearch({
   const [results, setResults] = useState<Array<SearchEntry & { snippet: string }>>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [indexReady, setIndexReady] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -280,7 +275,7 @@ export default function DocsSearch({
         </kbd>
       </button>
 
-      {mounted && open && createPortal(
+      {open && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 pt-[12vh]"
           role="dialog"
