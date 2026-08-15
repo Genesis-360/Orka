@@ -1,0 +1,128 @@
+# ORKA
+
+> ORKA is the autonomous financial operating system for agencies, freelancers, consultants, and studios. It handles proposals, contracts, escrow, milestone verification, cross-border payments, invoices, and financial records so service businesses get paid reliably and stay reconciled — from rough brief to paid in a few steps.
+
+## Key Pages
+- [ORKA — Autonomous Financial OS](https://orka.app/)
+- [Pricing](https://orka.app/pricing)
+- [About](https://orka.app/about)
+- [Blog](https://orka.app/blog)
+- [Contact](https://orka.app/contact)
+- [Changelog](https://orka.app/changelog)
+- [Documentation](https://orka.app/docs)
+
+## Documentation
+### Ai
+- [ai-contracts](https://orka.app/docs/ai/ai-contracts)
+- [ai-invoice-assistant](https://orka.app/docs/ai/ai-invoice-assistant)
+- [coming-soon](https://orka.app/docs/ai/coming-soon)
+- [generate-proposal](https://orka.app/docs/ai/generate-proposal)
+- [smart-suggestions](https://orka.app/docs/ai/smart-suggestions)
+
+### Clients
+- [add-client](https://orka.app/docs/clients/add-client)
+- [client-portal](https://orka.app/docs/clients/client-portal)
+- [client-profiles](https://orka.app/docs/clients/client-profiles)
+- [import-clients](https://orka.app/docs/clients/import-clients)
+- [permissions](https://orka.app/docs/clients/permissions)
+
+### Concepts
+- [clients](https://orka.app/docs/concepts/clients)
+- [escrow](https://orka.app/docs/concepts/escrow)
+- [milestones](https://orka.app/docs/concepts/milestones)
+- [permissions](https://orka.app/docs/concepts/permissions)
+- [projects](https://orka.app/docs/concepts/projects)
+- [wallets](https://orka.app/docs/concepts/wallets)
+- [workspaces](https://orka.app/docs/concepts/workspaces)
+
+### Developers
+- [api](https://orka.app/docs/developers/api)
+- [authentication](https://orka.app/docs/developers/authentication)
+- [examples](https://orka.app/docs/developers/examples)
+- [sdk](https://orka.app/docs/developers/sdk)
+- [webhooks](https://orka.app/docs/developers/webhooks)
+
+### Guides
+- [agency-workflow](https://orka.app/docs/guides/agency-workflow)
+- [create-first-proposal](https://orka.app/docs/guides/create-first-proposal)
+- [international-payments](https://orka.app/docs/guides/international-payments)
+- [manage-clients](https://orka.app/docs/guides/manage-clients)
+- [milestone-payments](https://orka.app/docs/guides/milestone-payments)
+- [send-first-invoice](https://orka.app/docs/guides/send-first-invoice)
+- [team-collaboration](https://orka.app/docs/guides/team-collaboration)
+
+### Payments
+- [cross-border-payments](https://orka.app/docs/payments/cross-border-payments)
+- [escrow](https://orka.app/docs/payments/escrow)
+- [generate-invoice](https://orka.app/docs/payments/generate-invoice)
+- [payment-history](https://orka.app/docs/payments/payment-history)
+- [refunds](https://orka.app/docs/payments/refunds)
+- [release-payments](https://orka.app/docs/payments/release-payments)
+
+### Projects
+- [create-project](https://orka.app/docs/projects/create-project)
+- [deliverables](https://orka.app/docs/projects/deliverables)
+- [files](https://orka.app/docs/projects/files)
+- [milestones](https://orka.app/docs/projects/milestones)
+- [project-status](https://orka.app/docs/projects/project-status)
+- [templates](https://orka.app/docs/projects/templates)
+
+### Resources
+- [changelog](https://orka.app/docs/resources/changelog)
+- [community](https://orka.app/docs/resources/community)
+- [faq](https://orka.app/docs/resources/faq)
+- [github](https://orka.app/docs/resources/github)
+- [roadmap](https://orka.app/docs/resources/roadmap)
+- [support](https://orka.app/docs/resources/support)
+
+### Start-here
+- [connect-wallet](https://orka.app/docs/start-here/connect-wallet)
+- [create-workspace](https://orka.app/docs/start-here/create-workspace)
+- [invite-team](https://orka.app/docs/start-here/invite-team)
+- [welcome-to-orka](https://orka.app/docs/start-here/welcome-to-orka)
+- [why-orka](https://orka.app/docs/start-here/why-orka)
+- [your-first-project](https://orka.app/docs/start-here/your-first-project)
+
+### Team
+- [activity](https://orka.app/docs/team/activity)
+- [approvals](https://orka.app/docs/team/approvals)
+- [invite-members](https://orka.app/docs/team/invite-members)
+- [permissions](https://orka.app/docs/team/permissions)
+- [roles](https://orka.app/docs/team/roles)
+
+### Workspace
+- [branding](https://orka.app/docs/workspace/branding)
+- [integrations](https://orka.app/docs/workspace/integrations)
+- [notifications](https://orka.app/docs/workspace/notifications)
+- [preferences](https://orka.app/docs/workspace/preferences)
+- [themes](https://orka.app/docs/workspace/themes)
+
+## Blog
+- [Agency Client Onboarding Checklist (Free Template Included)](https://orka.app/blog/agency-client-onboarding-checklist)
+- [How AI Helps Agencies Win More Clients in Less Time](https://orka.app/blog/how-ai-helps-agencies-win-more-clients)
+- [How AI Writes Better Proposals (That Clients Actually Accept)](https://orka.app/blog/how-ai-writes-better-proposals)
+- [How AI Saves Agencies 10+ Hours Every Week](https://orka.app/blog/how-ai-saves-agencies-10-hours-every-week)
+- [AI vs Manual Proposal Writing](https://orka.app/blog/ai-vs-manual-proposal-writing)
+- [Best AI Tools for Agencies in 2026](https://orka.app/blog/best-ai-tools-for-agencies)
+- [How to Write Better Project Proposals with AI](https://orka.app/blog/how-to-write-better-project-proposals-with-ai)
+- [Client Communication Best Practices](https://orka.app/blog/client-communication-best-practices)
+- [7 Client Management Mistakes That Cost Agencies Thousands Every Year](https://orka.app/blog/7-client-management-mistakes-that-cost-agencies-thousands)
+- [What Is a Client Portal? Benefits for Agencies and Freelancers](https://orka.app/blog/what-is-a-client-portal)
+- [How to Build Better Client Relationships](https://orka.app/blog/how-to-build-better-client-relationships)
+- [Cross-Border Payments for Freelancers: A Complete Guide](https://orka.app/blog/cross-border-payments-for-freelancers)
+- [How to Handle Difficult Clients Professionally](https://orka.app/blog/how-to-handle-difficult-clients-professionally)
+- [Why Escrow Is the Future of Client Payments](https://orka.app/blog/why-escrow-is-the-future-of-client-payments)
+- [Escrow vs Upfront Payments: Which Is Better for Freelancers and Agencies?](https://orka.app/blog/escrow-vs-upfront-payments)
+- [Freelancer Contracts That Protect You (And Your Clients)](https://orka.app/blog/freelancer-contracts-that-protect-you)
+- [From Freelancer to Agency Owner: A Complete Guide](https://orka.app/blog/from-freelancer-to-agency-owner)
+- [How to Get Paid Faster as a Freelancer](https://orka.app/blog/how-to-get-paid-faster-as-a-freelancer)
+- [How to Invoice International Clients: A Complete Guide](https://orka.app/blog/how-to-invoice-international-clients)
+- [Best Invoicing Practices for Agencies](https://orka.app/blog/best-invoicing-practices-for-agencies)
+- [Late Payments: Why Clients Delay Paying (and How to Stop It)](https://orka.app/blog/late-payments-why-clients-delay-paying)
+- [Managing Multiple Projects Without Losing Your Mind](https://orka.app/blog/managing-multiple-projects-without-losing-your-mind)
+- [Why Milestone-Based Payments Build 10x More Client Trust](https://orka.app/blog/why-milestone-based-payments-build-client-trust)
+- [Milestone Payments vs Hourly Billing: Which Is Better for Freelancers and Agencies?](https://orka.app/blog/milestone-payments-vs-hourly-billing)
+- [How to Price Agency Services Without Losing Clients](https://orka.app/blog/how-to-price-agency-services-without-losing-clients)
+- [Proposal vs Contract vs Invoice: What's the Difference?](https://orka.app/blog/proposal-vs-contract-vs-invoice)
+- [How to Reduce Scope Creep](https://orka.app/blog/how-to-reduce-scope-creep)
+- [How to Scale an Agency from 5 Clients to 50](https://orka.app/blog/how-to-scale-an-agency-from-5-clients-to-50)
