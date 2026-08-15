@@ -39,6 +39,17 @@ export const metadata: Metadata = {
   }
 };
 
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ORKA",
+  url: "https://orka.app",
+  logo: "https://orka.app/Logo/logo.svg",
+  description:
+    "ORKA automates proposals, escrow, milestone verification, payouts, invoices, and back-office finance for global service businesses.",
+  sameAs: ["https://x.com/get_orka"],
+};
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -50,6 +61,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(anton.variable, dmSans.variable, jetbrains.variable, jetbrainsMonoHeading.variable)}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
         <ThemeProvider>
           <TooltipProvider delayDuration={200}>
             <SmoothScrollProvider>{children}</SmoothScrollProvider>
