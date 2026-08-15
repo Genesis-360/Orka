@@ -62,8 +62,36 @@ export default async function BlogPostPage({
   const relatedPosts = getRelatedArticles(slug, 3);
   const { prev, next } = getPrevNext(slug);
 
+  const blogPostingLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.seoTitle || article.title,
+    description: article.seoDescription || article.description,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: { "@type": "Person", name: article.author.name },
+    publisher: {
+      "@type": "Organization",
+      name: "ORKA",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://orka.app/Logo/logo.svg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://orka.app/blog/${slug}`,
+    },
+  };
+
   return (
     <>
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd) }}
+      />
+
       {/* Reading Progress */}
       <ReadingProgress />
 
