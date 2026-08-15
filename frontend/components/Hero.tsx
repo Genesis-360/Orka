@@ -88,7 +88,7 @@ export default function Hero() {
           </Link>
         </div>
 
-        <div className="mt-7 flex justify-center">
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
           <a
             href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral"
             target="_blank"
@@ -102,6 +102,22 @@ export default function Hero() {
               alt="As seen on Launch Llama Newsletter"
               width={200}
               height={50}
+              style={{ display: "block", border: 0 }}
+            />
+          </a>
+          <a
+            href="https://www.scrolllaunch.com/products/orka?ref=badge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-200 hover:opacity-90"
+            aria-label="Featured on ScrollLaunch"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://www.scrolllaunch.com/api/badge/orka"
+              alt="Featured on ScrollLaunch"
+              width={220}
+              height={48}
               style={{ display: "block", border: 0 }}
             />
           </a>
