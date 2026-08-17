@@ -121,6 +121,20 @@ export default function Hero() {
               style={{ display: "block", border: 0 }}
             />
           </a>
+          <a
+            href="https://peerlist.io/x0lg0n/project/orka"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-opacity duration-200 hover:opacity-90"
+            aria-label="Orka on Peerlist Launchpad"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://peerlist.io/api/v1/projects/embed/PRJH6A7RAEMDE88R927OLE8JJGR6BD?showUpvote=true&theme=light"
+              alt="Orka"
+              style={{ display: "block", border: 0, width: "auto", height: 48 }}
+            />
+          </a>
         </div>
 
         <div className="mt-12 flex items-center justify-center gap-8">
